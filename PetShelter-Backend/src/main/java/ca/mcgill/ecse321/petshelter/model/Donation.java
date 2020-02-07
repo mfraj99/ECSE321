@@ -1,54 +1,53 @@
 package ca.mcgill.ecse321.petshelter.model;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import java.util.Set;
+import java.util.HashSet;
 
-@Entity
-public class Donation{
+public class Donation {
    private double amount;
-
-public void setAmount(double value) {
-    this.amount = value;
-}
-public double getAmount() {
-    return this.amount;
-}
-private String comment;
-
-public void setComment(String value) {
-    this.comment = value;
-}
-public String getComment() {
-    return this.comment;
-}
-private boolean setNameAnonymous;
-
-public void setSetNameAnonymous(boolean value) {
-    this.setNameAnonymous = value;
-}
-public boolean isSetNameAnonymous() {
-    return this.setNameAnonymous;
-}
-   private AppUser donatedBy;
    
-   @ManyToOne(optional=false)
-   public AppUser getDonatedBy() {
-      return this.donatedBy;
+   public void setAmount(double value) {
+      this.amount = value;
    }
    
-   public void setDonatedBy(AppUser donatedBy) {
-      this.donatedBy = donatedBy;
+   public double getAmount() {
+      return this.amount;
    }
    
-   private AppAdmin receivedBy;
+   private String comment;
    
-   @ManyToOne(optional=false)
-   public AppAdmin getReceivedBy() {
-      return this.receivedBy;
+   public void setComment(String value) {
+      this.comment = value;
    }
    
-   public void setReceivedBy(AppAdmin receivedBy) {
-      this.receivedBy = receivedBy;
+   public String getComment() {
+      return this.comment;
+   }
+   
+   private boolean setNameAnonymous;
+   
+   public void setSetNameAnonymous(boolean value) {
+      this.setNameAnonymous = value;
+   }
+   
+   public boolean isSetNameAnonymous() {
+      return this.setNameAnonymous;
+   }
+   
+   /**
+    * <pre>
+    *           0..*     1..2
+    * Donation ------------------------- Person
+    *           donation        &gt;       person
+    * </pre>
+    */
+   private Set<Person> person;
+   
+   public Set<Person> getPerson() {
+      if (this.person == null) {
+         this.person = new HashSet<Person>();
+      }
+      return this.person;
    }
    
    }

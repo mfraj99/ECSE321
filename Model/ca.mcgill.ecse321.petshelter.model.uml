@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Persistency="http:///schemas/Persistency/NS/0" xmlns:UMLLabProfile="http:///schemas/UMLLabProfile/NS/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/Persistency/NS/0 pathmap://PERSISTENCY_PROFILES/Persistency.profile.uml#Persistency_2-Annotation-Persistency http:///schemas/UMLLabProfile/NS/0 pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile-Annotation_2-UMLLabProfile">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Persistency="http:///schemas/Persistency/NS/0" xmlns:UMLLabProfile="http:///schemas/UMLLabProfile/NS/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/Persistency/NS/0 pathmap://PERSISTENCY_PROFILES/Persistency.profile.uml http:///schemas/UMLLabProfile/NS/0 pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile-Annotation_2-UMLLabProfile">
   <uml:Model xmi:id="_CE8B4EkjEequjbB2squSEg" name="ca_mcgill_ecse321_petshelter_model">
     <eAnnotations xmi:id="_FeCrsEkjEequjbB2squSEg" source="http://ns.yatta.de/umllab">
       <contents xmi:type="ecore:EAnnotation" xmi:id="_FeDSwEkjEequjbB2squSEg" source="codegen">
         <details xmi:id="_FeDSwUkjEequjbB2squSEg" key="codegenDirectory" value="/ca.mcgill.ecse321.petshelter.model/src-gen"/>
-        <details xmi:id="_Y3J1cEkjEequjbB2squSEg" key="AssociatedSourceCode" value="/ca.mcgill.ecse321.petshelter.model/src-gen/ca/mcgill/ecse321/petshelter/model/User.java;2722552954/1;/ca.mcgill.ecse321.petshelter.model/src-gen/ca/mcgill/ecse321/petshelter/model/PetPost.java;938056935/1;/ca.mcgill.ecse321.petshelter.model/src-gen/ca/mcgill/ecse321/petshelter/model/UserProfile.java;1434456253/1;/ca.mcgill.ecse321.petshelter.model/src-gen/ca/mcgill/ecse321/petshelter/model/AdoptRequest.java;2670316675/1;/ca.mcgill.ecse321.petshelter.model/src-gen/ca/mcgill/ecse321/petshelter/model/AppAdmin.java;2906446401/1;/ca.mcgill.ecse321.petshelter.model/src-gen/ca/mcgill/ecse321/petshelter/model/Donation.java;307908132/1;/ca.mcgill.ecse321.petshelter.model/src-gen/ca/mcgill/ecse321/petshelter/model/AppUser.java;1215912348/1;/ca.mcgill.ecse321.petshelter.model/src-gen/ca/mcgill/ecse321/petshelter/model/Question.java;974286302/1;/ca.mcgill.ecse321.petshelter.model/src-gen/ca/mcgill/ecse321/petshelter/model/PersonRole.java;203183951/1;/ca.mcgill.ecse321.petshelter.model/src-gen/ca/mcgill/ecse321/petshelter/model/Status.java;1449509127/1;"/>
+        <details xmi:id="_Y3J1cEkjEequjbB2squSEg" key="AssociatedSourceCode" value="/ca.mcgill.ecse321.petshelter.model/src-gen/ca/mcgill/ecse321/petshelter/model/PetPost.java;3289313941/1;/ca.mcgill.ecse321.petshelter.model/src-gen/ca/mcgill/ecse321/petshelter/model/Donation.java;1859694865/1;/ca.mcgill.ecse321.petshelter.model/src-gen/ca/mcgill/ecse321/petshelter/model/Person.java;3813184306/1;/ca.mcgill.ecse321.petshelter.model/src-gen/ca/mcgill/ecse321/petshelter/model/AdoptRequest.java;2073041852/1;/ca.mcgill.ecse321.petshelter.model/src-gen/ca/mcgill/ecse321/petshelter/model/Question.java;2386044968/1;/ca.mcgill.ecse321.petshelter.model/src-gen/ca/mcgill/ecse321/petshelter/model/AppAdmin.java;3616993116/1;/ca.mcgill.ecse321.petshelter.model/src-gen/ca/mcgill/ecse321/petshelter/model/AppUser.java;391905580/1;/ca.mcgill.ecse321.petshelter.model/src-gen/ca/mcgill/ecse321/petshelter/model/UserProfile.java;2950739466/1;/ca.mcgill.ecse321.petshelter.model/src-gen/ca/mcgill/ecse321/petshelter/model/PersonRole.java;202423338/1;/ca.mcgill.ecse321.petshelter.model/src-gen/ca/mcgill/ecse321/petshelter/model/Status.java;976149995/1;"/>
+      </contents>
+      <contents xmi:type="ecore:EAnnotation" xmi:id="_WtOMEEn1EeqfybSmnjC9dg" source="preferences">
+        <contents xmi:type="ecore:EAnnotation" xmi:id="_WtOMEUn1EeqfybSmnjC9dg" source="com.yattasolutions.codegen.reverse">
+          <details xmi:id="_WtOzIEn1EeqfybSmnjC9dg" key="com.yattasolutions.codegen.reverse.roundtrip.ReverseEngineerNewFiles" value="true"/>
+          <details xmi:id="_WtOzIUn1EeqfybSmnjC9dg" key="com.yattasolutions.codegen.reverse.roundtrip.ReverseEngineerChangedFiles" value="true"/>
+          <details xmi:id="_WtOzIkn1EeqfybSmnjC9dg" key="com.yattasolutions.codegen.reverse.roundtrip.RemoveDeletedFiles" value="true"/>
+        </contents>
       </contents>
     </eAnnotations>
     <elementImport xmi:id="_ViHMQEkjEequjbB2squSEg">
@@ -41,7 +48,22 @@
             <packagedElement xmi:type="uml:Package" xmi:id="_JCd0sEkjEequjbB2squSEg" name="model">
               <packagedElement xmi:type="uml:Association" xmi:id="_PLx08EkmEequjbB2squSEg" name="" memberEnd="_PLx08UkmEequjbB2squSEg _PLx09EkmEequjbB2squSEg"/>
               <packagedElement xmi:type="uml:Association" xmi:id="_Pg034EkmEequjbB2squSEg" name="" memberEnd="_Pg034UkmEequjbB2squSEg _Pg035EkmEequjbB2squSEg"/>
-              <packagedElement xmi:type="uml:Class" xmi:id="_RejQMEkjEequjbB2squSEg" name="User">
+              <packagedElement xmi:type="uml:Class" xmi:id="_dluA4EkkEequjbB2squSEg" name="Donation">
+                <ownedAttribute xmi:id="_mAhqAEkkEequjbB2squSEg" name="amount" visibility="public">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+                </ownedAttribute>
+                <ownedAttribute xmi:id="_qZbj8EkkEequjbB2squSEg" name="comment" visibility="public">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedAttribute>
+                <ownedAttribute xmi:id="_qzIdYEkkEequjbB2squSEg" name="setNameAnonymous" visibility="public">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+                </ownedAttribute>
+                <ownedAttribute xmi:id="_kkfd4En1EeqfybSmnjC9dg" name="person" type="_RejQMEkjEequjbB2squSEg" association="_kkalYEn1EeqfybSmnjC9dg">
+                  <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kkfd4Un1EeqfybSmnjC9dg" value="1"/>
+                  <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kkfd4kn1EeqfybSmnjC9dg" value="2"/>
+                </ownedAttribute>
+              </packagedElement>
+              <packagedElement xmi:type="uml:Class" xmi:id="_RejQMEkjEequjbB2squSEg" name="Person">
                 <ownedAttribute xmi:id="_Ub_RsEkjEequjbB2squSEg" name="username" visibility="public">
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                 </ownedAttribute>
@@ -59,6 +81,25 @@
                 <ownedAttribute xmi:id="_Pg035EkmEequjbB2squSEg" name="owns" type="_ShF10EkkEequjbB2squSEg" association="_Pg034EkmEequjbB2squSEg">
                   <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Pg035UkmEequjbB2squSEg"/>
                   <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Pg1e8EkmEequjbB2squSEg" value="*"/>
+                </ownedAttribute>
+                <ownedAttribute xmi:id="_kkdBoEn1EeqfybSmnjC9dg" name="donation" type="_dluA4EkkEequjbB2squSEg" association="_kkalYEn1EeqfybSmnjC9dg">
+                  <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kke20En1EeqfybSmnjC9dg"/>
+                  <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kke20Un1EeqfybSmnjC9dg" value="*"/>
+                </ownedAttribute>
+                <ownedAttribute xmi:id="_lyOcUEn1EeqfybSmnjC9dg" name="question" type="_gAFxkEkkEequjbB2squSEg" association="_lyN1QEn1EeqfybSmnjC9dg">
+                  <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lyOcUUn1EeqfybSmnjC9dg"/>
+                  <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lyPDYEn1EeqfybSmnjC9dg" value="*"/>
+                </ownedAttribute>
+              </packagedElement>
+              <packagedElement xmi:type="uml:Class" xmi:id="_ghmtwEklEequjbB2squSEg" name="AdoptRequest">
+                <ownedAttribute xmi:id="_opL44EklEequjbB2squSEg" name="status" visibility="public" type="_hKM-0EklEequjbB2squSEg"/>
+                <ownedAttribute xmi:id="_PLx08UkmEequjbB2squSEg" name="requestedBy" type="_RejQMEkjEequjbB2squSEg" association="_PLx08EkmEequjbB2squSEg">
+                  <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_PLx08kkmEequjbB2squSEg" value="1"/>
+                  <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_PLx080kmEequjbB2squSEg" value="1"/>
+                </ownedAttribute>
+                <ownedAttribute xmi:id="_RCyZ5EkmEequjbB2squSEg" name="requesting" type="_ShF10EkkEequjbB2squSEg" association="_RCyZ4EkmEequjbB2squSEg">
+                  <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_RCzA8EkmEequjbB2squSEg" value="1"/>
+                  <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_RCzA8UkmEequjbB2squSEg" value="1"/>
                 </ownedAttribute>
               </packagedElement>
               <packagedElement xmi:type="uml:Class" xmi:id="_ShF10EkkEequjbB2squSEg" name="PetPost">
@@ -87,11 +128,34 @@
                   <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_gBNPEEkoEequjbB2squSEg" value="1"/>
                 </ownedAttribute>
               </packagedElement>
+              <packagedElement xmi:type="uml:Class" xmi:id="_gAFxkEkkEequjbB2squSEg" name="Question">
+                <ownedAttribute xmi:id="_6HpJQEkkEequjbB2squSEg" name="question" visibility="public">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedAttribute>
+                <ownedAttribute xmi:id="_9IRosEkkEequjbB2squSEg" name="answer" visibility="public">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedAttribute>
+                <ownedAttribute xmi:id="_gBNPEUkoEequjbB2squSEg" name="isRelatedTo" type="_ShF10EkkEequjbB2squSEg" association="_gBMoAEkoEequjbB2squSEg">
+                  <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_gBNPEkkoEequjbB2squSEg"/>
+                  <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_gBNPE0koEequjbB2squSEg" value="*"/>
+                </ownedAttribute>
+                <ownedAttribute xmi:id="_lyPDYUn1EeqfybSmnjC9dg" name="person" type="_RejQMEkjEequjbB2squSEg" association="_lyN1QEn1EeqfybSmnjC9dg">
+                  <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lyPDYkn1EeqfybSmnjC9dg" value="1"/>
+                  <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lyPDY0n1EeqfybSmnjC9dg" value="*"/>
+                </ownedAttribute>
+              </packagedElement>
+              <packagedElement xmi:type="uml:Class" xmi:id="_bwHKIEkkEequjbB2squSEg" name="AppAdmin">
+                <generalization xmi:id="_GwttIEkmEequjbB2squSEg" general="_RejQMEkjEequjbB2squSEg"/>
+              </packagedElement>
+              <packagedElement xmi:type="uml:Class" xmi:id="_GzDE4EklEequjbB2squSEg" name="AppUser">
+                <generalization xmi:id="_GiCX8EkmEequjbB2squSEg" general="_RejQMEkjEequjbB2squSEg"/>
+                <ownedAttribute xmi:id="_WnsCUEklEequjbB2squSEg" name="appUserRole" visibility="public" type="_Ioj1AEklEequjbB2squSEg"/>
+              </packagedElement>
               <packagedElement xmi:type="uml:Class" xmi:id="_SQ5dsEkkEequjbB2squSEg" name="UserProfile">
                 <ownedAttribute xmi:id="_Yq8I8EkkEequjbB2squSEg" name="address" visibility="public">
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                 </ownedAttribute>
-                <ownedAttribute xmi:id="_kKQr8UkkEequjbB2squSEg" name="user" type="_RejQMEkjEequjbB2squSEg" association="_kKPd0EkkEequjbB2squSEg">
+                <ownedAttribute xmi:id="_kKQr8UkkEequjbB2squSEg" name="person" type="_RejQMEkjEequjbB2squSEg" association="_kKPd0EkkEequjbB2squSEg">
                   <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kKQr8kkkEequjbB2squSEg" value="1"/>
                   <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kKQr80kkEequjbB2squSEg" value="1"/>
                 </ownedAttribute>
@@ -103,79 +167,6 @@
                 </ownedAttribute>
                 <ownedAttribute xmi:id="_9XYmQEklEequjbB2squSEg" name="typeOfLivingAccomodation" visibility="public">
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-                </ownedAttribute>
-              </packagedElement>
-              <packagedElement xmi:type="uml:Class" xmi:id="_ghmtwEklEequjbB2squSEg" name="AdoptRequest">
-                <ownedAttribute xmi:id="_opL44EklEequjbB2squSEg" name="status" visibility="public" type="_hKM-0EklEequjbB2squSEg"/>
-                <ownedAttribute xmi:id="_PLx08UkmEequjbB2squSEg" name="requestedBy" type="_RejQMEkjEequjbB2squSEg" association="_PLx08EkmEequjbB2squSEg">
-                  <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_PLx08kkmEequjbB2squSEg" value="1"/>
-                  <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_PLx080kmEequjbB2squSEg" value="1"/>
-                </ownedAttribute>
-                <ownedAttribute xmi:id="_RCyZ5EkmEequjbB2squSEg" name="requesting" type="_ShF10EkkEequjbB2squSEg" association="_RCyZ4EkmEequjbB2squSEg">
-                  <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_RCzA8EkmEequjbB2squSEg" value="1"/>
-                  <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_RCzA8UkmEequjbB2squSEg" value="1"/>
-                </ownedAttribute>
-              </packagedElement>
-              <packagedElement xmi:type="uml:Class" xmi:id="_bwHKIEkkEequjbB2squSEg" name="AppAdmin">
-                <generalization xmi:id="_GwttIEkmEequjbB2squSEg" general="_RejQMEkjEequjbB2squSEg"/>
-                <ownedAttribute xmi:id="_Z4q1ckkmEequjbB2squSEg" name="receives" type="_dluA4EkkEequjbB2squSEg" association="_Z4qOYEkmEequjbB2squSEg">
-                  <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Z4q1c0kmEequjbB2squSEg"/>
-                  <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Z4q1dEkmEequjbB2squSEg" value="*"/>
-                </ownedAttribute>
-                <ownedAttribute xmi:id="_aF9qkEkmEequjbB2squSEg" name="answers" type="_gAFxkEkkEequjbB2squSEg" association="_aF8ccEkmEequjbB2squSEg">
-                  <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_aF9qkUkmEequjbB2squSEg"/>
-                  <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_aF9qkkkmEequjbB2squSEg" value="*"/>
-                </ownedAttribute>
-              </packagedElement>
-              <packagedElement xmi:type="uml:Class" xmi:id="_dluA4EkkEequjbB2squSEg" name="Donation">
-                <ownedAttribute xmi:id="_mAhqAEkkEequjbB2squSEg" name="amount" visibility="public">
-                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
-                </ownedAttribute>
-                <ownedAttribute xmi:id="_qZbj8EkkEequjbB2squSEg" name="comment" visibility="public">
-                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-                </ownedAttribute>
-                <ownedAttribute xmi:id="_qzIdYEkkEequjbB2squSEg" name="setNameAnonymous" visibility="public">
-                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
-                </ownedAttribute>
-                <ownedAttribute xmi:id="_ZdDQcUkmEequjbB2squSEg" name="donatedBy" type="_GzDE4EklEequjbB2squSEg" association="_ZdDQcEkmEequjbB2squSEg">
-                  <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZdDQckkmEequjbB2squSEg" value="1"/>
-                  <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZdDQc0kmEequjbB2squSEg" value="1"/>
-                </ownedAttribute>
-                <ownedAttribute xmi:id="_Z4qOYUkmEequjbB2squSEg" name="receivedBy" type="_bwHKIEkkEequjbB2squSEg" association="_Z4qOYEkmEequjbB2squSEg">
-                  <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Z4q1cEkmEequjbB2squSEg" value="1"/>
-                  <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Z4q1cUkmEequjbB2squSEg" value="1"/>
-                </ownedAttribute>
-              </packagedElement>
-              <packagedElement xmi:type="uml:Class" xmi:id="_GzDE4EklEequjbB2squSEg" name="AppUser">
-                <generalization xmi:id="_GiCX8EkmEequjbB2squSEg" general="_RejQMEkjEequjbB2squSEg"/>
-                <ownedAttribute xmi:id="_WnsCUEklEequjbB2squSEg" name="appUserRole" visibility="public" type="_Ioj1AEklEequjbB2squSEg"/>
-                <ownedAttribute xmi:id="_ZdDQdEkmEequjbB2squSEg" name="donates" type="_dluA4EkkEequjbB2squSEg" association="_ZdDQcEkmEequjbB2squSEg">
-                  <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZdDQdUkmEequjbB2squSEg"/>
-                  <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZdDQdkkmEequjbB2squSEg" value="*"/>
-                </ownedAttribute>
-                <ownedAttribute xmi:id="_Zq3C8kkmEequjbB2squSEg" name="asksOrAnswers" type="_gAFxkEkkEequjbB2squSEg" association="_Zq2b4EkmEequjbB2squSEg">
-                  <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zq3C80kmEequjbB2squSEg"/>
-                  <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Zq3C9EkmEequjbB2squSEg" value="*"/>
-                </ownedAttribute>
-              </packagedElement>
-              <packagedElement xmi:type="uml:Class" xmi:id="_gAFxkEkkEequjbB2squSEg" name="Question">
-                <ownedAttribute xmi:id="_6HpJQEkkEequjbB2squSEg" name="question" visibility="public">
-                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-                </ownedAttribute>
-                <ownedAttribute xmi:id="_9IRosEkkEequjbB2squSEg" name="answer" visibility="public">
-                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-                </ownedAttribute>
-                <ownedAttribute xmi:id="_Zq2b4UkmEequjbB2squSEg" name="askedByOrAnsweredBy" type="_GzDE4EklEequjbB2squSEg" association="_Zq2b4EkmEequjbB2squSEg">
-                  <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Zq3C8EkmEequjbB2squSEg" value="1"/>
-                  <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Zq3C8UkmEequjbB2squSEg" value="1"/>
-                </ownedAttribute>
-                <ownedAttribute xmi:id="_aF9DgEkmEequjbB2squSEg" name="answeredBy" type="_bwHKIEkkEequjbB2squSEg" association="_aF8ccEkmEequjbB2squSEg">
-                  <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_aF9DgUkmEequjbB2squSEg" value="1"/>
-                  <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_aF9DgkkmEequjbB2squSEg" value="1"/>
-                </ownedAttribute>
-                <ownedAttribute xmi:id="_gBNPEUkoEequjbB2squSEg" name="isRelatedTo" type="_ShF10EkkEequjbB2squSEg" association="_gBMoAEkoEequjbB2squSEg">
-                  <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_gBNPEkkoEequjbB2squSEg"/>
-                  <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_gBNPE0koEequjbB2squSEg" value="*"/>
                 </ownedAttribute>
               </packagedElement>
               <packagedElement xmi:type="uml:Enumeration" xmi:id="_Ioj1AEklEequjbB2squSEg" name="PersonRole">
@@ -198,11 +189,9 @@
     <packagedElement xmi:type="uml:DataType" xmi:id="_XGW7UEklEequjbB2squSEg" name="emun"/>
     <packagedElement xmi:type="uml:DataType" xmi:id="_X2k3UEklEequjbB2squSEg" name="enum"/>
     <packagedElement xmi:type="uml:Association" xmi:id="_RCyZ4EkmEequjbB2squSEg" name="" memberEnd="_RCyZ4UkmEequjbB2squSEg _RCyZ5EkmEequjbB2squSEg"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="_ZdDQcEkmEequjbB2squSEg" name="" memberEnd="_ZdDQcUkmEequjbB2squSEg _ZdDQdEkmEequjbB2squSEg"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="_Zq2b4EkmEequjbB2squSEg" name="" memberEnd="_Zq2b4UkmEequjbB2squSEg _Zq3C8kkmEequjbB2squSEg"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="_Z4qOYEkmEequjbB2squSEg" name="" memberEnd="_Z4qOYUkmEequjbB2squSEg _Z4q1ckkmEequjbB2squSEg"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="_aF8ccEkmEequjbB2squSEg" name="" memberEnd="_aF9DgEkmEequjbB2squSEg _aF9qkEkmEequjbB2squSEg"/>
     <packagedElement xmi:type="uml:Association" xmi:id="_gBMoAEkoEequjbB2squSEg" name="" memberEnd="_gBMoAUkoEequjbB2squSEg _gBNPEUkoEequjbB2squSEg"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_kkalYEn1EeqfybSmnjC9dg" name="" memberEnd="_kkdBoEn1EeqfybSmnjC9dg _kkfd4En1EeqfybSmnjC9dg"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_lyN1QEn1EeqfybSmnjC9dg" name="" memberEnd="_lyOcUEn1EeqfybSmnjC9dg _lyPDYUn1EeqfybSmnjC9dg"/>
     <profileApplication xmi:id="_GC0MsEkjEequjbB2squSEg">
       <eAnnotations xmi:id="_GC0MsUkjEequjbB2squSEg" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile-Annotation_2-UMLLabProfile"/>

@@ -1,38 +1,49 @@
 package ca.mcgill.ecse321.petshelter.model;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 
-@Entity
-public class AdoptRequest{
+public class AdoptRequest {
    private Status status;
-
-public void setStatus(Status value) {
-    this.status = value;
-}
-public Status getStatus() {
-    return this.status;
-}
-   private User requestedBy;
    
-   @ManyToOne(optional=false)
-   public User getRequestedBy() {
+   public void setStatus(Status value) {
+      this.status = value;
+   }
+   
+   public Status getStatus() {
+      return this.status;
+   }
+   
+   /**
+    * <pre>
+    *           0..*     1..1
+    * AdoptRequest ------------------------- Person
+    *           fillsIn        &lt;       requestedBy
+    * </pre>
+    */
+   private Person requestedBy;
+   
+   public void setRequestedBy(Person value) {
+      this.requestedBy = value;
+   }
+   
+   public Person getRequestedBy() {
       return this.requestedBy;
    }
    
-   public void setRequestedBy(User requestedBy) {
-      this.requestedBy = requestedBy;
-   }
-   
+   /**
+    * <pre>
+    *           0..*     1..1
+    * AdoptRequest ------------------------- PetPost
+    *           hasRequest        &gt;       requesting
+    * </pre>
+    */
    private PetPost requesting;
    
-   @ManyToOne(optional=false)
-   public PetPost getRequesting() {
-      return this.requesting;
+   public void setRequesting(PetPost value) {
+      this.requesting = value;
    }
    
-   public void setRequesting(PetPost requesting) {
-      this.requesting = requesting;
+   public PetPost getRequesting() {
+      return this.requesting;
    }
    
    }

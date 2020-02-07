@@ -1,254 +1,169 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <com.yattasolutions.uml.diagrams.classifier:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.yattasolutions.diagrams="http://ns.yatta-solutions.com/umllab/diagrams/1.1.0" xmlns:com.yattasolutions.uml.diagrams.classifier="http://ns.yatta-solutions.com/umllab/diagrams/classifier/1.1.0" xmi:id="_CG3UgEkjEequjbB2squSEg">
   <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_CE8B4EkjEequjbB2squSEg"/>
-  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_OGM0UEkjEequjbB2squSEg" sourceAnchor="1.0,38.0" targetAnchor="109.0,42.0" enclosingItem="_Iz2J4UkjEequjbB2squSEg" containedItem="_JCd0sUkjEequjbB2squSEg"/>
-  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_OPujwEkjEequjbB2squSEg" sourceAnchor="1.0,38.0" targetAnchor="132.0,36.0" enclosingItem="_IedIsUkjEequjbB2squSEg" containedItem="_Iz2J4UkjEequjbB2squSEg"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_OGM0UEkjEequjbB2squSEg" sourceAnchor="2.0,38.0" targetAnchor="109.0,42.0" enclosingItem="_Iz2J4UkjEequjbB2squSEg" containedItem="_JCd0sUkjEequjbB2squSEg"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_OPujwEkjEequjbB2squSEg" sourceAnchor="2.0,38.0" targetAnchor="132.0,36.0" enclosingItem="_IedIsUkjEequjbB2squSEg" containedItem="_Iz2J4UkjEequjbB2squSEg"/>
   <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_OWTF0EkjEequjbB2squSEg" sourceAnchor="2.0,40.0" targetAnchor="126.0,38.0" enclosingItem="_IENcsUkjEequjbB2squSEg" containedItem="_IedIsUkjEequjbB2squSEg"/>
-  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_OfI4wEkjEequjbB2squSEg" sourceAnchor="1.0,22.0" targetAnchor="119.0,36.0" enclosingItem="_Hi2cEEkjEequjbB2squSEg" containedItem="_IENcsUkjEequjbB2squSEg"/>
-  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_kKShIEkkEequjbB2squSEg" sourceAnchor="265.0,54.0" targetAnchor="0.0,31.0" target="_Rej3QEkjEequjbB2squSEg" source="_SQ5dsUkkEequjbB2squSEg">
+  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_OfI4wEkjEequjbB2squSEg" sourceAnchor="2.0,22.0" targetAnchor="118.0,36.0" enclosingItem="_Hi2cEEkjEequjbB2squSEg" containedItem="_IENcsUkjEequjbB2squSEg"/>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_kKShIEkkEequjbB2squSEg" sourceAnchor="265.0,66.0" targetAnchor="0.0,81.0" target="_Rej3QEkjEequjbB2squSEg" source="_SQ5dsUkkEequjbB2squSEg">
     <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_kKPd0EkkEequjbB2squSEg"/>
     <visualProperties xmi:id="_kKShIUkkEequjbB2squSEg" position="559.0,350.0"/>
     <nameVisual xmi:id="_kKShIkkkEequjbB2squSEg" text="">
-      <visualProperties xmi:id="_kO0b0UkkEequjbB2squSEg" position="19.0,2.0"/>
+      <visualProperties xmi:id="_kO0b0UkkEequjbB2squSEg" position="23.0,-19.0"/>
     </nameVisual>
     <sourceRole xmi:id="_kKShI0kkEequjbB2squSEg" aggregationKind="NONE" name="creates" navigable="true">
       <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_kKPd0UkkEequjbB2squSEg"/>
-      <visualProperties xmi:id="_kO0b0EkkEequjbB2squSEg" position="30.0,2.0"/>
+      <visualProperties xmi:id="_kO0b0EkkEequjbB2squSEg" position="27.0,-47.0"/>
       <visibility xmi:id="_kKShJEkkEequjbB2squSEg" label="+"/>
       <cardinality xmi:id="_kKShJUkkEequjbB2squSEg" label="0..1" max="1"/>
     </sourceRole>
-    <targetRole xmi:id="_kKShJkkkEequjbB2squSEg" aggregationKind="NONE" name="user" navigable="true">
+    <targetRole xmi:id="_kKShJkkkEequjbB2squSEg" aggregationKind="NONE" name="person" navigable="true">
       <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_kKQr8UkkEequjbB2squSEg"/>
-      <visualProperties xmi:id="_kO1C4EkkEequjbB2squSEg" position="-64.0,-47.0"/>
+      <visualProperties xmi:id="_kO1C4EkkEequjbB2squSEg" position="-79.0,2.0"/>
       <visibility xmi:id="_kKShJ0kkEequjbB2squSEg" label="+"/>
       <cardinality xmi:id="_kKShKEkkEequjbB2squSEg" label="1" max="1" min="1"/>
     </targetRole>
   </edges>
-  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:GeneralizationVisual" xmi:id="_GiCX8UkmEequjbB2squSEg" sourceAnchor="94.0,0.0" targetAnchor="70.0,163.0" superClass="_Rej3QEkjEequjbB2squSEg" subClass="_GzDE4UklEequjbB2squSEg">
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:GeneralizationVisual" xmi:id="_GiCX8UkmEequjbB2squSEg" sourceAnchor="94.0,0.0" targetAnchor="73.0,163.0" superClass="_Rej3QEkjEequjbB2squSEg" subClass="_GzDE4UklEequjbB2squSEg">
     <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_GiCX8EkmEequjbB2squSEg"/>
     <visualProperties xmi:id="_GiCX8kkmEequjbB2squSEg" position="559.0,350.0"/>
-    <bendpoints xmi:id="_W5RkwkkpEequjbB2squSEg" sourceY="-30" targetX="-368" targetY="56"/>
-    <bendpoints xmi:id="_W5Rkw0kpEequjbB2squSEg" sourceX="368" sourceY="-29" targetY="57"/>
+    <bendpoints xmi:id="_l1X28kn1EeqfybSmnjC9dg" sourceY="-31" targetX="-356" targetY="31"/>
+    <bendpoints xmi:id="_l1X280n1EeqfybSmnjC9dg" sourceX="356" sourceY="-31" targetY="31"/>
   </edges>
-  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:GeneralizationVisual" xmi:id="_GwuUMEkmEequjbB2squSEg" sourceAnchor="23.0,0.0" targetAnchor="70.0,163.0" superClass="_Rej3QEkjEequjbB2squSEg" subClass="_bwHxMEkkEequjbB2squSEg">
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:GeneralizationVisual" xmi:id="_GwuUMEkmEequjbB2squSEg" sourceAnchor="35.0,0.0" targetAnchor="73.0,163.0" superClass="_Rej3QEkjEequjbB2squSEg" subClass="_bwHxMEkkEequjbB2squSEg">
     <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_GwttIEkmEequjbB2squSEg"/>
     <visualProperties xmi:id="_GwuUMUkmEequjbB2squSEg" position="559.0,350.0"/>
-    <bendpoints xmi:id="_W5RkxkkpEequjbB2squSEg" sourceY="-53" targetX="212" targetY="56"/>
-    <bendpoints xmi:id="_W5Rkx0kpEequjbB2squSEg" sourceX="-212" sourceY="-52" targetY="57"/>
+    <bendpoints xmi:id="_l1X28En1EeqfybSmnjC9dg" sourceY="-30" targetX="295" targetY="31"/>
+    <bendpoints xmi:id="_l1X28Un1EeqfybSmnjC9dg" sourceX="-295" sourceY="-30" targetY="31"/>
   </edges>
-  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_PLzqIEkmEequjbB2squSEg" sourceAnchor="147.0,139.0" targetAnchor="0.0,24.0" target="_ghnU0EklEequjbB2squSEg" source="_Rej3QEkjEequjbB2squSEg">
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_PLzqIEkmEequjbB2squSEg" sourceAnchor="147.0,15.0" targetAnchor="0.0,52.0" target="_ghnU0EklEequjbB2squSEg" source="_Rej3QEkjEequjbB2squSEg">
     <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_PLx08EkmEequjbB2squSEg"/>
     <visualProperties xmi:id="_PLzqIUkmEequjbB2squSEg" position="559.0,350.0"/>
     <nameVisual xmi:id="_PLzqIkkmEequjbB2squSEg" text="">
-      <visualProperties xmi:id="_PN7KA0kmEequjbB2squSEg" position="-6.0,-19.0"/>
+      <visualProperties xmi:id="_PN7KA0kmEequjbB2squSEg" position="-11.0,-19.0"/>
     </nameVisual>
     <sourceRole xmi:id="_PLzqI0kmEequjbB2squSEg" aggregationKind="NONE" name="requestedBy" navigable="true">
       <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_PLx08UkmEequjbB2squSEg"/>
-      <visualProperties xmi:id="_PN7KAkkmEequjbB2squSEg" position="44.0,2.0"/>
+      <visualProperties xmi:id="_PN7KAkkmEequjbB2squSEg" position="47.0,2.0"/>
       <visibility xmi:id="_PLzqJEkmEequjbB2squSEg" label="+"/>
       <cardinality xmi:id="_PLzqJUkmEequjbB2squSEg" label="1" max="1" min="1"/>
     </sourceRole>
     <targetRole xmi:id="_PLzqJkkmEequjbB2squSEg" aggregationKind="NONE" name="fillsIn" navigable="true">
       <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_PLx09EkmEequjbB2squSEg"/>
-      <visualProperties xmi:id="_PN7KBEkmEequjbB2squSEg" position="-94.0,-47.0"/>
+      <visualProperties xmi:id="_PN7KBEkmEequjbB2squSEg" position="-76.0,2.0"/>
       <visibility xmi:id="_PLzqJ0kmEequjbB2squSEg" label="+"/>
       <cardinality xmi:id="_PLzqKEkmEequjbB2squSEg" label="*" max="-1"/>
     </targetRole>
   </edges>
-  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_Pg2tEEkmEequjbB2squSEg" sourceAnchor="147.0,15.0" targetAnchor="0.0,102.0" target="_ShGc4EkkEequjbB2squSEg" source="_Rej3QEkjEequjbB2squSEg">
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_Pg2tEEkmEequjbB2squSEg" sourceAnchor="73.0,0.0" targetAnchor="0.0,13.0" target="_ShGc4EkkEequjbB2squSEg" source="_Rej3QEkjEequjbB2squSEg">
     <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_Pg034EkmEequjbB2squSEg"/>
     <visualProperties xmi:id="_Pg2tEUkmEequjbB2squSEg" position="559.0,350.0"/>
+    <bendpoints xmi:id="_l1YeAEn1EeqfybSmnjC9dg" sourceY="-228" targetX="-490"/>
     <nameVisual xmi:id="_Pg2tEkkmEequjbB2squSEg" text="">
-      <visualProperties xmi:id="_PjE6okkmEequjbB2squSEg" position="0.0,-19.0"/>
+      <visualProperties xmi:id="_PjE6okkmEequjbB2squSEg" position="239.0,2.0000000000000284"/>
     </nameVisual>
     <sourceRole xmi:id="_Pg2tE0kmEequjbB2squSEg" aggregationKind="NONE" name="ownedBy" navigable="true">
       <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_Pg034UkmEequjbB2squSEg"/>
-      <visualProperties xmi:id="_PjE6oUkmEequjbB2squSEg" position="31.0,-47.0"/>
+      <visualProperties xmi:id="_PjE6oUkmEequjbB2squSEg" position="-66.0,-77.0"/>
       <visibility xmi:id="_Pg2tFEkmEequjbB2squSEg" label="+"/>
       <cardinality xmi:id="_Pg2tFUkmEequjbB2squSEg" label="1" max="1" min="1"/>
     </sourceRole>
     <targetRole xmi:id="_Pg2tFkkmEequjbB2squSEg" aggregationKind="NONE" name="owns" navigable="true">
       <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_Pg035EkmEequjbB2squSEg"/>
-      <visualProperties xmi:id="_PjE6o0kmEequjbB2squSEg" position="-97.0,2.0"/>
+      <visualProperties xmi:id="_PjE6o0kmEequjbB2squSEg" position="-82.0,-47.0"/>
       <visibility xmi:id="_Pg2tF0kmEequjbB2squSEg" label="+"/>
       <cardinality xmi:id="_Pg2tGEkmEequjbB2squSEg" label="*" max="-1"/>
     </targetRole>
   </edges>
-  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_RC0PEEkmEequjbB2squSEg" sourceAnchor="95.0,0.0" targetAnchor="12.0,111.0" target="_ShGc4EkkEequjbB2squSEg" source="_ghnU0EklEequjbB2squSEg">
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_RC0PEEkmEequjbB2squSEg" sourceAnchor="63.0,0.0" targetAnchor="0.0,43.0" target="_ShGc4EkkEequjbB2squSEg" source="_ghnU0EklEequjbB2squSEg">
     <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_RCyZ4EkmEequjbB2squSEg"/>
     <visualProperties xmi:id="_RC0PEUkmEequjbB2squSEg"/>
+    <bendpoints xmi:id="_l1XP4En1EeqfybSmnjC9dg" sourceY="-161" targetX="-86"/>
     <nameVisual xmi:id="_RC0PEkkmEequjbB2squSEg" text="">
-      <visualProperties xmi:id="_RE_ZUUkmEequjbB2squSEg" position="-13.0,-8.0"/>
+      <visualProperties xmi:id="_RE_ZUUkmEequjbB2squSEg" position="41.0,1.0"/>
     </nameVisual>
     <sourceRole xmi:id="_RC0PE0kmEequjbB2squSEg" aggregationKind="NONE" name="hasRequest" navigable="true">
       <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_RCyZ4UkmEequjbB2squSEg"/>
-      <visualProperties xmi:id="_RE_ZUEkmEequjbB2squSEg" position="2.0,-61.0"/>
+      <visualProperties xmi:id="_RE_ZUEkmEequjbB2squSEg" position="2.0,-75.0"/>
       <visibility xmi:id="_RC0PFEkmEequjbB2squSEg" label="+"/>
       <cardinality xmi:id="_RC0PFUkmEequjbB2squSEg" label="*" max="-1"/>
     </sourceRole>
     <targetRole xmi:id="_RC0PFkkmEequjbB2squSEg" aggregationKind="NONE" name="requesting" navigable="true">
       <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_RCyZ5EkmEequjbB2squSEg"/>
-      <visualProperties xmi:id="_RE_ZUkkmEequjbB2squSEg" position="-112.0,45.0"/>
+      <visualProperties xmi:id="_RE_ZUkkmEequjbB2squSEg" position="-85.0,41.0"/>
       <visibility xmi:id="_RC0PF0kmEequjbB2squSEg" label="+"/>
       <cardinality xmi:id="_RC0PGEkmEequjbB2squSEg" label="1" max="1" min="1"/>
     </targetRole>
   </edges>
-  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_ZdEekEkmEequjbB2squSEg" sourceAnchor="190.0,33.0" targetAnchor="74.0,0.0" target="_dlun8EkkEequjbB2squSEg" source="_GzDE4UklEequjbB2squSEg">
-    <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_ZdDQcEkmEequjbB2squSEg"/>
-    <visualProperties xmi:id="_ZdEekUkmEequjbB2squSEg"/>
-    <bendpoints xmi:id="_W5RkwEkpEequjbB2squSEg" sourceX="168" sourceY="3" targetX="-5" targetY="-101"/>
-    <nameVisual xmi:id="_ZdEekkkmEequjbB2squSEg" text="">
-      <visualProperties xmi:id="_Zfan8EkmEequjbB2squSEg" position="69.0,2.0"/>
-    </nameVisual>
-    <sourceRole xmi:id="_ZdEek0kmEequjbB2squSEg" aggregationKind="NONE" name="donatedBy" navigable="true">
-      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_ZdDQcUkmEequjbB2squSEg"/>
-      <visualProperties xmi:id="_ZfaA4kkmEequjbB2squSEg" position="1.0,44.0"/>
-      <visibility xmi:id="_ZdEelEkmEequjbB2squSEg" label="+"/>
-      <cardinality xmi:id="_ZdEelUkmEequjbB2squSEg" label="1" max="1" min="1"/>
-    </sourceRole>
-    <targetRole xmi:id="_ZdEelkkmEequjbB2squSEg" aggregationKind="NONE" name="donates" navigable="true">
-      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_ZdDQdEkmEequjbB2squSEg"/>
-      <visualProperties xmi:id="_Zfan8UkmEequjbB2squSEg" position="-92.0,2.0"/>
-      <visibility xmi:id="_ZdEel0kmEequjbB2squSEg" label="+"/>
-      <cardinality xmi:id="_ZdEemEkmEequjbB2squSEg" label="*" max="-1"/>
-    </targetRole>
-  </edges>
-  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_Zq4REEkmEequjbB2squSEg" sourceAnchor="90.0,54.0" targetAnchor="0.0,35.0" target="_gAGYoEkkEequjbB2squSEg" source="_GzDE4UklEequjbB2squSEg">
-    <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_Zq2b4EkmEequjbB2squSEg"/>
-    <visualProperties xmi:id="_Zq4REUkmEequjbB2squSEg"/>
-    <bendpoints xmi:id="_W5RkwUkpEequjbB2squSEg" sourceX="1" sourceY="240" targetX="-303" targetY="-11"/>
-    <nameVisual xmi:id="_Zq4REkkmEequjbB2squSEg" text="">
-      <visualProperties xmi:id="_ZtCNMEkmEequjbB2squSEg" position="127.0,2.0"/>
-    </nameVisual>
-    <sourceRole xmi:id="_Zq4RE0kmEequjbB2squSEg" aggregationKind="NONE" name="askedByOrAnsweredBy" navigable="true">
-      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_Zq2b4UkmEequjbB2squSEg"/>
-      <visualProperties xmi:id="_ZtBmIkkmEequjbB2squSEg" position="-138.0,35.0"/>
-      <visibility xmi:id="_Zq4RFEkmEequjbB2squSEg" label="+"/>
-      <cardinality xmi:id="_Zq4RFUkmEequjbB2squSEg" label="1" max="1" min="1"/>
-    </sourceRole>
-    <targetRole xmi:id="_Zq4RFkkmEequjbB2squSEg" aggregationKind="NONE" name="asksOrAnswers" navigable="true">
-      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_Zq3C8kkmEequjbB2squSEg"/>
-      <visualProperties xmi:id="_ZtCNMUkmEequjbB2squSEg" position="-147.0,-47.0"/>
-      <visibility xmi:id="_Zq4RF0kmEequjbB2squSEg" label="+"/>
-      <cardinality xmi:id="_Zq4RGEkmEequjbB2squSEg" label="*" max="-1"/>
-    </targetRole>
-  </edges>
-  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_Z4sDkEkmEequjbB2squSEg" sourceAnchor="0.0,14.0" targetAnchor="117.0,0.0" target="_dlun8EkkEequjbB2squSEg" source="_bwHxMEkkEequjbB2squSEg">
-    <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_Z4qOYEkmEequjbB2squSEg"/>
-    <visualProperties xmi:id="_Z4sDkUkmEequjbB2squSEg"/>
-    <bendpoints xmi:id="_W5RkxEkpEequjbB2squSEg" sourceX="-244" targetY="-100"/>
-    <nameVisual xmi:id="_Z4sDkkkmEequjbB2squSEg" text="">
-      <visualProperties xmi:id="_Z68GUEkmEequjbB2squSEg" position="-18.0,41.0"/>
-    </nameVisual>
-    <sourceRole xmi:id="_Z4sDk0kmEequjbB2squSEg" aggregationKind="NONE" name="receivedBy" navigable="true">
-      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_Z4qOYUkmEequjbB2squSEg"/>
-      <visualProperties xmi:id="_Z67fQEkmEequjbB2squSEg" position="-131.0,7.0"/>
-      <visibility xmi:id="_Z4sDlEkmEequjbB2squSEg" label="+"/>
-      <cardinality xmi:id="_Z4sDlUkmEequjbB2squSEg" label="1" max="1" min="1"/>
-    </sourceRole>
-    <targetRole xmi:id="_Z4sDlkkmEequjbB2squSEg" aggregationKind="NONE" name="receives" navigable="true">
-      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_Z4q1ckkmEequjbB2squSEg"/>
-      <visualProperties xmi:id="_Z68GUUkmEequjbB2squSEg" position="1.0,-59.0"/>
-      <visibility xmi:id="_Z4sDl0kmEequjbB2squSEg" label="+"/>
-      <cardinality xmi:id="_Z4sDmEkmEequjbB2squSEg" label="*" max="-1"/>
-    </targetRole>
-  </edges>
-  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_aF_fwEkmEequjbB2squSEg" sourceAnchor="17.0,27.0" targetAnchor="141.0,15.0" target="_gAGYoEkkEequjbB2squSEg" source="_bwHxMEkkEequjbB2squSEg">
-    <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_aF8ccEkmEequjbB2squSEg"/>
-    <visualProperties xmi:id="_aF_fwUkmEequjbB2squSEg"/>
-    <bendpoints xmi:id="_W5RkxUkpEequjbB2squSEg" sourceX="1" sourceY="236" targetX="133" targetY="1"/>
-    <nameVisual xmi:id="_aF_fwkkmEequjbB2squSEg" text="">
-      <visualProperties xmi:id="_aIL4IUkmEequjbB2squSEg" position="-120.0,-19.0"/>
-    </nameVisual>
-    <sourceRole xmi:id="_aF_fw0kmEequjbB2squSEg" aggregationKind="NONE" name="answeredBy" navigable="true">
-      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_aF9DgEkmEequjbB2squSEg"/>
-      <visualProperties xmi:id="_aIL4IEkmEequjbB2squSEg" position="-73.0,35.0"/>
-      <visibility xmi:id="_aF_fxEkmEequjbB2squSEg" label="+"/>
-      <cardinality xmi:id="_aF_fxUkmEequjbB2squSEg" label="1" max="1" min="1"/>
-    </sourceRole>
-    <targetRole xmi:id="_aF_fxkkmEequjbB2squSEg" aggregationKind="NONE" name="answers" navigable="true">
-      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_aF9qkEkmEequjbB2squSEg"/>
-      <visualProperties xmi:id="_aIL4IkkmEequjbB2squSEg" position="48.0,-46.0"/>
-      <visibility xmi:id="_aF_fx0kmEequjbB2squSEg" label="+"/>
-      <cardinality xmi:id="_aF_fyEkmEequjbB2squSEg" label="*" max="-1"/>
-    </targetRole>
-  </edges>
-  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_gBOdMEkoEequjbB2squSEg" sourceAnchor="141.0,51.0" targetAnchor="80.0,111.0" target="_ShGc4EkkEequjbB2squSEg" source="_gAGYoEkkEequjbB2squSEg">
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_gBOdMEkoEequjbB2squSEg" sourceAnchor="141.0,36.0" targetAnchor="81.0,111.0" target="_ShGc4EkkEequjbB2squSEg" source="_gAGYoEkkEequjbB2squSEg">
     <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_gBMoAEkoEequjbB2squSEg"/>
     <visualProperties xmi:id="_gBOdMUkoEequjbB2squSEg"/>
-    <bendpoints xmi:id="_W5Q9sEkpEequjbB2squSEg" sourceX="201" sourceY="1" targetX="-221" targetY="548"/>
-    <bendpoints xmi:id="_W5Q9sUkpEequjbB2squSEg" sourceX="428" sourceY="-22" targetX="6" targetY="525"/>
+    <bendpoints xmi:id="_l1ZFEUn1EeqfybSmnjC9dg" sourceX="121" targetY="243"/>
     <nameVisual xmi:id="_gBOdMkkoEequjbB2squSEg" text="">
-      <visualProperties xmi:id="_gEcJQUkoEequjbB2squSEg" position="-13.0,-275.0"/>
+      <visualProperties xmi:id="_gEcJQUkoEequjbB2squSEg" position="2.0,-138.0"/>
     </nameVisual>
     <sourceRole xmi:id="_gBOdM0koEequjbB2squSEg" aggregationKind="NONE" name="relatesTo" navigable="true">
       <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_gBMoAUkoEequjbB2squSEg"/>
-      <visualProperties xmi:id="_gEcJQEkoEequjbB2squSEg" position="52.0,2.0"/>
+      <visualProperties xmi:id="_gEcJQEkoEequjbB2squSEg" position="18.0,-46.0"/>
       <visibility xmi:id="_gBOdNEkoEequjbB2squSEg" label="+"/>
       <cardinality xmi:id="_gBOdNUkoEequjbB2squSEg" label="0..1" max="1"/>
     </sourceRole>
     <targetRole xmi:id="_gBOdNkkoEequjbB2squSEg" aggregationKind="NONE" name="isRelatedTo" navigable="true">
       <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_gBNPEUkoEequjbB2squSEg"/>
-      <visualProperties xmi:id="_gEcJQkkoEequjbB2squSEg" position="2.0,81.0"/>
+      <visualProperties xmi:id="_gEcJQkkoEequjbB2squSEg" position="2.0,33.0"/>
       <visibility xmi:id="_gBOdN0koEequjbB2squSEg" label="+"/>
       <cardinality xmi:id="_gBOdOEkoEequjbB2squSEg" label="*" max="-1"/>
     </targetRole>
   </edges>
-  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_PnPFEEkqEequjbB2squSEg" enclosingItem="_JCd0sUkjEequjbB2squSEg" containedItem="_Rej3QEkjEequjbB2squSEg"/>
-  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_PxP8sEkqEequjbB2squSEg" enclosingItem="_JCd0sUkjEequjbB2squSEg" containedItem="_ShGc4EkkEequjbB2squSEg"/>
-  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_P9b-kEkqEequjbB2squSEg" enclosingItem="_JCd0sUkjEequjbB2squSEg" containedItem="_SQ5dsUkkEequjbB2squSEg"/>
-  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_QKBpEEkqEequjbB2squSEg" enclosingItem="_JCd0sUkjEequjbB2squSEg" containedItem="_ghnU0EklEequjbB2squSEg"/>
-  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_QlutoEkqEequjbB2squSEg" enclosingItem="_JCd0sUkjEequjbB2squSEg" containedItem="_bwHxMEkkEequjbB2squSEg"/>
-  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_Q2-OoEkqEequjbB2squSEg" enclosingItem="_JCd0sUkjEequjbB2squSEg" containedItem="_dlun8EkkEequjbB2squSEg"/>
-  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_RJIVoEkqEequjbB2squSEg" enclosingItem="_JCd0sUkjEequjbB2squSEg" containedItem="_GzDE4UklEequjbB2squSEg"/>
-  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_RkSnoEkqEequjbB2squSEg" enclosingItem="_JCd0sUkjEequjbB2squSEg" containedItem="_gAGYoEkkEequjbB2squSEg"/>
-  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_R0AeoEkqEequjbB2squSEg" enclosingItem="_JCd0sUkjEequjbB2squSEg" containedItem="_IokcEEklEequjbB2squSEg"/>
-  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_SDCZIEkqEequjbB2squSEg" enclosingItem="_JCd0sUkjEequjbB2squSEg" containedItem="_hKM-0UklEequjbB2squSEg"/>
-  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_gAGYoEkkEequjbB2squSEg" containment="_RkSnoEkqEequjbB2squSEg" name="Question" package="_JCd0sUkjEequjbB2squSEg" associationsIn="_Zq4REEkmEequjbB2squSEg _aF_fwEkmEequjbB2squSEg" associationsOut="_gBOdMEkoEequjbB2squSEg">
-    <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_gAFxkEkkEequjbB2squSEg"/>
-    <visualProperties xmi:id="_gAGYoUkkEequjbB2squSEg" position="489.0,789.0" size="-1.0,-1.0"/>
-    <visibility xmi:id="_gAGYokkkEequjbB2squSEg" label="+"/>
-    <attributes xmi:id="_6HpJQUkkEequjbB2squSEg" name="question">
-      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_6HpJQEkkEequjbB2squSEg"/>
-      <visibility xmi:id="_6HpJQkkkEequjbB2squSEg" label="+"/>
-      <cardinality xmi:id="_6HpJQ0kkEequjbB2squSEg" label="1" max="1" min="1"/>
-      <type xmi:id="_8OsVUEkkEequjbB2squSEg" name="String">
-        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-      </type>
-    </attributes>
-    <attributes xmi:id="_9ISPwEkkEequjbB2squSEg" name="answer">
-      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_9IRosEkkEequjbB2squSEg"/>
-      <visibility xmi:id="_9ISPwUkkEequjbB2squSEg" label="+"/>
-      <cardinality xmi:id="_9ISPwkkkEequjbB2squSEg" label="1" max="1" min="1"/>
-      <type xmi:id="_93rFUEkkEequjbB2squSEg" name="String">
-        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-      </type>
-    </attributes>
-    <attributes xmi:id="_Zq4RGUkmEequjbB2squSEg" name="askedByOrAnsweredBy">
-      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_Zq2b4UkmEequjbB2squSEg"/>
-      <visibility xmi:id="_Zq4RGkkmEequjbB2squSEg" label="+"/>
-      <cardinality xmi:id="_Zq4RG0kmEequjbB2squSEg" label="1" max="1" min="1"/>
-      <type xmi:id="_Zq4RHEkmEequjbB2squSEg" name="AppUser">
-        <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_GzDE4EklEequjbB2squSEg"/>
-      </type>
-    </attributes>
-    <attributes xmi:id="_aGAG0EkmEequjbB2squSEg" name="answeredBy">
-      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_aF9DgEkmEequjbB2squSEg"/>
-      <visibility xmi:id="_aGAG0UkmEequjbB2squSEg" label="+"/>
-      <cardinality xmi:id="_aGAG0kkmEequjbB2squSEg" label="1" max="1" min="1"/>
-      <type xmi:id="_aGAG00kmEequjbB2squSEg" name="AppAdmin">
-        <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_bwHKIEkkEequjbB2squSEg"/>
-      </type>
-    </attributes>
-    <attributes xmi:id="_gBPEQEkoEequjbB2squSEg" name="isRelatedTo">
-      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_gBNPEUkoEequjbB2squSEg"/>
-      <visibility xmi:id="_gBPEQUkoEequjbB2squSEg" label="+"/>
-      <cardinality xmi:id="_gBPEQkkoEequjbB2squSEg" label="*" max="-1"/>
-      <type xmi:id="_gBPEQ0koEequjbB2squSEg" name="PetPost">
-        <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_ShF10EkkEequjbB2squSEg"/>
-      </type>
-    </attributes>
-  </nodes>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_kkkWYEn1EeqfybSmnjC9dg" sourceAnchor="216.0,46.0" targetAnchor="43.0,0.0" target="_Rej3QEkjEequjbB2squSEg" source="_dlun8EkkEequjbB2squSEg">
+    <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_kkalYEn1EeqfybSmnjC9dg"/>
+    <visualProperties xmi:id="_kkk9cEn1EeqfybSmnjC9dg"/>
+    <bendpoints xmi:id="_l1ZFEEn1EeqfybSmnjC9dg" sourceX="154" targetY="-155"/>
+    <nameVisual xmi:id="_kkk9cUn1EeqfybSmnjC9dg" text="">
+      <visualProperties xmi:id="_kotPgEn1EeqfybSmnjC9dg" position="2.0,55.0"/>
+    </nameVisual>
+    <sourceRole xmi:id="_kkk9ckn1EeqfybSmnjC9dg" aggregationKind="NONE" name="donation" navigable="true">
+      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_kkdBoEn1EeqfybSmnjC9dg"/>
+      <visualProperties xmi:id="_kosocEn1EeqfybSmnjC9dg" position="30.0,-47.0"/>
+      <visibility xmi:id="_kkk9c0n1EeqfybSmnjC9dg" label="+"/>
+      <cardinality xmi:id="_kkk9dEn1EeqfybSmnjC9dg" label="*" max="-1"/>
+    </sourceRole>
+    <targetRole xmi:id="_kkk9dUn1EeqfybSmnjC9dg" aggregationKind="NONE" name="person" navigable="true">
+      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_kkfd4En1EeqfybSmnjC9dg"/>
+      <visualProperties xmi:id="_kotPgUn1EeqfybSmnjC9dg" position="-53.0,-127.0"/>
+      <visibility xmi:id="_kkk9dkn1EeqfybSmnjC9dg" label="+"/>
+      <cardinality xmi:id="_kkk9d0n1EeqfybSmnjC9dg" label="1..2" max="2" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_lyQ4kEn1EeqfybSmnjC9dg" sourceAnchor="0.0,36.0" targetAnchor="147.0,113.0" target="_Rej3QEkjEequjbB2squSEg" source="_gAGYoEkkEequjbB2squSEg">
+    <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_lyN1QEn1EeqfybSmnjC9dg"/>
+    <visualProperties xmi:id="_lyQ4kUn1EeqfybSmnjC9dg"/>
+    <nameVisual xmi:id="_lyQ4kkn1EeqfybSmnjC9dg" text="">
+      <visualProperties xmi:id="_l1bhUEn1EeqfybSmnjC9dg" position="5.090909090909122,2.5"/>
+    </nameVisual>
+    <sourceRole xmi:id="_lyQ4k0n1EeqfybSmnjC9dg" aggregationKind="NONE" name="question" navigable="true">
+      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_lyOcUEn1EeqfybSmnjC9dg"/>
+      <visualProperties xmi:id="_l1a6QEn1EeqfybSmnjC9dg" position="-105.0,-46.5"/>
+      <visibility xmi:id="_lyQ4lEn1EeqfybSmnjC9dg" label="+"/>
+      <cardinality xmi:id="_lyQ4lUn1EeqfybSmnjC9dg" label="*" max="-1"/>
+    </sourceRole>
+    <targetRole xmi:id="_lyQ4lkn1EeqfybSmnjC9dg" aggregationKind="NONE" name="person" navigable="true">
+      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_lyPDYUn1EeqfybSmnjC9dg"/>
+      <visualProperties xmi:id="_l1bhUUn1EeqfybSmnjC9dg" position="37.39999999999998,-46.5"/>
+      <visibility xmi:id="_lyQ4l0n1EeqfybSmnjC9dg" label="+"/>
+      <cardinality xmi:id="_lyQ4mEn1EeqfybSmnjC9dg" label="1..*" max="-1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_EL9a4En2EeqfybSmnjC9dg" enclosingItem="_JCd0sUkjEequjbB2squSEg" containedItem="_dlun8EkkEequjbB2squSEg"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_Ea510En2EeqfybSmnjC9dg" enclosingItem="_JCd0sUkjEequjbB2squSEg" containedItem="_Rej3QEkjEequjbB2squSEg"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_Eka-MEn2EeqfybSmnjC9dg" enclosingItem="_JCd0sUkjEequjbB2squSEg" containedItem="_ghnU0EklEequjbB2squSEg"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_Eswa0En2EeqfybSmnjC9dg" enclosingItem="_JCd0sUkjEequjbB2squSEg" containedItem="_ShGc4EkkEequjbB2squSEg"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_E5U3MEn2EeqfybSmnjC9dg" enclosingItem="_JCd0sUkjEequjbB2squSEg" containedItem="_gAGYoEkkEequjbB2squSEg"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_FKb1UEn2EeqfybSmnjC9dg" enclosingItem="_JCd0sUkjEequjbB2squSEg" containedItem="_bwHxMEkkEequjbB2squSEg"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_FXtcUEn2EeqfybSmnjC9dg" enclosingItem="_JCd0sUkjEequjbB2squSEg" containedItem="_GzDE4UklEequjbB2squSEg"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_FqspwEn2EeqfybSmnjC9dg" enclosingItem="_JCd0sUkjEequjbB2squSEg" containedItem="_SQ5dsUkkEequjbB2squSEg"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_Gu6f0En2EeqfybSmnjC9dg" enclosingItem="_JCd0sUkjEequjbB2squSEg" containedItem="_IokcEEklEequjbB2squSEg"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_G-FkQEn2EeqfybSmnjC9dg" enclosingItem="_JCd0sUkjEequjbB2squSEg" containedItem="_hKM-0UklEequjbB2squSEg"/>
   <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:PackageVisual" xmi:id="_Hi2cEEkjEequjbB2squSEg" containments="_OfI4wEkjEequjbB2squSEg" name="ca" nestedPackages="_IENcsUkjEequjbB2squSEg">
     <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_Hi1N8EkjEequjbB2squSEg"/>
     <visualProperties xmi:id="_Hi2cEUkjEequjbB2squSEg" position="125.0,24.0" size="120.0,78.0"/>
@@ -265,83 +180,122 @@
     <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_Iz2J4EkjEequjbB2squSEg"/>
     <visualProperties xmi:id="_Iz2J4kkjEequjbB2squSEg" position="675.0,34.0" size="111.0,88.0"/>
   </nodes>
-  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:PackageVisual" xmi:id="_JCd0sUkjEequjbB2squSEg" containment="_OGM0UEkjEequjbB2squSEg" containments="_PnPFEEkqEequjbB2squSEg _PxP8sEkqEequjbB2squSEg _P9b-kEkqEequjbB2squSEg _QKBpEEkqEequjbB2squSEg _QlutoEkqEequjbB2squSEg _Q2-OoEkqEequjbB2squSEg _RJIVoEkqEequjbB2squSEg _RkSnoEkqEequjbB2squSEg _R0AeoEkqEequjbB2squSEg _SDCZIEkqEequjbB2squSEg" classes="_Rej3QEkjEequjbB2squSEg _ShGc4EkkEequjbB2squSEg _SQ5dsUkkEequjbB2squSEg _ghnU0EklEequjbB2squSEg _bwHxMEkkEequjbB2squSEg _dlun8EkkEequjbB2squSEg _GzDE4UklEequjbB2squSEg _gAGYoEkkEequjbB2squSEg _IokcEEklEequjbB2squSEg _hKM-0UklEequjbB2squSEg" name="model" nestingPackage="_Iz2J4UkjEequjbB2squSEg">
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:PackageVisual" xmi:id="_JCd0sUkjEequjbB2squSEg" containment="_OGM0UEkjEequjbB2squSEg" containments="_EL9a4En2EeqfybSmnjC9dg _Ea510En2EeqfybSmnjC9dg _Eka-MEn2EeqfybSmnjC9dg _Eswa0En2EeqfybSmnjC9dg _E5U3MEn2EeqfybSmnjC9dg _FKb1UEn2EeqfybSmnjC9dg _FXtcUEn2EeqfybSmnjC9dg _FqspwEn2EeqfybSmnjC9dg _Gu6f0En2EeqfybSmnjC9dg _G-FkQEn2EeqfybSmnjC9dg" classes="_Rej3QEkjEequjbB2squSEg _ShGc4EkkEequjbB2squSEg _SQ5dsUkkEequjbB2squSEg _ghnU0EklEequjbB2squSEg _bwHxMEkkEequjbB2squSEg _dlun8EkkEequjbB2squSEg _GzDE4UklEequjbB2squSEg _gAGYoEkkEequjbB2squSEg _IokcEEklEequjbB2squSEg _hKM-0UklEequjbB2squSEg" name="model" nestingPackage="_Iz2J4UkjEequjbB2squSEg">
     <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_JCd0sEkjEequjbB2squSEg"/>
     <visualProperties xmi:id="_JCd0skkjEequjbB2squSEg" position="824.0,38.0" size="101.0,72.0"/>
   </nodes>
-  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:EnumerationVisual" xmi:id="_hKM-0UklEequjbB2squSEg" containment="_SDCZIEkqEequjbB2squSEg" name="Status" package="_JCd0sUkjEequjbB2squSEg">
-    <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_hKM-0EklEequjbB2squSEg"/>
-    <visualProperties xmi:id="_hKM-0kklEequjbB2squSEg" position="1173.0,643.0" size="-1.0,-1.0"/>
-    <visibility xmi:id="_hKM-00klEequjbB2squSEg" label="+"/>
-    <literals xmi:id="_jujK4EklEequjbB2squSEg" name="pending">
-      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_juij0EklEequjbB2squSEg"/>
-    </literals>
-    <literals xmi:id="_lhehEUklEequjbB2squSEg" name="approved">
-      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_lhehEEklEequjbB2squSEg"/>
-    </literals>
-    <literals xmi:id="_lv4JcUklEequjbB2squSEg" name="denied">
-      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_lv4JcEklEequjbB2squSEg"/>
-    </literals>
-  </nodes>
-  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:EnumerationVisual" xmi:id="_IokcEEklEequjbB2squSEg" containment="_R0AeoEkqEequjbB2squSEg" name="PersonRole" package="_JCd0sUkjEequjbB2squSEg">
-    <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_Ioj1AEklEequjbB2squSEg"/>
-    <visualProperties xmi:id="_IokcEUklEequjbB2squSEg" position="1181.0,506.0" size="-1.0,-1.0"/>
-    <visibility xmi:id="_IokcEkklEequjbB2squSEg" label="+"/>
-    <literals xmi:id="_KNOFsEklEequjbB2squSEg" name="adopter">
-      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_KNNeoEklEequjbB2squSEg"/>
-    </literals>
-    <literals xmi:id="_ew7aUUklEequjbB2squSEg" name="owner">
-      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_ew7aUEklEequjbB2squSEg"/>
-    </literals>
-  </nodes>
-  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_dlun8EkkEequjbB2squSEg" containment="_Q2-OoEkqEequjbB2squSEg" name="Donation" package="_JCd0sUkjEequjbB2squSEg" associationsIn="_ZdEekEkmEequjbB2squSEg _Z4sDkEkmEequjbB2squSEg">
-    <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_dluA4EkkEequjbB2squSEg"/>
-    <visualProperties xmi:id="_dlun8UkkEequjbB2squSEg" position="383.0,657.0" size="216.0,92.0"/>
-    <visibility xmi:id="_dlun8kkkEequjbB2squSEg" label="+"/>
-    <attributes xmi:id="_mAhqAUkkEequjbB2squSEg" name="amount">
-      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_mAhqAEkkEequjbB2squSEg"/>
-      <visibility xmi:id="_mAhqAkkkEequjbB2squSEg" label="+"/>
-      <cardinality xmi:id="_mAhqA0kkEequjbB2squSEg" label="1" max="1" min="1"/>
-      <type xmi:id="_zH9aUEkkEequjbB2squSEg" name="double">
-        <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_ghnU0EklEequjbB2squSEg" containment="_Eka-MEn2EeqfybSmnjC9dg" name="AdoptRequest" package="_JCd0sUkjEequjbB2squSEg" associationsIn="_PLzqIEkmEequjbB2squSEg" associationsOut="_RC0PEEkmEequjbB2squSEg">
+    <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_ghmtwEklEequjbB2squSEg"/>
+    <visualProperties xmi:id="_ghnU0UklEequjbB2squSEg" position="889.0,384.0" size="-1.0,-1.0"/>
+    <visibility xmi:id="_ghnU0kklEequjbB2squSEg" label="+"/>
+    <attributes xmi:id="_opL44UklEequjbB2squSEg" name="status">
+      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_opL44EklEequjbB2squSEg"/>
+      <visualProperties xmi:id="_ptfOgEklEequjbB2squSEg"/>
+      <visibility xmi:id="_opL44kklEequjbB2squSEg" label="+"/>
+      <cardinality xmi:id="_opL440klEequjbB2squSEg" label="1" max="1" min="1"/>
+      <type xmi:id="_r90SYEklEequjbB2squSEg" name="Status">
+        <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_hKM-0EklEequjbB2squSEg"/>
       </type>
     </attributes>
-    <attributes xmi:id="_qZbj8UkkEequjbB2squSEg" name="comment">
-      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_qZbj8EkkEequjbB2squSEg"/>
-      <visibility xmi:id="_qZbj8kkkEequjbB2squSEg" label="+"/>
-      <cardinality xmi:id="_qZbj80kkEequjbB2squSEg" label="1" max="1" min="1"/>
-      <type xmi:id="_t0TIUEkkEequjbB2squSEg" name="String">
+    <attributes xmi:id="_PLzqKUkmEequjbB2squSEg" name="requestedBy">
+      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_PLx08UkmEequjbB2squSEg"/>
+      <visibility xmi:id="_PLzqKkkmEequjbB2squSEg" label="+"/>
+      <cardinality xmi:id="_PLzqK0kmEequjbB2squSEg" label="1" max="1" min="1"/>
+      <type xmi:id="_PLzqLEkmEequjbB2squSEg" name="Person">
+        <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_RejQMEkjEequjbB2squSEg"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_RC02JEkmEequjbB2squSEg" name="requesting">
+      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_RCyZ5EkmEequjbB2squSEg"/>
+      <visibility xmi:id="_RC02JUkmEequjbB2squSEg" label="+"/>
+      <cardinality xmi:id="_RC02JkkmEequjbB2squSEg" label="1" max="1" min="1"/>
+      <type xmi:id="_RC02J0kmEequjbB2squSEg" name="PetPost">
+        <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_ShF10EkkEequjbB2squSEg"/>
+      </type>
+    </attributes>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_bwHxMEkkEequjbB2squSEg" containment="_FKb1UEn2EeqfybSmnjC9dg" name="AppAdmin" package="_JCd0sUkjEequjbB2squSEg" generalizations="_GwuUMEkmEequjbB2squSEg">
+    <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_bwHKIEkkEequjbB2squSEg"/>
+    <visualProperties xmi:id="_bwHxMUkkEequjbB2squSEg" position="808.0,645.0" size="-1.0,-1.0"/>
+    <visibility xmi:id="_bwHxMkkkEequjbB2squSEg" label="+"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_GzDE4UklEequjbB2squSEg" containment="_FXtcUEn2EeqfybSmnjC9dg" name="AppUser" package="_JCd0sUkjEequjbB2squSEg" generalizations="_GiCX8UkmEequjbB2squSEg">
+    <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_GzDE4EklEequjbB2squSEg"/>
+    <visualProperties xmi:id="_GzDr8EklEequjbB2squSEg" position="98.0,646.0" size="-1.0,-1.0"/>
+    <visibility xmi:id="_GzDr8UklEequjbB2squSEg" label="+"/>
+    <attributes xmi:id="_WnspYEklEequjbB2squSEg" name="appUserRole">
+      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_WnsCUEklEequjbB2squSEg"/>
+      <visibility xmi:id="_WnspYUklEequjbB2squSEg" label="+"/>
+      <cardinality xmi:id="_WnspYkklEequjbB2squSEg" label="1" max="1" min="1"/>
+      <type xmi:id="_b4nJYEklEequjbB2squSEg" name="PersonRole">
+        <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_Ioj1AEklEequjbB2squSEg"/>
+      </type>
+    </attributes>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_Rej3QEkjEequjbB2squSEg" containment="_Ea510En2EeqfybSmnjC9dg" name="Person" package="_JCd0sUkjEequjbB2squSEg" associationsIn="_kKShIEkkEequjbB2squSEg _kkkWYEn1EeqfybSmnjC9dg _lyQ4kEn1EeqfybSmnjC9dg" associationsOut="_PLzqIEkmEequjbB2squSEg _Pg2tEEkmEequjbB2squSEg" subclassedBy="_GiCX8UkmEequjbB2squSEg _GwuUMEkmEequjbB2squSEg">
+    <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_RejQMEkjEequjbB2squSEg"/>
+    <visualProperties xmi:id="_Rej3QUkjEequjbB2squSEg" position="475.0,421.0" size="147.0,163.0"/>
+    <visibility xmi:id="_Rej3QkkjEequjbB2squSEg" label="+"/>
+    <attributes xmi:id="_Ub_4wEkjEequjbB2squSEg" name="username">
+      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_Ub_RsEkjEequjbB2squSEg"/>
+      <visibility xmi:id="_Ub_4wUkjEequjbB2squSEg" label="+"/>
+      <cardinality xmi:id="_Ub_4wkkjEequjbB2squSEg" label="1" max="1" min="1"/>
+      <type xmi:id="_WC6MMEkjEequjbB2squSEg" name="String">
         <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </type>
     </attributes>
-    <attributes xmi:id="_qzIdYUkkEequjbB2squSEg" name="setNameAnonymous">
-      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_qzIdYEkkEequjbB2squSEg"/>
-      <visibility xmi:id="_qzIdYkkkEequjbB2squSEg" label="+"/>
-      <cardinality xmi:id="_qzIdY0kkEequjbB2squSEg" label="1" max="1" min="1"/>
-      <type xmi:id="_34E6YEkkEequjbB2squSEg" name="boolean">
-        <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+    <attributes xmi:id="_W_ODcEkjEequjbB2squSEg" name="password">
+      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_W_NcYEkjEequjbB2squSEg"/>
+      <visibility xmi:id="_W_ODcUkjEequjbB2squSEg" label="+"/>
+      <cardinality xmi:id="_W_ODckkjEequjbB2squSEg" label="1" max="1" min="1"/>
+      <type xmi:id="_XyesYEkjEequjbB2squSEg" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </type>
     </attributes>
-    <attributes xmi:id="_ZdFFoEkmEequjbB2squSEg" name="donatedBy">
-      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_ZdDQcUkmEequjbB2squSEg"/>
-      <visibility xmi:id="_ZdFFoUkmEequjbB2squSEg" label="+"/>
-      <cardinality xmi:id="_ZdFFokkmEequjbB2squSEg" label="1" max="1" min="1"/>
-      <type xmi:id="_ZdFFo0kmEequjbB2squSEg" name="AppUser">
-        <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_GzDE4EklEequjbB2squSEg"/>
+    <attributes xmi:id="_kKTIMEkkEequjbB2squSEg" name="creates">
+      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_kKPd0UkkEequjbB2squSEg"/>
+      <visibility xmi:id="_kKTIMUkkEequjbB2squSEg" label="+"/>
+      <cardinality xmi:id="_kKTIMkkkEequjbB2squSEg" label="0..1" max="1"/>
+      <type xmi:id="_kKTIM0kkEequjbB2squSEg" name="UserProfile">
+        <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_SQ5dsEkkEequjbB2squSEg"/>
       </type>
     </attributes>
-    <attributes xmi:id="_Z4sqoEkmEequjbB2squSEg" name="receivedBy">
-      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_Z4qOYUkmEequjbB2squSEg"/>
-      <visibility xmi:id="_Z4sqoUkmEequjbB2squSEg" label="+"/>
-      <cardinality xmi:id="_Z4sqokkmEequjbB2squSEg" label="1" max="1" min="1"/>
-      <type xmi:id="_Z4sqo0kmEequjbB2squSEg" name="AppAdmin">
-        <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_bwHKIEkkEequjbB2squSEg"/>
+    <attributes xmi:id="_PL0RMEkmEequjbB2squSEg" name="fillsIn">
+      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_PLx09EkmEequjbB2squSEg"/>
+      <visibility xmi:id="_PL0RMUkmEequjbB2squSEg" label="+"/>
+      <cardinality xmi:id="_PL0RMkkmEequjbB2squSEg" label="*" max="-1"/>
+      <type xmi:id="_PL0RM0kmEequjbB2squSEg" name="AdoptRequest">
+        <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_ghmtwEklEequjbB2squSEg"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_Pg3UIEkmEequjbB2squSEg" name="owns">
+      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_Pg035EkmEequjbB2squSEg"/>
+      <visibility xmi:id="_Pg3UIUkmEequjbB2squSEg" label="+"/>
+      <cardinality xmi:id="_Pg3UIkkmEequjbB2squSEg" label="*" max="-1"/>
+      <type xmi:id="_Pg3UI0kmEequjbB2squSEg" name="PetPost">
+        <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_ShF10EkkEequjbB2squSEg"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_kklkgEn1EeqfybSmnjC9dg" name="donation">
+      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_kkdBoEn1EeqfybSmnjC9dg"/>
+      <visibility xmi:id="_kklkgUn1EeqfybSmnjC9dg" label="+"/>
+      <cardinality xmi:id="_kklkgkn1EeqfybSmnjC9dg" label="*" max="-1"/>
+      <type xmi:id="_kklkg0n1EeqfybSmnjC9dg" name="Donation">
+        <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_dluA4EkkEequjbB2squSEg"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_lySGsEn1EeqfybSmnjC9dg" name="question">
+      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_lyOcUEn1EeqfybSmnjC9dg"/>
+      <visibility xmi:id="_lySGsUn1EeqfybSmnjC9dg" label="+"/>
+      <cardinality xmi:id="_lySGskn1EeqfybSmnjC9dg" label="*" max="-1"/>
+      <type xmi:id="_lySGs0n1EeqfybSmnjC9dg" name="Question">
+        <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_gAFxkEkkEequjbB2squSEg"/>
       </type>
     </attributes>
   </nodes>
-  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_SQ5dsUkkEequjbB2squSEg" containment="_P9b-kEkqEequjbB2squSEg" name="UserProfile" package="_JCd0sUkjEequjbB2squSEg" associationsOut="_kKShIEkkEequjbB2squSEg">
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_SQ5dsUkkEequjbB2squSEg" containment="_FqspwEn2EeqfybSmnjC9dg" name="UserProfile" package="_JCd0sUkjEequjbB2squSEg" associationsOut="_kKShIEkkEequjbB2squSEg">
     <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_SQ5dsEkkEequjbB2squSEg"/>
-    <visualProperties xmi:id="_SQ5dskkkEequjbB2squSEg" position="79.0,246.0" size="-1.0,-1.0"/>
+    <visualProperties xmi:id="_SQ5dskkkEequjbB2squSEg" position="78.0,436.0" size="-1.0,-1.0"/>
     <visibility xmi:id="_SQ5ds0kkEequjbB2squSEg" label="+"/>
     <attributes xmi:id="_Yq8I8UkkEequjbB2squSEg" name="address">
       <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_Yq8I8EkkEequjbB2squSEg"/>
@@ -351,11 +305,11 @@
         <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </type>
     </attributes>
-    <attributes xmi:id="_kKTvQEkkEequjbB2squSEg" name="user">
+    <attributes xmi:id="_kKTvQEkkEequjbB2squSEg" name="person">
       <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_kKQr8UkkEequjbB2squSEg"/>
       <visibility xmi:id="_kKTvQUkkEequjbB2squSEg" label="+"/>
       <cardinality xmi:id="_kKTvQkkkEequjbB2squSEg" label="1" max="1" min="1"/>
-      <type xmi:id="_kKTvQ0kkEequjbB2squSEg" name="User">
+      <type xmi:id="_kKTvQ0kkEequjbB2squSEg" name="Person">
         <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_RejQMEkjEequjbB2squSEg"/>
       </type>
     </attributes>
@@ -384,39 +338,9 @@
       </type>
     </attributes>
   </nodes>
-  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_ghnU0EklEequjbB2squSEg" containment="_QKBpEEkqEequjbB2squSEg" name="AdoptRequest" package="_JCd0sUkjEequjbB2squSEg" associationsIn="_PLzqIEkmEequjbB2squSEg" associationsOut="_RC0PEEkmEequjbB2squSEg">
-    <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_ghmtwEklEequjbB2squSEg"/>
-    <visualProperties xmi:id="_ghnU0UklEequjbB2squSEg" position="889.0,384.0" size="-1.0,-1.0"/>
-    <visibility xmi:id="_ghnU0kklEequjbB2squSEg" label="+"/>
-    <attributes xmi:id="_opL44UklEequjbB2squSEg" name="status">
-      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_opL44EklEequjbB2squSEg"/>
-      <visualProperties xmi:id="_ptfOgEklEequjbB2squSEg"/>
-      <visibility xmi:id="_opL44kklEequjbB2squSEg" label="+"/>
-      <cardinality xmi:id="_opL440klEequjbB2squSEg" label="1" max="1" min="1"/>
-      <type xmi:id="_r90SYEklEequjbB2squSEg" name="Status">
-        <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_hKM-0EklEequjbB2squSEg"/>
-      </type>
-    </attributes>
-    <attributes xmi:id="_PLzqKUkmEequjbB2squSEg" name="requestedBy">
-      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_PLx08UkmEequjbB2squSEg"/>
-      <visibility xmi:id="_PLzqKkkmEequjbB2squSEg" label="+"/>
-      <cardinality xmi:id="_PLzqK0kmEequjbB2squSEg" label="1" max="1" min="1"/>
-      <type xmi:id="_PLzqLEkmEequjbB2squSEg" name="User">
-        <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_RejQMEkjEequjbB2squSEg"/>
-      </type>
-    </attributes>
-    <attributes xmi:id="_RC02JEkmEequjbB2squSEg" name="requesting">
-      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_RCyZ5EkmEequjbB2squSEg"/>
-      <visibility xmi:id="_RC02JUkmEequjbB2squSEg" label="+"/>
-      <cardinality xmi:id="_RC02JkkmEequjbB2squSEg" label="1" max="1" min="1"/>
-      <type xmi:id="_RC02J0kmEequjbB2squSEg" name="PetPost">
-        <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_ShF10EkkEequjbB2squSEg"/>
-      </type>
-    </attributes>
-  </nodes>
-  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_ShGc4EkkEequjbB2squSEg" containment="_PxP8sEkqEequjbB2squSEg" name="PetPost" package="_JCd0sUkjEequjbB2squSEg" associationsIn="_Pg2tEEkmEequjbB2squSEg _RC0PEEkmEequjbB2squSEg _gBOdMEkoEequjbB2squSEg">
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_ShGc4EkkEequjbB2squSEg" containment="_Eswa0En2EeqfybSmnjC9dg" name="PetPost" package="_JCd0sUkjEequjbB2squSEg" associationsIn="_Pg2tEEkmEequjbB2squSEg _RC0PEEkmEequjbB2squSEg _gBOdMEkoEequjbB2squSEg">
     <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_ShF10EkkEequjbB2squSEg"/>
-    <visualProperties xmi:id="_ShGc4UkkEequjbB2squSEg" position="972.0,182.0" size="-1.0,-1.0"/>
+    <visualProperties xmi:id="_ShGc4UkkEequjbB2squSEg" position="1038.0,180.0" size="-1.0,-1.0"/>
     <visibility xmi:id="_ShGc4kkkEequjbB2squSEg" label="+"/>
     <attributes xmi:id="_Sc4OwEklEequjbB2squSEg" name="availability">
       <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_Sc3nsEklEequjbB2squSEg"/>
@@ -430,7 +354,7 @@
       <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_Pg034UkmEequjbB2squSEg"/>
       <visibility xmi:id="_Pg2tGkkmEequjbB2squSEg" label="+"/>
       <cardinality xmi:id="_Pg2tG0kmEequjbB2squSEg" label="1" max="1" min="1"/>
-      <type xmi:id="_Pg2tHEkmEequjbB2squSEg" name="User">
+      <type xmi:id="_Pg2tHEkmEequjbB2squSEg" name="Person">
         <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_RejQMEkjEequjbB2squSEg"/>
       </type>
     </attributes>
@@ -475,99 +399,103 @@
       </type>
     </attributes>
   </nodes>
-  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_GzDE4UklEequjbB2squSEg" containment="_RJIVoEkqEequjbB2squSEg" name="AppUser" package="_JCd0sUkjEequjbB2squSEg" associationsOut="_ZdEekEkmEequjbB2squSEg _Zq4REEkmEequjbB2squSEg" generalizations="_GiCX8UkmEequjbB2squSEg">
-    <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_GzDE4EklEequjbB2squSEg"/>
-    <visualProperties xmi:id="_GzDr8EklEequjbB2squSEg" position="94.0,519.0" size="-1.0,-1.0"/>
-    <visibility xmi:id="_GzDr8UklEequjbB2squSEg" label="+"/>
-    <attributes xmi:id="_WnspYEklEequjbB2squSEg" name="appUserRole">
-      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_WnsCUEklEequjbB2squSEg"/>
-      <visibility xmi:id="_WnspYUklEequjbB2squSEg" label="+"/>
-      <cardinality xmi:id="_WnspYkklEequjbB2squSEg" label="1" max="1" min="1"/>
-      <type xmi:id="_b4nJYEklEequjbB2squSEg" name="PersonRole">
-        <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_Ioj1AEklEequjbB2squSEg"/>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_dlun8EkkEequjbB2squSEg" containment="_EL9a4En2EeqfybSmnjC9dg" name="Donation" package="_JCd0sUkjEequjbB2squSEg" associationsOut="_kkkWYEn1EeqfybSmnjC9dg">
+    <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_dluA4EkkEequjbB2squSEg"/>
+    <visualProperties xmi:id="_dlun8UkkEequjbB2squSEg" position="148.0,220.0" size="216.0,92.0"/>
+    <visibility xmi:id="_dlun8kkkEequjbB2squSEg" label="+"/>
+    <attributes xmi:id="_mAhqAUkkEequjbB2squSEg" name="amount">
+      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_mAhqAEkkEequjbB2squSEg"/>
+      <visibility xmi:id="_mAhqAkkkEequjbB2squSEg" label="+"/>
+      <cardinality xmi:id="_mAhqA0kkEequjbB2squSEg" label="1" max="1" min="1"/>
+      <type xmi:id="_zH9aUEkkEequjbB2squSEg" name="double">
+        <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
       </type>
     </attributes>
-    <attributes xmi:id="_ZdFFpEkmEequjbB2squSEg" name="donates">
-      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_ZdDQdEkmEequjbB2squSEg"/>
-      <visibility xmi:id="_ZdFssEkmEequjbB2squSEg" label="+"/>
-      <cardinality xmi:id="_ZdFssUkmEequjbB2squSEg" label="*" max="-1"/>
-      <type xmi:id="_ZdFsskkmEequjbB2squSEg" name="Donation">
-        <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_dluA4EkkEequjbB2squSEg"/>
-      </type>
-    </attributes>
-    <attributes xmi:id="_Zq44IEkmEequjbB2squSEg" name="asksOrAnswers">
-      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_Zq3C8kkmEequjbB2squSEg"/>
-      <visibility xmi:id="_Zq44IUkmEequjbB2squSEg" label="+"/>
-      <cardinality xmi:id="_Zq44IkkmEequjbB2squSEg" label="*" max="-1"/>
-      <type xmi:id="_Zq44I0kmEequjbB2squSEg" name="Question">
-        <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_gAFxkEkkEequjbB2squSEg"/>
-      </type>
-    </attributes>
-  </nodes>
-  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_bwHxMEkkEequjbB2squSEg" containment="_QlutoEkqEequjbB2squSEg" name="AppAdmin" package="_JCd0sUkjEequjbB2squSEg" associationsOut="_Z4sDkEkmEequjbB2squSEg _aF_fwEkmEequjbB2squSEg" generalizations="_GwuUMEkmEequjbB2squSEg">
-    <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_bwHKIEkkEequjbB2squSEg"/>
-    <visualProperties xmi:id="_bwHxMUkkEequjbB2squSEg" position="745.0,542.0" size="-1.0,-1.0"/>
-    <visibility xmi:id="_bwHxMkkkEequjbB2squSEg" label="+"/>
-    <attributes xmi:id="_Z4sqpEkmEequjbB2squSEg" name="receives">
-      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_Z4q1ckkmEequjbB2squSEg"/>
-      <visibility xmi:id="_Z4sqpUkmEequjbB2squSEg" label="+"/>
-      <cardinality xmi:id="_Z4sqpkkmEequjbB2squSEg" label="*" max="-1"/>
-      <type xmi:id="_Z4sqp0kmEequjbB2squSEg" name="Donation">
-        <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_dluA4EkkEequjbB2squSEg"/>
-      </type>
-    </attributes>
-    <attributes xmi:id="_aGAt4EkmEequjbB2squSEg" name="answers">
-      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_aF9qkEkmEequjbB2squSEg"/>
-      <visibility xmi:id="_aGAt4UkmEequjbB2squSEg" label="+"/>
-      <cardinality xmi:id="_aGAt4kkmEequjbB2squSEg" label="*" max="-1"/>
-      <type xmi:id="_aGAt40kmEequjbB2squSEg" name="Question">
-        <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_gAFxkEkkEequjbB2squSEg"/>
-      </type>
-    </attributes>
-  </nodes>
-  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_Rej3QEkjEequjbB2squSEg" containment="_PnPFEEkqEequjbB2squSEg" name="User" package="_JCd0sUkjEequjbB2squSEg" associationsIn="_kKShIEkkEequjbB2squSEg" associationsOut="_PLzqIEkmEequjbB2squSEg _Pg2tEEkmEequjbB2squSEg" subclassedBy="_GiCX8UkmEequjbB2squSEg _GwuUMEkmEequjbB2squSEg">
-    <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_RejQMEkjEequjbB2squSEg"/>
-    <visualProperties xmi:id="_Rej3QUkjEequjbB2squSEg" position="486.0,269.0" size="147.0,163.0"/>
-    <visibility xmi:id="_Rej3QkkjEequjbB2squSEg" label="+"/>
-    <attributes xmi:id="_Ub_4wEkjEequjbB2squSEg" name="username">
-      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_Ub_RsEkjEequjbB2squSEg"/>
-      <visibility xmi:id="_Ub_4wUkjEequjbB2squSEg" label="+"/>
-      <cardinality xmi:id="_Ub_4wkkjEequjbB2squSEg" label="1" max="1" min="1"/>
-      <type xmi:id="_WC6MMEkjEequjbB2squSEg" name="String">
+    <attributes xmi:id="_qZbj8UkkEequjbB2squSEg" name="comment">
+      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_qZbj8EkkEequjbB2squSEg"/>
+      <visibility xmi:id="_qZbj8kkkEequjbB2squSEg" label="+"/>
+      <cardinality xmi:id="_qZbj80kkEequjbB2squSEg" label="1" max="1" min="1"/>
+      <type xmi:id="_t0TIUEkkEequjbB2squSEg" name="String">
         <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </type>
     </attributes>
-    <attributes xmi:id="_W_ODcEkjEequjbB2squSEg" name="password">
-      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_W_NcYEkjEequjbB2squSEg"/>
-      <visibility xmi:id="_W_ODcUkjEequjbB2squSEg" label="+"/>
-      <cardinality xmi:id="_W_ODckkjEequjbB2squSEg" label="1" max="1" min="1"/>
-      <type xmi:id="_XyesYEkjEequjbB2squSEg" name="String">
+    <attributes xmi:id="_qzIdYUkkEequjbB2squSEg" name="setNameAnonymous">
+      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_qzIdYEkkEequjbB2squSEg"/>
+      <visibility xmi:id="_qzIdYkkkEequjbB2squSEg" label="+"/>
+      <cardinality xmi:id="_qzIdY0kkEequjbB2squSEg" label="1" max="1" min="1"/>
+      <type xmi:id="_34E6YEkkEequjbB2squSEg" name="boolean">
+        <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_kkmyoEn1EeqfybSmnjC9dg" name="person">
+      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_kkfd4En1EeqfybSmnjC9dg"/>
+      <visibility xmi:id="_kkmyoUn1EeqfybSmnjC9dg" label="+"/>
+      <cardinality xmi:id="_kkmyokn1EeqfybSmnjC9dg" label="1..2" max="2" min="1"/>
+      <type xmi:id="_kkmyo0n1EeqfybSmnjC9dg" name="Person">
+        <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_RejQMEkjEequjbB2squSEg"/>
+      </type>
+    </attributes>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_gAGYoEkkEequjbB2squSEg" containment="_E5U3MEn2EeqfybSmnjC9dg" name="Question" package="_JCd0sUkjEequjbB2squSEg" associationsOut="_gBOdMEkoEequjbB2squSEg _lyQ4kEn1EeqfybSmnjC9dg">
+    <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_gAFxkEkkEequjbB2squSEg"/>
+    <visualProperties xmi:id="_gAGYoUkkEequjbB2squSEg" position="857.0,498.0" size="-1.0,-1.0"/>
+    <visibility xmi:id="_gAGYokkkEequjbB2squSEg" label="+"/>
+    <attributes xmi:id="_6HpJQUkkEequjbB2squSEg" name="question">
+      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_6HpJQEkkEequjbB2squSEg"/>
+      <visibility xmi:id="_6HpJQkkkEequjbB2squSEg" label="+"/>
+      <cardinality xmi:id="_6HpJQ0kkEequjbB2squSEg" label="1" max="1" min="1"/>
+      <type xmi:id="_8OsVUEkkEequjbB2squSEg" name="String">
         <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </type>
     </attributes>
-    <attributes xmi:id="_kKTIMEkkEequjbB2squSEg" name="creates">
-      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_kKPd0UkkEequjbB2squSEg"/>
-      <visibility xmi:id="_kKTIMUkkEequjbB2squSEg" label="+"/>
-      <cardinality xmi:id="_kKTIMkkkEequjbB2squSEg" label="0..1" max="1"/>
-      <type xmi:id="_kKTIM0kkEequjbB2squSEg" name="UserProfile">
-        <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_SQ5dsEkkEequjbB2squSEg"/>
+    <attributes xmi:id="_9ISPwEkkEequjbB2squSEg" name="answer">
+      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_9IRosEkkEequjbB2squSEg"/>
+      <visibility xmi:id="_9ISPwUkkEequjbB2squSEg" label="+"/>
+      <cardinality xmi:id="_9ISPwkkkEequjbB2squSEg" label="1" max="1" min="1"/>
+      <type xmi:id="_93rFUEkkEequjbB2squSEg" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </type>
     </attributes>
-    <attributes xmi:id="_PL0RMEkmEequjbB2squSEg" name="fillsIn">
-      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_PLx09EkmEequjbB2squSEg"/>
-      <visibility xmi:id="_PL0RMUkmEequjbB2squSEg" label="+"/>
-      <cardinality xmi:id="_PL0RMkkmEequjbB2squSEg" label="*" max="-1"/>
-      <type xmi:id="_PL0RM0kmEequjbB2squSEg" name="AdoptRequest">
-        <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_ghmtwEklEequjbB2squSEg"/>
-      </type>
-    </attributes>
-    <attributes xmi:id="_Pg3UIEkmEequjbB2squSEg" name="owns">
-      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_Pg035EkmEequjbB2squSEg"/>
-      <visibility xmi:id="_Pg3UIUkmEequjbB2squSEg" label="+"/>
-      <cardinality xmi:id="_Pg3UIkkmEequjbB2squSEg" label="*" max="-1"/>
-      <type xmi:id="_Pg3UI0kmEequjbB2squSEg" name="PetPost">
+    <attributes xmi:id="_gBPEQEkoEequjbB2squSEg" name="isRelatedTo">
+      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_gBNPEUkoEequjbB2squSEg"/>
+      <visibility xmi:id="_gBPEQUkoEequjbB2squSEg" label="+"/>
+      <cardinality xmi:id="_gBPEQkkoEequjbB2squSEg" label="*" max="-1"/>
+      <type xmi:id="_gBPEQ0koEequjbB2squSEg" name="PetPost">
         <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_ShF10EkkEequjbB2squSEg"/>
       </type>
     </attributes>
+    <attributes xmi:id="_lyStwEn1EeqfybSmnjC9dg" name="person">
+      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_lyPDYUn1EeqfybSmnjC9dg"/>
+      <visibility xmi:id="_lyStwUn1EeqfybSmnjC9dg" label="+"/>
+      <cardinality xmi:id="_lyStwkn1EeqfybSmnjC9dg" label="1..*" max="-1" min="1"/>
+      <type xmi:id="_lyStw0n1EeqfybSmnjC9dg" name="Person">
+        <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_RejQMEkjEequjbB2squSEg"/>
+      </type>
+    </attributes>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:EnumerationVisual" xmi:id="_IokcEEklEequjbB2squSEg" containment="_Gu6f0En2EeqfybSmnjC9dg" name="PersonRole" package="_JCd0sUkjEequjbB2squSEg">
+    <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_Ioj1AEklEequjbB2squSEg"/>
+    <visualProperties xmi:id="_IokcEUklEequjbB2squSEg" position="1172.0,411.0" size="-1.0,-1.0"/>
+    <visibility xmi:id="_IokcEkklEequjbB2squSEg" label="+"/>
+    <literals xmi:id="_KNOFsEklEequjbB2squSEg" name="adopter">
+      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_KNNeoEklEequjbB2squSEg"/>
+    </literals>
+    <literals xmi:id="_ew7aUUklEequjbB2squSEg" name="owner">
+      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_ew7aUEklEequjbB2squSEg"/>
+    </literals>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:EnumerationVisual" xmi:id="_hKM-0UklEequjbB2squSEg" containment="_G-FkQEn2EeqfybSmnjC9dg" name="Status" package="_JCd0sUkjEequjbB2squSEg">
+    <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_hKM-0EklEequjbB2squSEg"/>
+    <visualProperties xmi:id="_hKM-0kklEequjbB2squSEg" position="1170.0,521.0" size="-1.0,-1.0"/>
+    <visibility xmi:id="_hKM-00klEequjbB2squSEg" label="+"/>
+    <literals xmi:id="_jujK4EklEequjbB2squSEg" name="pending">
+      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_juij0EklEequjbB2squSEg"/>
+    </literals>
+    <literals xmi:id="_lhehEUklEequjbB2squSEg" name="approved">
+      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_lhehEEklEequjbB2squSEg"/>
+    </literals>
+    <literals xmi:id="_lv4JcUklEequjbB2squSEg" name="denied">
+      <modelElement href="ca.mcgill.ecse321.petshelter.model.uml#_lv4JcEklEequjbB2squSEg"/>
+    </literals>
   </nodes>
 </com.yattasolutions.uml.diagrams.classifier:ClassDiagram>
