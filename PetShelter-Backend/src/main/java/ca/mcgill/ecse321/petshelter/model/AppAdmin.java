@@ -1,5 +1,7 @@
 package ca.mcgill.ecse321.petshelter.model;
 
+import javax.persistence.Entity;
 
-public class AppAdmin extends Person {
+@Entity
+public class AppAdmin extends Person{
 }

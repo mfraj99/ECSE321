@@ -1,108 +1,82 @@
 package ca.mcgill.ecse321.petshelter.model;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import java.util.Set;
-import java.util.HashSet;
+import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 
-public class Person {
+@Entity
+public class Person{
    private String username;
-   
-   public void setUsername(String value) {
-      this.username = value;
-   }
-   
-   public String getUsername() {
-      return this.username;
-   }
-   
-   private String password;
-   
-   public void setPassword(String value) {
-      this.password = value;
-   }
-   
-   public String getPassword() {
-      return this.password;
-   }
-   
-   /**
-    * <pre>
-    *           1..1     0..1
-    * Person ------------------------- UserProfile
-    *           person        &lt;       creates
-    * </pre>
-    */
+
+public void setUsername(String value) {
+    this.username = value;
+}
+public String getUsername() {
+    return this.username;
+}
+private String password;
+
+public void setPassword(String value) {
+    this.password = value;
+}
+public String getPassword() {
+    return this.password;
+}
    private UserProfile creates;
    
-   public void setCreates(UserProfile value) {
-      this.creates = value;
-   }
-   
+   @OneToOne
    public UserProfile getCreates() {
       return this.creates;
    }
    
-   /**
-    * <pre>
-    *           1..1     0..*
-    * Person ------------------------- AdoptRequest
-    *           requestedBy        &gt;       fillsIn
-    * </pre>
-    */
+   public void setCreates(UserProfile creates) {
+      this.creates = creates;
+   }
+   
    private Set<AdoptRequest> fillsIn;
    
+   @OneToMany(mappedBy="requestedBy" )
    public Set<AdoptRequest> getFillsIn() {
-      if (this.fillsIn == null) {
-         this.fillsIn = new HashSet<AdoptRequest>();
-      }
       return this.fillsIn;
    }
    
-   /**
-    * <pre>
-    *           1..1     0..*
-    * Person ------------------------- PetPost
-    *           ownedBy        &gt;       owns
-    * </pre>
-    */
+   public void setFillsIn(Set<AdoptRequest> fillsIns) {
+      this.fillsIn = fillsIns;
+   }
+   
    private Set<PetPost> owns;
    
+   @OneToMany(mappedBy="ownedBy" )
    public Set<PetPost> getOwns() {
-      if (this.owns == null) {
-         this.owns = new HashSet<PetPost>();
-      }
       return this.owns;
    }
    
-   /**
-    * <pre>
-    *           1..2     0..*
-    * Person ------------------------- Donation
-    *           person        &lt;       donation
-    * </pre>
-    */
+   public void setOwns(Set<PetPost> ownss) {
+      this.owns = ownss;
+   }
+   
    private Set<Donation> donation;
    
+   @ManyToMany
    public Set<Donation> getDonation() {
-      if (this.donation == null) {
-         this.donation = new HashSet<Donation>();
-      }
       return this.donation;
    }
    
-   /**
-    * <pre>
-    *           1..*     0..*
-    * Person ------------------------- Question
-    *           person        &lt;       question
-    * </pre>
-    */
+   public void setDonation(Set<Donation> donations) {
+      this.donation = donations;
+   }
+   
    private Set<Question> question;
    
+   @ManyToMany
    public Set<Question> getQuestion() {
-      if (this.question == null) {
-         this.question = new HashSet<Question>();
-      }
       return this.question;
+   }
+   
+   public void setQuestion(Set<Question> questions) {
+      this.question = questions;
    }
    
    }
