@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import java.util.Set;
 import javax.persistence.OneToMany;
+import javax.persistence.Id;
 
 @Entity
 public class PetPost{
@@ -77,6 +78,7 @@ private Integer petPostId;
 public void setPetPostId(Integer value) {
     this.petPostId = value;
 }
+@Id
 public Integer getPetPostId() {
     return this.petPostId;
 }

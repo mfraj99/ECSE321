@@ -2,6 +2,7 @@ package ca.mcgill.ecse321.petshelter.model;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Id;
 
 @Entity
 public class AdoptRequest{
@@ -40,6 +41,7 @@ private Integer adoptRequestId;
 public void setAdoptRequestId(Integer value) {
     this.adoptRequestId = value;
 }
+@Id
 public Integer getAdoptRequestId() {
     return this.adoptRequestId;
 }

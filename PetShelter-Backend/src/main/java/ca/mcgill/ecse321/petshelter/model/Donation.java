@@ -3,6 +3,7 @@ package ca.mcgill.ecse321.petshelter.model;
 import javax.persistence.Entity;
 import java.util.Set;
 import javax.persistence.ManyToMany;
+import javax.persistence.Id;
 
 @Entity
 public class Donation{
@@ -46,6 +47,7 @@ private Integer donationId;
 public void setDonationId(Integer value) {
     this.donationId = value;
 }
+@Id
 public Integer getDonationId() {
     return this.donationId;
 }

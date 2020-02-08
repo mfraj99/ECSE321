@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import java.util.Set;
 import javax.persistence.OneToMany;
 import javax.persistence.ManyToMany;
+import javax.persistence.Id;
 
 @Entity
 public class Question{
@@ -50,6 +51,7 @@ private Integer questionId;
 public void setQuestionId(Integer value) {
     this.questionId = value;
 }
+@Id
 public Integer getQuestionId() {
     return this.questionId;
 }
