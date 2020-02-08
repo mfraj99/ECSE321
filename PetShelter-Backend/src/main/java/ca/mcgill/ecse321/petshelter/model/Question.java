@@ -1,6 +1,8 @@
 package ca.mcgill.ecse321.petshelter.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+
 import java.util.Set;
 import javax.persistence.OneToMany;
 import javax.persistence.ManyToMany;
@@ -52,6 +54,7 @@ public void setQuestionId(Integer value) {
     this.questionId = value;
 }
 @Id
+@GeneratedValue()
 public Integer getQuestionId() {
     return this.questionId;
 }

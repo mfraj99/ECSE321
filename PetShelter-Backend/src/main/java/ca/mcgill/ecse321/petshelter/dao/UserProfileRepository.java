@@ -4,6 +4,6 @@ import ca.mcgill.ecse321.petshelter.model.*;
 
 
 public interface UserProfileRepository extends CrudRepository<UserProfile, String>{
-  UserProfile findUserProfileByUsername(String username);
-  UserProfile findUserProfileByPerson(Person person);
+
+  UserProfile findByPerson(Person person);
 }

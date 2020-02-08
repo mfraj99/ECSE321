@@ -6,6 +6,6 @@ import ca.mcgill.ecse321.petshelter.model.*;
 
 public interface AppUserRepository extends CrudRepository<AppUser, String>{
 
-  AppUser findAppUserByUsername(String username);
+  AppUser findByUsername(String username);
   
 }

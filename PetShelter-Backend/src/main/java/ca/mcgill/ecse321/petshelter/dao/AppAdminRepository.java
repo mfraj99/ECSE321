@@ -6,5 +6,5 @@ import ca.mcgill.ecse321.petshelter.model.*;
 
 public interface AppAdminRepository extends CrudRepository<AppAdmin, String>{
 
-  AppAdmin findAdminByUsername(String username);
+  AppAdmin findByUsername(String username);
 }

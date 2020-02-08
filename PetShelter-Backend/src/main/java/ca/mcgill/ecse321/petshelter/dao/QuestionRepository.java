@@ -8,8 +8,9 @@ import ca.mcgill.ecse321.petshelter.model.*;
 
 public interface QuestionRepository extends CrudRepository<Question, Integer>{
 
-	Question findQuestionById(int questionId);
+	Question findByQuestionId(int questionId);
 	
+	/*
 	List<Question> findSentQuestionsFromPerson(Person person);
 	List<Question> findReceivedQuestionsForPerson(Person person);
 	
@@ -17,4 +18,5 @@ public interface QuestionRepository extends CrudRepository<Question, Integer>{
 	List<Question> findReceivedQuestionsForPersonByPetPost(Person person, PetPost post);
 	
 	List<Question> findQuestionsByPetPost(PetPost post);
+	*/
 }

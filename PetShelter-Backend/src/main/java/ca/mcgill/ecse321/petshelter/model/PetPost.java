@@ -1,6 +1,7 @@
 package ca.mcgill.ecse321.petshelter.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.ManyToOne;
 import java.util.Set;
 import javax.persistence.OneToMany;
@@ -79,6 +80,7 @@ public void setPetPostId(Integer value) {
     this.petPostId = value;
 }
 @Id
+@GeneratedValue()
 public Integer getPetPostId() {
     return this.petPostId;
 }
