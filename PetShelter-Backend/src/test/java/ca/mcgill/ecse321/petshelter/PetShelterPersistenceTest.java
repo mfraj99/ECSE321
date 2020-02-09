@@ -76,7 +76,73 @@ public class PetShelterPersistenceTest {
 		assertEquals(1, allAdoptRequests.size());	
 	}
 	
+	/*
+	 * //////////////////////////////////////////////////////////////////////////////
+	 * TESTING APPADMIN
+	 * //////////////////////////////////////////////////////////////////////////////
+	 */
 	
+	//create
+	@Test
+	public void testCreateAppAdmin() {
+		assertEquals(0, pss.getAllAppAdmins().size());
+		String username = "JWS";
+		String password = "3GPA";
+		pss.createAppAdmin(username, password);
+		List <AppAdmin> allAppAdmins = pss.getAllAppAdmins();
+		assertEquals(1, allAppAdmins.size());
+	}
+	
+	//more than one admin
+	@Test
+	public void testCreateAppAdminMoreThanOne() {
+		String error = null;
+		String username = "JWS";
+		String password = "3GPA";
+		pss.createAppAdmin(username, password);
+		int size = pss.getAllAppAdmins().size();
+		username = "Karl";
+		password = "wololo";
+		try {
+			pss.createAppAdmin(username, password);
+		} catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("Can only have one Admin!", error);
+		assertEquals(size, pss.getAllAppAdmins().size());
+	}
+	
+	/*
+	 * //////////////////////////////////////////////////////////////////////////////
+	 * TESTING APPUSER
+	 * //////////////////////////////////////////////////////////////////////////////
+	 */
+	
+	//create AppUser Adopter
+	@Test
+	public void testCreateAppUserAdopter() {
+		assertEquals(0, pss.getAllAppUsers().size());
+		String username = "JWS";
+		String password = "3GPA";
+		PersonRole personRole = ca.mcgill.ecse321.petshelter.model.PersonRole.ADOPTER;
+		
+		pss.createAppUser(username, password, personRole);
+		List <AppUser> allAppUsers = pss.getAllAppUsers();
+		assertEquals(1, allAppUsers.size());
+	}
+	
+	//create AppUser Owner
+	@Test
+	public void testCreateAppUserOwner() {
+		assertEquals(0, pss.getAllAppUsers().size());
+		String username = "JWS";
+		String password = "3GPA";
+		PersonRole personRole = ca.mcgill.ecse321.petshelter.model.PersonRole.OWNER;
+		
+		pss.createAppUser(username, password, personRole);
+		List <AppUser> allAppUsers = pss.getAllAppUsers();
+		assertEquals(1, allAppUsers.size());
+	}
 	
 	
 	/*
@@ -85,7 +151,7 @@ public class PetShelterPersistenceTest {
 	 * //////////////////////////////////////////////////////////////////////////////
 	 */
 	
-	//testing Donation
+	//create Donation
 	@Test
 	public void testCreateDonation() {
 		assertEquals(0, pss.getAllDonations().size());
@@ -110,7 +176,7 @@ public class PetShelterPersistenceTest {
 	
 	//incorrect donation value
 	@Test
-	public void testPersistAndLoadDonation() {
+	public void testCreateDonationInvalidAmount() {
 		assertEquals(0, pss.getAllDonations().size());
 		
 		double amount = -1;
