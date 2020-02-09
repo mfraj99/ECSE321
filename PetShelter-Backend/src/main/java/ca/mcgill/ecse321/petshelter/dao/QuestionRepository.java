@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import ca.mcgill.ecse321.petshelter.model.*;
+import ca.mcgill.ecse321.petshelter.model.Question;
 
 public interface QuestionRepository extends CrudRepository<Question, Integer>{
 

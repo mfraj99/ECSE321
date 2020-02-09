@@ -2,7 +2,7 @@ package ca.mcgill.ecse321.petshelter.dao;
 
 import java.util.List;
 
-import ca.mcgill.ecse321.petshelter.model.*;
+import ca.mcgill.ecse321.petshelter.model.PetPost;
 
 import org.springframework.data.repository.CrudRepository;
 

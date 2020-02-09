@@ -1,13 +1,17 @@
 package ca.mcgill.ecse321.petshelter.model;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.ManyToOne;
 import javax.persistence.Id;
 
 @Entity
 public class AdoptRequest{
-   private Status status;
+
+	@Enumerated(EnumType.ORDINAL)
+    private Status status;
 
 public void setStatus(Status value) {
     this.status = value;
@@ -42,6 +46,7 @@ private Integer adoptRequestId;
 public void setAdoptRequestId(Integer value) {
     this.adoptRequestId = value;
 }
+
 @Id
 @GeneratedValue()
 public Integer getAdoptRequestId() {
