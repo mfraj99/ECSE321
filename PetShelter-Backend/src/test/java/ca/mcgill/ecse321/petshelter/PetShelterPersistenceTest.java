@@ -26,79 +26,64 @@ public class PetShelterPersistenceTest {
 	@Autowired
 	private PetShelterService pss;
 
-//	@Autowired
-//	AdoptRequest adoptRequest;
-//	@Autowired
-//	AppAdmin appAdmin;
-//	@Autowired
-//	AppUser appUser;
-//	@Autowired
-//	Donation donation;
-//	@Autowired
-//	Person person;
-//	@Autowired
-//	PetPost petPost;
-//	@Autowired
-//	Question question;
-//	@Autowired
-//	UserProfile userProfile;
 	
-	
-	
-//	@Autowired
-//	private AdoptRequestRepository adoptRequestRepository;
-//	@Autowired
-//	private AppAdminRepository appAdminRepository;
-//	@Autowired
-//	private AppUserRepository appUserRepository;
+	@Autowired
+	private AdoptRequestRepository adoptRequestRepository;
+	@Autowired
+	private AppAdminRepository appAdminRepository;
+	@Autowired
+	private AppUserRepository appUserRepository;
 	@Autowired
 	private DonationRepository donationRepository;
-//	@Autowired
-//	private PersonRepository personRepository;
-//	@Autowired
-//	private PetPostRepository petPostRepository;
-//	@Autowired
-//	private QuestionRepository questionRepository;
-//	@Autowired
-//	private UserProfileRepository userProfileRepository;
-//	
+	@Autowired
+	private PersonRepository personRepository;
+	@Autowired
+	private PetPostRepository petPostRepository;
+	@Autowired
+	private QuestionRepository questionRepository;
+	@Autowired
+	private UserProfileRepository userProfileRepository;
+	
 	
 	
 	
 	@AfterEach
 	public void clearDatabase() {
 		//clearing tables
-		//adoptRequestRepository.deleteAll();
-//		appAdminRepository.deleteAll();
-//		appUserRepository.deleteAll();
+		adoptRequestRepository.deleteAll();
+		appAdminRepository.deleteAll();
+		appUserRepository.deleteAll();
 		donationRepository.deleteAll();
-//		personRepository.deleteAll();
-//		petPostRepository.deleteAll();
-//		questionRepository.deleteAll();
-//		userProfileRepository.deleteAll();
+		personRepository.deleteAll();
+		petPostRepository.deleteAll();
+		questionRepository.deleteAll();
+		userProfileRepository.deleteAll();
 	}
 	
-	//testing Person
-//	@Test
-//	public void testPersistAndLoadPerson() {
-//		String username = "TestPerson";
-//		String password = "123test";
-//		// First example for object save/load
-//		// First example for attribute save/load
-//		person.setUsername(username);
-//		person.setPassword(password);
-//		personRepository.save(person);
-//		try {
-//			
-//		}catch (IllegalArgumentException e) {
-//			fail();
-//		}
-//		person = null;
-//
-//		person = personRepository.findByUsername(username);
-//		assertNotNull(person);
-//		assertEquals(username, person.getUsername());
-//	}
+
+   /*
+    * //////////////////////////////////////////////////////////////////////////////
+    * TESTING ADOPTREQUEST
+    * //////////////////////////////////////////////////////////////////////////////
+	*/
+	
+	//create
+	@Test
+	public void testCreateAdoptRequest() {
+		assertEquals(0, pss.getAllAdoptRequests().size());
+		pss.createAdoptRequest();
+		List <AdoptRequest> allAdoptRequests = pss.getAllAdoptRequests();
+		assertEquals(1, allAdoptRequests.size());	
+	}
+	
+	
+	
+	
+	/*
+	 * //////////////////////////////////////////////////////////////////////////////
+	 * TESTING DONATION
+	 * //////////////////////////////////////////////////////////////////////////////
+	 */
 	
 	//testing Donation
 	@Test
@@ -123,8 +108,186 @@ public class PetShelterPersistenceTest {
 		
 	}
 	
+	//incorrect donation value
+	@Test
+	public void testPersistAndLoadDonation() {
+		assertEquals(0, pss.getAllDonations().size());
+		
+		double amount = -1;
+		String comment = "WOW";
+		boolean setNameAnonymous = false;
+		String error = null;
+		
+		try {
+			pss.createDonation(amount, comment, setNameAnonymous);
+		} catch (IllegalArgumentException e) {
+			error=e.getMessage();
+		}
+		assertEquals("Donation amount cannot be 0!", error);
+		assertEquals(0, pss.getAllDonations().size());
+		
+		
+		
+	}
 	
+	/*
+	 * //////////////////////////////////////////////////////////////////////////////
+	 * TESTING PERSON
+	 * //////////////////////////////////////////////////////////////////////////////
+	 */
 	
+	//create
+	@Test
+	public void testCreatePerson() {
+		assertEquals(0, pss.getAllPersons().size());
+
+		String username = "JiaWei";
+		String password = "HelloWorld";
+
+		try {
+			pss.createPerson(username, password);
+		} catch (IllegalArgumentException e) {
+			fail();
+		}
+
+		List<Person> allPersons = pss.getAllPersons();
+
+		assertEquals(1, allPersons.size());
+		assertEquals(username, allPersons.get(0).getUsername());
+	}
+
+	//null username and password
+	@Test
+	public void testCreatePersonNullUandP() {
+		assertEquals(0, pss.getAllPersons().size());
+		
+		String username = null;
+		String password = null;
+		String error = null;
+
+		try {
+			pss.createPerson(username, password);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+
+		assertEquals("Person name and password cannot be empty!", error);
+		assertEquals(0, pss.getAllPersons().size());
+
+	}
+	
+	//empty username and password
+	@Test
+	public void testCreatePersonEmptyUandP() {
+		assertEquals(0, pss.getAllPersons().size());
+			
+		String username = "";
+		String password = "";
+		String error = null;
+		try {
+			pss.createPerson(username, password);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+
+		assertEquals("Person name and password cannot be empty!", error);
+		assertEquals(0, pss.getAllPersons().size());
+	}
+	
+	//space in username and password
+	@Test
+	public void testCreatePersonSpaceUandP() {
+		assertEquals(0, pss.getAllPersons().size());
+		
+		String username = " ";
+		String password = " ";
+		String error = null;
+
+		try {
+			pss.createPerson(username, password);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+
+		assertEquals("Person name and password cannot be empty!", error);
+		assertEquals(0, pss.getAllPersons().size());
+
+	}
+
+	//empty username
+	@Test
+	public void testCreatePersonEmptyU() {
+		assertEquals(0, pss.getAllPersons().size());
+
+		String username = "";
+		String password = "12344";
+		String error = null;
+
+		try {
+			pss.createPerson(username, password);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("Person name cannot be empty!", error);
+		assertEquals(0, pss.getAllPersons().size());
+
+	}
+	
+	//empty password
+	@Test
+	public void testCreatePersonEmptyP() {
+		assertEquals(0, pss.getAllPersons().size());
+
+		String username = "english";
+		String password = "";
+		String error = null;
+
+		try {
+			pss.createPerson(username, password);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("Person password cannot be empty!", error);
+		assertEquals(0, pss.getAllPersons().size());
+	}
+	
+
+	//space in name
+	@Test
+	public void testCreatePersonSpaceU() {
+		assertEquals(0, pss.getAllPersons().size());
+
+		String username = " ";
+		String password = "12344";
+		String error = null;
+	
+		try {
+			pss.createPerson(username, password);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("Person name cannot be empty!", error);
+		assertEquals(0, pss.getAllPersons().size());
+
+	}
+	//space in password
+	@Test
+	public void testCreatePersonSpaceP() {
+		assertEquals(0, pss.getAllPersons().size());
+
+		String username = "tony";
+		String password = " ";
+		String error = null;
+	
+		try {
+			pss.createPerson(username, password);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("Person password cannot be empty!", error);
+		assertEquals(0, pss.getAllPersons().size());
+	}
+
 	
 	
 	
