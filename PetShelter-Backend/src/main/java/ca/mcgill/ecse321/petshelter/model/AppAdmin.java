@@ -6,6 +6,6 @@ import javax.persistence.Id;
 import org.springframework.stereotype.Component;
 
 @Entity
-public class AppAdmin extends Person{
+public class AppAdmin extends Person {
 
 }

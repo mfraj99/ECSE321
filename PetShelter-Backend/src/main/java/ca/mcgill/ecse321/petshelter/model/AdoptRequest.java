@@ -8,48 +8,50 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Id;
 
 @Entity
-public class AdoptRequest{
+public class AdoptRequest {
 
 	@Enumerated(EnumType.ORDINAL)
-    private Status status;
+	private Status status;
 
-public void setStatus(Status value) {
-    this.status = value;
-}
-public Status getStatus() {
-    return this.status;
-}
-private Person requestedBy;
+	public void setStatus(Status value) {
+		this.status = value;
+	}
 
-@ManyToOne(optional=false)
-public Person getRequestedBy() {
-   return this.requestedBy;
-}
+	public Status getStatus() {
+		return this.status;
+	}
 
-public void setRequestedBy(Person requestedBy) {
-   this.requestedBy = requestedBy;
-}
+	private Person requestedBy;
 
-private PetPost requesting;
+	@ManyToOne(optional = false)
+	public Person getRequestedBy() {
+		return this.requestedBy;
+	}
 
-@ManyToOne(optional=false)
-public PetPost getRequesting() {
-   return this.requesting;
-}
+	public void setRequestedBy(Person requestedBy) {
+		this.requestedBy = requestedBy;
+	}
 
-public void setRequesting(PetPost requesting) {
-   this.requesting = requesting;
-}
+	private PetPost requesting;
 
-private Integer adoptRequestId;
+	@ManyToOne(optional = false)
+	public PetPost getRequesting() {
+		return this.requesting;
+	}
 
-public void setAdoptRequestId(Integer value) {
-    this.adoptRequestId = value;
-}
+	public void setRequesting(PetPost requesting) {
+		this.requesting = requesting;
+	}
 
-@Id
-@GeneratedValue()
-public Integer getAdoptRequestId() {
-    return this.adoptRequestId;
-}
+	private Integer adoptRequestId;
+
+	public void setAdoptRequestId(Integer value) {
+		this.adoptRequestId = value;
+	}
+
+	@Id
+	@GeneratedValue()
+	public Integer getAdoptRequestId() {
+		return this.adoptRequestId;
+	}
 }

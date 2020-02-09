@@ -8,80 +8,89 @@ import javax.persistence.OneToMany;
 import javax.persistence.Id;
 
 @Entity
-public class PetPost{
-   private boolean availability;
+public class PetPost {
+	private boolean availability;
 
-public void setAvailability(boolean value) {
-    this.availability = value;
-}
-public boolean isAvailability() {
-    return this.availability;
-}
-private Person ownedBy;
+	public void setAvailability(boolean value) {
+		this.availability = value;
+	}
 
-@ManyToOne(optional=false)
-public Person getOwnedBy() {
-   return this.ownedBy;
-}
+	public boolean isAvailability() {
+		return this.availability;
+	}
 
-public void setOwnedBy(Person ownedBy) {
-   this.ownedBy = ownedBy;
-}
+	private Person ownedBy;
 
-private Set<AdoptRequest> hasRequest;
+	@ManyToOne(optional = false)
+	public Person getOwnedBy() {
+		return this.ownedBy;
+	}
 
-@OneToMany(mappedBy="requesting" )
-public Set<AdoptRequest> getHasRequest() {
-   return this.hasRequest;
-}
+	public void setOwnedBy(Person ownedBy) {
+		this.ownedBy = ownedBy;
+	}
 
-public void setHasRequest(Set<AdoptRequest> hasRequests) {
-   this.hasRequest = hasRequests;
-}
+	private Set<AdoptRequest> hasRequest;
 
-private String name;
+	@OneToMany(mappedBy = "requesting")
+	public Set<AdoptRequest> getHasRequest() {
+		return this.hasRequest;
+	}
 
-public void setName(String value) {
-    this.name = value;
-}
-public String getName() {
-    return this.name;
-}
-private String typeOfPet;
+	public void setHasRequest(Set<AdoptRequest> hasRequests) {
+		this.hasRequest = hasRequests;
+	}
 
-public void setTypeOfPet(String value) {
-    this.typeOfPet = value;
-}
-public String getTypeOfPet() {
-    return this.typeOfPet;
-}
-private String description;
+	private String name;
 
-public void setDescription(String value) {
-    this.description = value;
-}
-public String getDescription() {
-    return this.description;
-}
-private Question relatesTo;
+	public void setName(String value) {
+		this.name = value;
+	}
 
-@ManyToOne
-public Question getRelatesTo() {
-   return this.relatesTo;
-}
+	public String getName() {
+		return this.name;
+	}
 
-public void setRelatesTo(Question relatesTo) {
-   this.relatesTo = relatesTo;
-}
+	private String typeOfPet;
 
-private Integer petPostId;
+	public void setTypeOfPet(String value) {
+		this.typeOfPet = value;
+	}
 
-public void setPetPostId(Integer value) {
-    this.petPostId = value;
-}
-@Id
-@GeneratedValue()
-public Integer getPetPostId() {
-    return this.petPostId;
-}
+	public String getTypeOfPet() {
+		return this.typeOfPet;
+	}
+
+	private String description;
+
+	public void setDescription(String value) {
+		this.description = value;
+	}
+
+	public String getDescription() {
+		return this.description;
+	}
+
+	private Question relatesTo;
+
+	@ManyToOne
+	public Question getRelatesTo() {
+		return this.relatesTo;
+	}
+
+	public void setRelatesTo(Question relatesTo) {
+		this.relatesTo = relatesTo;
+	}
+
+	private Integer petPostId;
+
+	public void setPetPostId(Integer value) {
+		this.petPostId = value;
+	}
+
+	@Id
+	@GeneratedValue()
+	public Integer getPetPostId() {
+		return this.petPostId;
+	}
 }

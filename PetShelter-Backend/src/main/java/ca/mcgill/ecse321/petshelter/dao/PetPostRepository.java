@@ -6,15 +6,15 @@ import ca.mcgill.ecse321.petshelter.model.PetPost;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface PetPostRepository extends CrudRepository<PetPost, Integer>{
-	
+public interface PetPostRepository extends CrudRepository<PetPost, Integer> {
+
 	PetPost findByPetPostId(int petPostId);
-	
+
 	/*
-	List<PetPost> findPetPostsByPerson(Person person);
-	
-	List<PetPost> findPetPostsByAvailability(boolean availability);
-	
-	List<PetPost> findPetPostsByTypeOfPet(String typeOfPet);
-	*/
+	 * List<PetPost> findPetPostsByPerson(Person person);
+	 * 
+	 * List<PetPost> findPetPostsByAvailability(boolean availability);
+	 * 
+	 * List<PetPost> findPetPostsByTypeOfPet(String typeOfPet);
+	 */
 }

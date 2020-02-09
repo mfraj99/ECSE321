@@ -9,53 +9,58 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Id;
 
 @Entity
-public class Question{
-   private String question;
+public class Question {
+	private String question;
 
-public void setQuestion(String value) {
-    this.question = value;
-}
-public String getQuestion() {
-    return this.question;
-}
-private String answer;
+	public void setQuestion(String value) {
+		this.question = value;
+	}
 
-public void setAnswer(String value) {
-    this.answer = value;
-}
-public String getAnswer() {
-    return this.answer;
-}
-private Set<PetPost> isRelatedTo;
+	public String getQuestion() {
+		return this.question;
+	}
 
-@OneToMany(mappedBy="relatesTo" )
-public Set<PetPost> getIsRelatedTo() {
-   return this.isRelatedTo;
-}
+	private String answer;
 
-public void setIsRelatedTo(Set<PetPost> isRelatedTos) {
-   this.isRelatedTo = isRelatedTos;
-}
+	public void setAnswer(String value) {
+		this.answer = value;
+	}
 
-private Set<Person> person;
+	public String getAnswer() {
+		return this.answer;
+	}
 
-@ManyToMany(mappedBy="question" )
-public Set<Person> getPerson() {
-   return this.person;
-}
+	private Set<PetPost> isRelatedTo;
 
-public void setPerson(Set<Person> persons) {
-   this.person = persons;
-}
+	@OneToMany(mappedBy = "relatesTo")
+	public Set<PetPost> getIsRelatedTo() {
+		return this.isRelatedTo;
+	}
 
-private Integer questionId;
+	public void setIsRelatedTo(Set<PetPost> isRelatedTos) {
+		this.isRelatedTo = isRelatedTos;
+	}
 
-public void setQuestionId(Integer value) {
-    this.questionId = value;
-}
-@Id
-@GeneratedValue()
-public Integer getQuestionId() {
-    return this.questionId;
-}
+	private Set<Person> person;
+
+	@ManyToMany(mappedBy = "question")
+	public Set<Person> getPerson() {
+		return this.person;
+	}
+
+	public void setPerson(Set<Person> persons) {
+		this.person = persons;
+	}
+
+	private Integer questionId;
+
+	public void setQuestionId(Integer value) {
+		this.questionId = value;
+	}
+
+	@Id
+	@GeneratedValue()
+	public Integer getQuestionId() {
+		return this.questionId;
+	}
 }

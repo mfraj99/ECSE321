@@ -8,15 +8,16 @@ import javax.persistence.Id;
 import org.springframework.stereotype.Component;
 
 @Entity
-public class AppUser extends Person{
-	
-	@Enumerated(EnumType.ORDINAL)
-    private PersonRole appUserRole;
+public class AppUser extends Person {
 
-public void setAppUserRole(PersonRole value) {
-    this.appUserRole = value;
-}
-public PersonRole getAppUserRole() {
-    return this.appUserRole;
-}
+	@Enumerated(EnumType.ORDINAL)
+	private PersonRole appUserRole;
+
+	public void setAppUserRole(PersonRole value) {
+		this.appUserRole = value;
+	}
+
+	public PersonRole getAppUserRole() {
+		return this.appUserRole;
+	}
 }

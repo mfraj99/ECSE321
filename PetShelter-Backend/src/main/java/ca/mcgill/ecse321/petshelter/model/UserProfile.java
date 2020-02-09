@@ -6,59 +6,66 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-public class UserProfile{
-   private String address;
-   private Integer userProfileId;
-   
-   public void setUserProfileId(Integer value) {
-	   this.userProfileId = value;
-   }
-   
-   @Id
-   @GeneratedValue()
-   public Integer getUserProfileId() {
-	   return this.userProfileId;
-   }
+public class UserProfile {
+	private String address;
+	private Integer userProfileId;
 
-public void setAddress(String value) {
-    this.address = value;
-}
-public String getAddress() {
-    return this.address;
-}
-private Person person;
+	public void setUserProfileId(Integer value) {
+		this.userProfileId = value;
+	}
 
-@OneToOne(mappedBy="creates" , optional=false)
-public Person getPerson() {
-   return this.person;
-}
+	@Id
+	@GeneratedValue()
+	public Integer getUserProfileId() {
+		return this.userProfileId;
+	}
 
-public void setPerson(Person person) {
-   this.person = person;
-}
+	public void setAddress(String value) {
+		this.address = value;
+	}
 
-private Boolean hasExperienceWithPets;
+	public String getAddress() {
+		return this.address;
+	}
 
-public void setHasExperienceWithPets(Boolean value) {
-    this.hasExperienceWithPets = value;
-}
-public Boolean getHasExperienceWithPets() {
-    return this.hasExperienceWithPets;
-}
-private Integer numberOfPetsCurrentlyOwned;
+	private Person person;
 
-public void setNumberOfPetsCurrentlyOwned(Integer value) {
-    this.numberOfPetsCurrentlyOwned = value;
-}
-public Integer getNumberOfPetsCurrentlyOwned() {
-    return this.numberOfPetsCurrentlyOwned;
-}
-private String typeOfLivingAccomodation;
+	@OneToOne(mappedBy = "creates", optional = false)
+	public Person getPerson() {
+		return this.person;
+	}
 
-public void setTypeOfLivingAccomodation(String value) {
-    this.typeOfLivingAccomodation = value;
-}
-public String getTypeOfLivingAccomodation() {
-    return this.typeOfLivingAccomodation;
-}
+	public void setPerson(Person person) {
+		this.person = person;
+	}
+
+	private Boolean hasExperienceWithPets;
+
+	public void setHasExperienceWithPets(Boolean value) {
+		this.hasExperienceWithPets = value;
+	}
+
+	public Boolean getHasExperienceWithPets() {
+		return this.hasExperienceWithPets;
+	}
+
+	private Integer numberOfPetsCurrentlyOwned;
+
+	public void setNumberOfPetsCurrentlyOwned(Integer value) {
+		this.numberOfPetsCurrentlyOwned = value;
+	}
+
+	public Integer getNumberOfPetsCurrentlyOwned() {
+		return this.numberOfPetsCurrentlyOwned;
+	}
+
+	private String typeOfLivingAccomodation;
+
+	public void setTypeOfLivingAccomodation(String value) {
+		this.typeOfLivingAccomodation = value;
+	}
+
+	public String getTypeOfLivingAccomodation() {
+		return this.typeOfLivingAccomodation;
+	}
 }
