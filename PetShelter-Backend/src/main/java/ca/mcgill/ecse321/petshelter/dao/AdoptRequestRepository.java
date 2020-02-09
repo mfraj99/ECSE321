@@ -1,10 +1,8 @@
 package ca.mcgill.ecse321.petshelter.dao;
 
-import java.util.List;
-
 import org.springframework.data.repository.CrudRepository;
 
-import ca.mcgill.ecse321.petshelter.model.*;
+import ca.mcgill.ecse321.petshelter.model.AdoptRequest;
 
 
 public interface AdoptRequestRepository extends CrudRepository<AdoptRequest, Integer>{
