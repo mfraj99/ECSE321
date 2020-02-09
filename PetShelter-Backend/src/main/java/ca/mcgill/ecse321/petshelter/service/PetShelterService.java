@@ -17,7 +17,7 @@ public class PetShelterService {
 	
 	
 	private static final Status PENDING = ca.mcgill.ecse321.petshelter.model.Status.PENDING;
-	
+	private static final PersonRole ADOPTER = ca.mcgill.ecse321.petshelter.model.PersonRole.ADOPTER;
 	
 	@Autowired
 	private AdoptRequestRepository adoptRequestRepository;
@@ -35,20 +35,9 @@ public class PetShelterService {
     private QuestionRepository questionRepository;
 	@Autowired
 	private UserProfileRepository userProfileRepository;
-//	
-//	@Transactional
-//	public Person createPerson(String username, String password) {
-//		
-//		
-//		Person person = new Person();
-//		person.setUsername(username);
-//		person.setPassword(password);
-//		personRepository.save(person);
-//		return person;
-//	}
-//	
+
 	
-	//ADOPTREQUEST TESTS
+	//ADOPTREQUEST
 	@Transactional
 	public AdoptRequest createAdoptRequest() {
 		AdoptRequest adoptRequest = new AdoptRequest();
@@ -68,7 +57,7 @@ public class PetShelterService {
 		return toList(adoptRequestRepository.findAll());
 	}
 	
-	//APPADMIN TESTS
+	//APPADMIN 
 	@Transactional
 	public AppAdmin createAppAdmin(String username, String password) {
 		AppAdmin appAdmin = new AppAdmin();
@@ -84,15 +73,44 @@ public class PetShelterService {
 		return appAdmin;
 	}
 	
-	//APPUSER TESTS
-//	@Transactional
-//	public AppUser createAppUser(String username, String password) {
-//		
-//	}
+	//APPUSER 
+	@Transactional
+	public AppUser createAppUser(String username, String password, PersonRole personRole) {
+		
+		if (username == null || username.trim().length() == 0) {
+			throw new IllegalArgumentException("AppUser name cannot be empty!");
+		}
+		
+		AppUser appUser = new AppUser();
+		appUser.setUsername(username);
+		appUser.setPassword(password);
+		appUser.setAppUserRole(personRole);
+		appUserRepository.save(appUser);
+		return appUser;
+	}
 	
-	//DONATION TESTS
+	@Transactional
+	public AppUser getAppUser(String username) {
+		if (username == null || username.trim().length() == 0) {
+			throw new IllegalArgumentException("AppUser name cannot be empty!");
+		}
+		AppUser appUser = appUserRepository.findByUsername(username);
+		return appUser;
+	}
+	
+	@Transactional
+	public List<AppUser> getAllAppUsers(){
+		return toList(appUserRepository.findAll());
+	}
+	
+	
+	
+	//DONATION 
 	@Transactional
 	public Donation createDonation(double amount, String comment, boolean setNameAnonymous) {
+		if (amount <=0) {
+			throw new IllegalArgumentException("Donation amount cannot be 0!");
+		}
 		Donation donation = new Donation();
 		donation.setAmount(amount);
 		donation.setComment(comment);
@@ -113,17 +131,113 @@ public class PetShelterService {
 	}
 	
 	
+	//PERSON 
+	
+	@Transactional
+	public Person createPerson(String username, String password) {
+		if((username == null || username.trim().length()==0)&& (password==null || password.trim().length() ==0)) {
+			throw new IllegalArgumentException("Person name and password cannot be empty!");
+		}
+		if (username == null || username.trim().length() == 0) {
+			throw new IllegalArgumentException("Person name cannot be empty!");
+		}
+		if (password == null || password.trim().length() == 0) {
+			throw new IllegalArgumentException("Person password cannot be empty!");
+		}
+		Person person = new Person();
+		person.setUsername(username);
+		person.setPassword(password);
+		personRepository.save(person);
+		return person;
+	}
+	
+	@Transactional
+	public Person getPerson(String username) {
+		if (username == null || username.trim().length() == 0) {
+			throw new IllegalArgumentException("Person name cannot be empty!");
+		}
+		
+		Person person = personRepository.findByUsername(username);
+		return person;
+	}
 	
 	
+	@Transactional
+	public List<Person> getAllPersons(){
+		return toList(personRepository.findAll());
+	}
 	
 	
+	//PETPOST
+	
+	@Transactional
+	public PetPost createPetPost(boolean availability, String name, String typeOfPet, String description) {
+		PetPost petPost = new PetPost();
+		petPost.setAvailability(availability);
+		petPost.setName(name);
+		petPost.setTypeOfPet(typeOfPet);
+		petPost.setDescription(description);
+		petPostRepository.save(petPost);
+		return petPost;
+	}
+	
+	@Transactional
+	public PetPost getPetPost(Integer id) {
+		PetPost petPost = petPostRepository.findByPetPostId(id);
+		return petPost;
+	}
+	
+	@Transactional
+	public List<PetPost> getAllPetPosts() {
+		return toList(petPostRepository.findAll());
+	}
 	
 	
+	//QUESTION
+	
+	@Transactional
+	public Question createQuestion(String ques) {
+		Question question = new Question();
+		question.setQuestion(ques);
+		questionRepository.save(question);
+		return question;
+	}
+	
+	@Transactional
+	public Question getQuestion(Integer id) {
+		Question question = questionRepository.findByQuestionId(id);
+		return question;
+	}
+	
+	@Transactional
+	public List<Question> getAllQuestions() {
+		return toList(questionRepository.findAll());
+	}
 	
 	
+	//USERPROFILE
 	
+	@Transactional
+	public UserProfile createUserProfile(String address, boolean hasExperienceWithPets, Integer numberOfPetsCurrentlyOwned, String typeOfLivinAccomodation) {
+		UserProfile userProfile = new UserProfile();
+		userProfile.setAddress(address);
+		userProfile.setHasExperienceWithPets(hasExperienceWithPets);
+		userProfile.setNumberOfPetsCurrentlyOwned(numberOfPetsCurrentlyOwned);
+		userProfile.setTypeOfLivingAccomodation(typeOfLivinAccomodation);
+		userProfileRepository.save(userProfile);
+		return userProfile;
+	}
 	
+	@Transactional
+	public UserProfile getUserProfile(Integer id) {
+		UserProfile userProfile = userProfileRepository.findByUserProfileId(id);
+		return userProfile;
+	}
 	
+	@Transactional
+	public List<UserProfile> getAllUserProfiles() {
+		return toList(userProfileRepository.findAll());
+	}
 	
 	
 	
