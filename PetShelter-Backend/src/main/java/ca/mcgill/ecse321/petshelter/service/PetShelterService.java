@@ -187,7 +187,6 @@ public class PetShelterService {
 		petPost.setName(name);
 		petPost.setTypeOfPet(typeOfPet);
 		petPost.setDescription(description);
-		petPost.setOwnedBy(ownedBy);
 		petPostRepository.save(petPost);
 		return petPost;
 	}
