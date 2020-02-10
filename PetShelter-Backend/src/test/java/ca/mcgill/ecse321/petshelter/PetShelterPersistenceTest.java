@@ -464,7 +464,7 @@ public class PetShelterPersistenceTest {
 		assertEquals("Person password cannot be empty!", error);
 		assertEquals(0, pss.getAllPersons().size());
 	}
-	
+
 	/*
 	 * /////////////////////////////////////////////////////////////////////////////
 	 * / TESTING QUESTION
@@ -497,17 +497,17 @@ public class PetShelterPersistenceTest {
 
 		String question = "";
 		String error = "";
-		
+
 		try {
 			pss.createQuestion(question);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
-		
+
 		assertEquals("Question cannot be empty!", error);
 		assertEquals(0, pss.getAllQuestions().size());
 	}
-	
+
 	/*
 	 * /////////////////////////////////////////////////////////////////////////////
 	 * / TESTING PETPOST
@@ -537,7 +537,6 @@ public class PetShelterPersistenceTest {
 		assertEquals(typeOfPet, allPetPosts.get(0).getTypeOfPet());
 		assertEquals(desc, allPetPosts.get(0).getDescription());
 	}
-	
 
 	// Pet post with empty name
 	@Test
@@ -549,7 +548,7 @@ public class PetShelterPersistenceTest {
 		String typeOfPet = "Cat";
 		String desc = "Small domestic cat for sale";
 		String error = "";
-		
+
 		try {
 			pss.createPetPost(avail, name, typeOfPet, desc);
 		} catch (IllegalArgumentException e) {
@@ -559,7 +558,7 @@ public class PetShelterPersistenceTest {
 		assertEquals("Pet name cannot be empty!", error);
 		assertEquals(0, pss.getAllPetPosts().size());
 	}
-	
+
 	// Pet post with empty type of pet
 	@Test
 	public void testCreatePetPostWithEmptyTypeOfPet() {
@@ -580,7 +579,7 @@ public class PetShelterPersistenceTest {
 		assertEquals("Pet type cannot be empty!", error);
 		assertEquals(0, pss.getAllPetPosts().size());
 	}
-	
+
 	// Pet post with empty description
 	@Test
 	public void testCreatePetPostWithEmptyDescription() {
