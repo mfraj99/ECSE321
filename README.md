@@ -33,10 +33,10 @@ The goal of the project was to create a website and app for a pet shelter that a
 ### Effort Table
 (Can also be viewed in our [wiki](https://github.com/McGill-ECSE321-Winter2020/project-group-08/wiki/Effort-Table-1))
 
-|Team Member|Total hours|Breakdown of hours|
-|-----------|-----------|------------------|
-|Michael Frajman|  |  |
-|Karl Koerich|  |  |
-|Shi Tong Li|  |  |
-|Xinrui Li|  |  |
-|Jia Wei Sun|  |  |
+|Team Member|Total hours|Requirements Model|Domain Model|Persistence Layer|Persistence Layer Testing|Build System and CI|Documentation|Meetings|
+|-----------|-----------|------------------|------------|-----------------|-------------------------|------------------|-------------|--------|
+|Michael Frajman|  28.5 hours | 4| 4| 1| 3| 1| 8| 7.5|
+|Karl Koerich   |  22.5 hours | 4| 5| 2| 2| 3| 3| 3.5|
+|Shi Tong Li    |  33.5 hours | 4| 7| 4| 8| 1| 2| 7.5|
+|Xinrui Li      |  27.5 hours | 4| 4| 4| 8| 3| 2| 2.5|
+|Jia Wei Sun    |  22.5 hours | 2| 6| 2| 4 |1 |2 |5.5|
