@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -462,6 +463,143 @@ public class PetShelterPersistenceTest {
 		}
 		assertEquals("Person password cannot be empty!", error);
 		assertEquals(0, pss.getAllPersons().size());
+	}
+	
+	/*
+	 * /////////////////////////////////////////////////////////////////////////////
+	 * / TESTING QUESTION
+	 * /////////////////////////////////////////////////////////////////////////////
+	 * /
+	 */
+
+	// create Question
+	@Test
+	public void testCreateQuestion() {
+		assertEquals(0, pss.getAllQuestions().size());
+
+		String question = "How much food does the pet need?";
+
+		try {
+			pss.createQuestion(question);
+		} catch (IllegalArgumentException e) {
+			fail();
+		}
+
+		List<Question> allQuestions = pss.getAllQuestions();
+		assertEquals(1, allQuestions.size());
+		assertEquals(question, allQuestions.get(0).getQuestion());
+	}
+
+	// empty question
+	@Test
+	public void testCreateEmptyQuestion() {
+		assertEquals(0, pss.getAllDonations().size());
+
+		String question = "";
+		String error = "";
+		
+		try {
+			pss.createQuestion(question);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		
+		assertEquals("Question cannot be empty!", error);
+		assertEquals(0, pss.getAllQuestions().size());
+	}
+	
+	/*
+	 * /////////////////////////////////////////////////////////////////////////////
+	 * / TESTING PETPOST
+	 * /////////////////////////////////////////////////////////////////////////////
+	 * /
+	 */
+
+	// create Pet Post
+	@Test
+	public void testCreatePetPost() {
+		assertEquals(0, pss.getAllPetPosts().size());
+
+		boolean avail = true;
+		String name = "Mike";
+		String typeOfPet = "Cat";
+		String desc = "Small domestic cat for sale";
+
+		try {
+			pss.createPetPost(avail, name, typeOfPet, desc);
+		} catch (IllegalArgumentException e) {
+			fail();
+		}
+
+		List<PetPost> allPetPosts = pss.getAllPetPosts();
+		assertEquals(1, allPetPosts.size());
+		assertEquals(name, allPetPosts.get(0).getName());
+		assertEquals(typeOfPet, allPetPosts.get(0).getTypeOfPet());
+		assertEquals(desc, allPetPosts.get(0).getDescription());
+	}
+	
+
+	// Pet post with empty name
+	@Test
+	public void testCreatePetPostWithEmptyName() {
+		assertEquals(0, pss.getAllPetPosts().size());
+
+		boolean avail = true;
+		String name = "";
+		String typeOfPet = "Cat";
+		String desc = "Small domestic cat for sale";
+		String error = "";
+		
+		try {
+			pss.createPetPost(avail, name, typeOfPet, desc);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+
+		assertEquals("Pet name cannot be empty!", error);
+		assertEquals(0, pss.getAllPetPosts().size());
+	}
+	
+	// Pet post with empty type of pet
+	@Test
+	public void testCreatePetPostWithEmptyTypeOfPet() {
+		assertEquals(0, pss.getAllPetPosts().size());
+
+		boolean avail = true;
+		String name = "Mike";
+		String typeOfPet = "";
+		String desc = "Small domestic cat for sale";
+		String error = "";
+
+		try {
+			pss.createPetPost(avail, name, typeOfPet, desc);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+
+		assertEquals("Pet type cannot be empty!", error);
+		assertEquals(0, pss.getAllPetPosts().size());
+	}
+	
+	// Pet post with empty description
+	@Test
+	public void testCreatePetPostWithEmptyDescription() {
+		assertEquals(0, pss.getAllPetPosts().size());
+
+		boolean avail = true;
+		String name = "Mike";
+		String typeOfPet = "Cat";
+		String desc = "";
+		String error = "";
+
+		try {
+			pss.createPetPost(avail, name, typeOfPet, desc);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+
+		assertEquals("Pet must have a description!", error);
+		assertEquals(0, pss.getAllPetPosts().size());
 	}
 
 }

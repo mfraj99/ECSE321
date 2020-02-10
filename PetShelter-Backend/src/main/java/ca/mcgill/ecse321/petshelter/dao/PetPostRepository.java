@@ -12,9 +12,9 @@ public interface PetPostRepository extends CrudRepository<PetPost, Integer> {
 
 	/*
 	 * List<PetPost> findPetPostsByPerson(Person person);
-	 * 
-	 * List<PetPost> findPetPostsByAvailability(boolean availability);
-	 * 
-	 * List<PetPost> findPetPostsByTypeOfPet(String typeOfPet);
 	 */
+	List<PetPost> findByAvailability(boolean availability);
+	  
+	List<PetPost> findByTypeOfPet(String typeOfPet);
+	
 }

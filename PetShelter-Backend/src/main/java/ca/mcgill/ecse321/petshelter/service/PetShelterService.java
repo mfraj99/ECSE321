@@ -172,11 +172,22 @@ public class PetShelterService {
 
 	@Transactional
 	public PetPost createPetPost(boolean availability, String name, String typeOfPet, String description) {
+		if ((name == null || name.trim().length() == 0)) {
+			throw new IllegalArgumentException("Pet name cannot be empty!");
+		}
+		if (typeOfPet == null || typeOfPet.trim().length() == 0) {
+			throw new IllegalArgumentException("Pet type cannot be empty!");
+		}
+		if (description == null || description.trim().length() == 0) {
+			throw new IllegalArgumentException("Pet must have a description!");
+		}
+
 		PetPost petPost = new PetPost();
 		petPost.setAvailability(availability);
 		petPost.setName(name);
 		petPost.setTypeOfPet(typeOfPet);
 		petPost.setDescription(description);
+		petPost.setOwnedBy(ownedBy);
 		petPostRepository.save(petPost);
 		return petPost;
 	}
@@ -196,6 +207,9 @@ public class PetShelterService {
 
 	@Transactional
 	public Question createQuestion(String ques) {
+		if (ques == null || ques.trim().length() == 0) {
+			throw new IllegalArgumentException("Question cannot be empty!");
+		}
 		Question question = new Question();
 		question.setQuestion(ques);
 		questionRepository.save(question);
