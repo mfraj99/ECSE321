@@ -1,5 +1,6 @@
 package ca.mcgill.ecse321.petshelter.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -55,7 +56,7 @@ public class Person {
 
 	private Set<PetPost> owns;
 
-	@OneToMany(mappedBy = "ownedBy")
+	@OneToMany(mappedBy = "ownedBy", cascade={CascadeType.ALL})
 	public Set<PetPost> getOwns() {
 		return this.owns;
 	}
