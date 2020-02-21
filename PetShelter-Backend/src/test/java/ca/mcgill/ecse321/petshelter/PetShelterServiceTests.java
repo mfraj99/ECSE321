@@ -22,7 +22,7 @@ import ca.mcgill.ecse321.petshelter.service.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class PetShelterPersistenceTest {
+public class PetShelterServiceTests {
 
 	@Autowired
 	private PetShelterService pss;
