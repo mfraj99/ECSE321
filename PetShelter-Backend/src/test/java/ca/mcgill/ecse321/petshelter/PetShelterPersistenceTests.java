@@ -3,6 +3,7 @@ package ca.mcgill.ecse321.petshelter;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+
 import java.util.List;
 import java.util.Set;
 import org.junit.jupiter.api.Test;
@@ -155,6 +156,30 @@ public class PetShelterPersistenceTests {
 	}
 	
 	
+	//Donation test
+	
+	@Test
+	public void testPersistAndLoadDonation() {
+		double amount = 100.25;
+		String comment = "very nice!";
+		boolean setNameAnonymous = true;
+		Donation donation = new Donation();
+		donation.setAmount(amount);
+		donation.setComment(comment);
+		donation.setSetNameAnonymous(setNameAnonymous);
+		donationRepository.save(donation);
+		int id = donation.getDonationId();
+		
+		donation = null;
+		
+		donation = donationRepository.findByDonationId(id);
+		assertNotNull(donation);
+		assertEquals(amount, donation.getAmount(), 0.01);
+		assertEquals(comment, donation.getComment());
+	}
+	
+	
+	//person test
 	
 	@Test
 	public void testPersistAndLoadPerson() {
@@ -173,7 +198,7 @@ public class PetShelterPersistenceTests {
 	}
 	
 	
-	
+	//petpost test
 	@Test
 	public void PersistAndLoadPetPost() {
 		
@@ -210,10 +235,61 @@ public class PetShelterPersistenceTests {
 		assertEquals(description, petPost.getDescription());
 		
 		
-		
-		
 	}
 	
+	//question test
+	@Test
+	public void PersistAndLoadQuestion() {
+		String askQuestion = "I have a question";
+		String answer = "";
+		Question question = new Question();
+		question.setQuestion(askQuestion);
+		question.setAnswer(answer);
+		questionRepository.save(question);
+		int id = question.getQuestionId();
+		
+		question = null;
+
+		question = questionRepository.findByQuestionId(id);
+		assertNotNull(question);
+		assertEquals(askQuestion, question.getQuestion());
+		assertEquals(answer, question.getAnswer());
+	}
+	
+	//userprofile test
+	@Test
+	public void PersistAndLoadUserProfile() {
+		Person person = new Person();
+		String username = "hello";
+		person.setUsername(username);
+		person.setPassword("world");
+		personRepository.save(person);
+		
+		String address = "123 rue Mcgill";
+		boolean hasExperienceWithPets = true;
+		Integer numberOfPetsCurrentlyOwned = 1;
+		String typeOfLivingAccomodation = "house";
+		
+		
+		UserProfile userProfile = new UserProfile();
+		
+		userProfile.setAddress(address);
+		userProfile.setHasExperienceWithPets(hasExperienceWithPets);
+		userProfile.setNumberOfPetsCurrentlyOwned(numberOfPetsCurrentlyOwned);
+		userProfile.setTypeOfLivingAccomodation(typeOfLivingAccomodation);
+		userProfile.setPerson(person);
+		userProfileRepository.save(userProfile);
+		int id = userProfile.getUserProfileId();
+		
+		userProfile = null;
+		
+		userProfile = userProfileRepository.findByUserProfileId(id);
+		assertNotNull(userProfile);
+		assertEquals(address, userProfile.getAddress());
+		assertEquals(hasExperienceWithPets, userProfile.getHasExperienceWithPets());
+		assertEquals(numberOfPetsCurrentlyOwned, userProfile.getNumberOfPetsCurrentlyOwned());
+		assertEquals(typeOfLivingAccomodation, userProfile.getTypeOfLivingAccomodation());
+	}
 	
 	
 	
