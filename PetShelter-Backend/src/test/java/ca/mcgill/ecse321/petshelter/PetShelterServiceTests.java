@@ -68,7 +68,12 @@ public class PetShelterServiceTests {
 	@Test
 	public void testCreateAdoptRequest() {
 		assertEquals(0, pss.getAllAdoptRequests().size());
-		pss.createAdoptRequest();
+		pss.createPerson("person1", "password");
+		pss.createPerson("person2", "password");
+		pss.createPetPost(true, "Ebola", "dog", "cute doggo", pss.getPerson("person1"));
+		int id = pss.getAllPetPosts().get(0).getPetPostId();
+		
+		pss.createAdoptRequest(pss.getPerson("person2"), pss.getPetPost(id));
 		List<AdoptRequest> allAdoptRequests = pss.getAllAdoptRequests();
 		assertEquals(1, allAdoptRequests.size());
 	}
@@ -525,8 +530,10 @@ public class PetShelterServiceTests {
 		String typeOfPet = "Cat";
 		String desc = "Small domestic cat for sale";
 
+		pss.createPerson("username", "password");
+		
 		try {
-			pss.createPetPost(avail, name, typeOfPet, desc);
+			pss.createPetPost(avail, name, typeOfPet, desc, pss.getPerson("username"));
 		} catch (IllegalArgumentException e) {
 			fail();
 		}
@@ -548,9 +555,12 @@ public class PetShelterServiceTests {
 		String typeOfPet = "Cat";
 		String desc = "Small domestic cat for sale";
 		String error = "";
+		
+		pss.createPerson("user", "password");
+		
 
 		try {
-			pss.createPetPost(avail, name, typeOfPet, desc);
+			pss.createPetPost(avail, name, typeOfPet, desc, pss.getPerson("user"));
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -569,9 +579,10 @@ public class PetShelterServiceTests {
 		String typeOfPet = "";
 		String desc = "Small domestic cat for sale";
 		String error = "";
+		pss.createPerson("user", "password");
 
 		try {
-			pss.createPetPost(avail, name, typeOfPet, desc);
+			pss.createPetPost(avail, name, typeOfPet, desc, pss.getPerson("user"));
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -590,9 +601,10 @@ public class PetShelterServiceTests {
 		String typeOfPet = "Cat";
 		String desc = "";
 		String error = "";
+		pss.createPerson("user", "password");
 
 		try {
-			pss.createPetPost(avail, name, typeOfPet, desc);
+			pss.createPetPost(avail, name, typeOfPet, desc, pss.getPerson("user"));
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}

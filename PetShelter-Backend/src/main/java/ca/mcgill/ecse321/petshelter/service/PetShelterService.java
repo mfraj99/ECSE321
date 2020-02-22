@@ -35,9 +35,11 @@ public class PetShelterService {
 
 	// ADOPTREQUEST
 	@Transactional
-	public AdoptRequest createAdoptRequest() {
+	public AdoptRequest createAdoptRequest(Person owner, PetPost petPost) {
 		AdoptRequest adoptRequest = new AdoptRequest();
 		adoptRequest.setStatus(PENDING);
+		adoptRequest.setRequestedBy(owner);
+		adoptRequest.setRequesting(petPost);
 		adoptRequestRepository.save(adoptRequest);
 		return adoptRequest;
 	}
@@ -171,7 +173,7 @@ public class PetShelterService {
 	// PETPOST
 
 	@Transactional
-	public PetPost createPetPost(boolean availability, String name, String typeOfPet, String description) {
+	public PetPost createPetPost(boolean availability, String name, String typeOfPet, String description, Person owner) {
 		if ((name == null || name.trim().length() == 0)) {
 			throw new IllegalArgumentException("Pet name cannot be empty!");
 		}
@@ -187,6 +189,7 @@ public class PetShelterService {
 		petPost.setName(name);
 		petPost.setTypeOfPet(typeOfPet);
 		petPost.setDescription(description);
+		petPost.setOwnedBy(owner);
 		petPostRepository.save(petPost);
 		return petPost;
 	}
@@ -231,7 +234,7 @@ public class PetShelterService {
 	@Transactional
 	public UserProfile createUserProfile(String address, boolean hasExperienceWithPets,
 			Integer numberOfPetsCurrentlyOwned, String typeOfLivingAccommodation) {
-		if ((numberOfPetsCurrentlyOwned > 0) && (hasExperienceWithPets = false)) {
+		if ((numberOfPetsCurrentlyOwned > 0) && (hasExperienceWithPets == false)) {
 			throw new IllegalArgumentException("Pet experience invalid! Cannot have no experience but own pets!");
 		}
 		if ((address == null || address.trim().length() == 0)) {
