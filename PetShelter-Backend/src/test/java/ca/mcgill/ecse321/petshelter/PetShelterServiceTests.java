@@ -77,6 +77,25 @@ public class PetShelterServiceTests {
 		List<AdoptRequest> allAdoptRequests = pss.getAllAdoptRequests();
 		assertEquals(1, allAdoptRequests.size());
 	}
+	
+	
+	@Test
+	public void testDeleteAdoptRequest() {
+		//creating an adoptrequest to delete
+		assertEquals(0, pss.getAllAdoptRequests().size());
+		pss.createPerson("person1", "password");
+		pss.createPerson("person2", "password");
+		pss.createPetPost(true, "Ebola", "dog", "cute doggo", pss.getPerson("person1"));
+		int id = pss.getAllPetPosts().get(0).getPetPostId();
+		
+		pss.createAdoptRequest(pss.getPerson("person2"), pss.getPetPost(id));
+		List<AdoptRequest> allAdoptRequests = pss.getAllAdoptRequests();
+		assertEquals(1, allAdoptRequests.size());
+		
+		//deleting adoptRequest
+		pss.deleteAdoptRequest(pss.getAllAdoptRequests().get(0).getAdoptRequestId());
+		assertEquals(0, pss.getAllAdoptRequests().size());
+	}
 
 	/*
 	 * /////////////////////////////////////////////////////////////////////////////
@@ -148,6 +167,20 @@ public class PetShelterServiceTests {
 		assertEquals(1, allAppUsers.size());
 	}
 
+	@Test
+	public void testDeleteAppUser() {
+		//creating person
+		assertEquals(0, pss.getAllAppUsers().size());
+		String username = "tony";
+		String password = "passowrd";
+		
+		pss.createPerson(username, password);
+		assertEquals(1, pss.getAllPersons().size());
+		//deleting person
+		
+		pss.deletePerson(username);
+		assertEquals(0, pss.getAllPersons().size());
+	}
 	/*
 	 * /////////////////////////////////////////////////////////////////////////////
 	 * / TESTING DONATION
@@ -196,6 +229,23 @@ public class PetShelterServiceTests {
 		assertEquals("Donation amount cannot be 0!", error);
 		assertEquals(0, pss.getAllDonations().size());
 
+	}
+	
+	@Test
+	public void testDeleteDonation() {
+		assertEquals(0, pss.getAllDonations().size());
+
+		double amount = 20;
+		String comment = "WOW";
+		boolean setNameAnonymous = false;
+		
+		pss.createDonation(amount, comment, setNameAnonymous);
+		
+		assertEquals(1, pss.getAllDonations().size());
+		
+		
+		pss.deleteDonation(pss.getAllDonations().get(0).getDonationId());
+		assertEquals(0, pss.getAllDonations().size());
 	}
 
 	/*
@@ -309,6 +359,25 @@ public class PetShelterServiceTests {
 		assertEquals("Living Accommodations cannot be empty!", error);
 		assertEquals(0, pss.getAllDonations().size());
 
+	}
+	
+	@Test
+	public void testDeleteUserProfile() {
+		assertEquals(0, pss.getAllUserProfiles().size());
+		
+		String address = "12345 Street Blvd.";
+		boolean petExperience = false;
+		int petsOwned = 0;
+		String livingAccommodations = "House";
+		
+		pss.createUserProfile(address, petExperience, petsOwned, livingAccommodations);
+		
+		assertEquals(1, pss.getAllUserProfiles().size());
+		
+		pss.deleteUserProfile(pss.getAllUserProfiles().get(0).getUserProfileId());
+		
+		assertEquals(0, pss.getAllUserProfiles().size());
+		
 	}
 
 	/*
@@ -469,6 +538,21 @@ public class PetShelterServiceTests {
 		assertEquals("Person password cannot be empty!", error);
 		assertEquals(0, pss.getAllPersons().size());
 	}
+	
+	@Test
+	public void testDeletePerson() {
+		//creating person
+		assertEquals(0, pss.getAllPersons().size());
+		String username = "tony";
+		String password = "passowrd";
+		
+		pss.createPerson(username, password);
+		assertEquals(1, pss.getAllPersons().size());
+		//deleting person
+		
+		pss.deletePerson(username);
+		assertEquals(0, pss.getAllPersons().size());
+	}
 
 	/*
 	 * /////////////////////////////////////////////////////////////////////////////
@@ -510,6 +594,21 @@ public class PetShelterServiceTests {
 		}
 
 		assertEquals("Question cannot be empty!", error);
+		assertEquals(0, pss.getAllQuestions().size());
+	}
+	
+	@Test
+	public void testDeleteQuestion() {
+		assertEquals(0, pss.getAllQuestions().size());
+		
+		String question = "how are you";
+		
+		pss.createQuestion(question);
+		
+		assertEquals(1, pss.getAllQuestions().size());
+		
+		pss.deleteQuestion(pss.getAllQuestions().get(0).getQuestionId());
+		
 		assertEquals(0, pss.getAllQuestions().size());
 	}
 
@@ -611,6 +710,25 @@ public class PetShelterServiceTests {
 
 		assertEquals("Pet must have a description!", error);
 		assertEquals(0, pss.getAllPetPosts().size());
+	}
+	
+	@Test
+	public void testDeletePetPost() {
+		assertEquals(0, pss.getAllPetPosts().size());
+		boolean avail = true;
+		String name = "Mike";
+		String typeOfPet = "Cat";
+		String desc = "blablabla";
+		pss.createPerson("user", "password");
+		
+		pss.createPetPost(avail,name, typeOfPet, desc, pss.getPerson("user"));
+		
+		assertEquals(1, pss.getAllPetPosts().size());
+		
+		pss.deletePetPost(pss.getAllPetPosts().get(0).getPetPostId());
+		
+		assertEquals(0, pss.getAllPetPosts().size());
+		
 	}
 
 }

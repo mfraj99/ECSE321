@@ -54,6 +54,21 @@ public class PetShelterService {
 	public List<AdoptRequest> getAllAdoptRequests() {
 		return toList(adoptRequestRepository.findAll());
 	}
+	
+	@Transactional
+	public boolean deleteAdoptRequest(Integer adoptRequestId) {
+		if (adoptRequestId == null) {
+			throw new IllegalArgumentException("AdoptRequestId invalid!");
+		}
+	
+		boolean deleted = false; //not deleted yet
+		AdoptRequest adoptRequest = adoptRequestRepository.findByAdoptRequestId(adoptRequestId); 
+		if (adoptRequest != null) {
+			adoptRequestRepository.delete(adoptRequest);
+			deleted = true;
+		} else { throw new IllegalArgumentException("AdoptRequest must be valid!");}
+		return deleted;
+	}
 
 	// APPADMIN
 	@Transactional
@@ -78,6 +93,22 @@ public class PetShelterService {
 	public List<AppAdmin> getAllAppAdmins() {
 		return toList(appAdminRepository.findAll());
 	}
+	
+	@Transactional
+	public boolean deleteAppAdmin(String username) {
+		if (username == null) {
+			throw new IllegalArgumentException("Username invalid!");
+		}
+	
+		boolean deleted = false; //not deleted yet
+		AppAdmin appAdmin = appAdminRepository.findByUsername(username);
+		if (appAdmin != null) {
+			appAdminRepository.delete(appAdmin);
+			deleted = true;
+		} else { throw new IllegalArgumentException("Username must be valid!");}
+		return deleted;
+	}
+	
 
 	// APPUSER
 	@Transactional
@@ -108,6 +139,23 @@ public class PetShelterService {
 	public List<AppUser> getAllAppUsers() {
 		return toList(appUserRepository.findAll());
 	}
+	
+	
+	@Transactional
+	public boolean deleteAppUser(String username) {
+		if (username == null) {
+			throw new IllegalArgumentException("Username invalid!");
+		}
+	
+		boolean deleted = false; //not deleted yet
+		AppUser appUser = appUserRepository.findByUsername(username);
+		if (appUser != null) {
+			appUserRepository.delete(appUser);
+			deleted = true;
+		} else { throw new IllegalArgumentException("Username must be valid!");}
+		return deleted;
+	}
+
 
 	// DONATION
 	@Transactional
@@ -133,6 +181,22 @@ public class PetShelterService {
 	public List<Donation> getAllDonations() {
 		return toList(donationRepository.findAll());
 	}
+	
+	
+	
+	@Transactional
+	public boolean deleteDonation(Integer donationId) {
+		if (donationId == null) {
+			throw new IllegalArgumentException("Donation ID invalid!");
+		}
+		boolean deleted = false; //not deleted yet
+		Donation donation = donationRepository.findByDonationId(donationId);
+		if (donation != null) {
+			donationRepository.delete(donation);
+			deleted = true;
+		} else { throw new IllegalArgumentException("Donation must be valid!");}
+		return deleted;
+	}
 
 	// PERSON
 
@@ -154,6 +218,9 @@ public class PetShelterService {
 		personRepository.save(person);
 		return person;
 	}
+	
+	
+
 
 	@Transactional
 	public Person getPerson(String username) {
@@ -168,6 +235,21 @@ public class PetShelterService {
 	@Transactional
 	public List<Person> getAllPersons() {
 		return toList(personRepository.findAll());
+	}
+	
+	@Transactional
+	public boolean deletePerson(String username) {
+		if (username == null) {
+			throw new IllegalArgumentException("Username invalid!");
+		}
+	
+		boolean deleted = false; //not deleted yet
+		Person person = personRepository.findByUsername(username);
+		if (person != null) {
+			personRepository.delete(person);
+			deleted = true;
+		} else { throw new IllegalArgumentException("Username must be valid!");}
+		return deleted;
 	}
 
 	// PETPOST
@@ -204,6 +286,22 @@ public class PetShelterService {
 	public List<PetPost> getAllPetPosts() {
 		return toList(petPostRepository.findAll());
 	}
+	
+	
+	@Transactional
+	public boolean deletePetPost(Integer petPostId) {
+		if (petPostId == null) {
+			throw new IllegalArgumentException("Pet Post ID invalid!");
+		}
+	
+		boolean deleted = false; //not deleted yet
+		PetPost petPost = petPostRepository.findByPetPostId(petPostId);
+		if (petPost != null) {
+			petPostRepository.delete(petPost);
+			deleted = true;
+		} else { throw new IllegalArgumentException("Pet Post must be valid!");}
+		return deleted;
+	}
 
 	// QUESTION
 
@@ -217,7 +315,7 @@ public class PetShelterService {
 		questionRepository.save(question);
 		return question;
 	}
-
+	
 	@Transactional
 	public Question getQuestion(Integer id) {
 		Question question = questionRepository.findByQuestionId(id);
@@ -227,6 +325,21 @@ public class PetShelterService {
 	@Transactional
 	public List<Question> getAllQuestions() {
 		return toList(questionRepository.findAll());
+	}
+	
+	@Transactional
+	public boolean deleteQuestion(Integer questionId) {
+		if (questionId == null) {
+			throw new IllegalArgumentException("Question ID invalid!");
+		}
+	
+		boolean deleted = false; //not deleted yet
+		Question question = questionRepository.findByQuestionId(questionId);
+		if (question != null) {
+			questionRepository.delete(question);
+			deleted = true;
+		} else { throw new IllegalArgumentException("Question must be valid!");}
+		return deleted;
 	}
 
 	// USERPROFILE
@@ -265,6 +378,24 @@ public class PetShelterService {
 	public List<UserProfile> getAllUserProfiles() {
 		return toList(userProfileRepository.findAll());
 	}
+	
+	@Transactional
+	public boolean deleteUserProfile(Integer userProfileId) {
+		if (userProfileId == null) {
+			throw new IllegalArgumentException("User Profile ID invalid!");
+		}
+	
+		boolean deleted = false; //not deleted yet
+		UserProfile userProfile = userProfileRepository.findByUserProfileId(userProfileId);
+		if (userProfile != null) {
+			userProfileRepository.delete(userProfile);
+			deleted = true;
+		} else { throw new IllegalArgumentException("User Profile must be valid!");}
+		return deleted;
+	}
+	
+	
+	
 
 	private <T> List<T> toList(Iterable<T> iterable) {
 		List<T> resultList = new ArrayList<T>();
