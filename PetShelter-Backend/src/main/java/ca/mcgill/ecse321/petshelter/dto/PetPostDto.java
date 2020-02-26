@@ -20,7 +20,7 @@ public class PetPostDto {
 	// Pet Post with no description
 	public PetPostDto(boolean availability, PersonDto ownedBy, Set<AdoptRequestDto> hasRequest, 
 			String name, String typeOfPet, QuestionDto relatesTo, Integer petPostId) {
-		this(availability, ownedBy, hasRequest, name, typeOfPet, "No description", relatedTo, petPostId);
+		this(availability, ownedBy, hasRequest, name, typeOfPet, "No description", relatesTo, petPostId);
 	}
 	
 	public PetPostDto(boolean availability, PersonDto ownedBy, Set<AdoptRequestDto> hasRequest, String name, String typeOfPet, 
