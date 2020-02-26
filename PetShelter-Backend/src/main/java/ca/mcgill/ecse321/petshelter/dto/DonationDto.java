@@ -15,6 +15,21 @@ public class DonationDto {
 		
 	}
 	
+	// constructor with no anonymous option
+	public DonationDto(double amount, String comment, Set<PersonDto> person, Integer donationId) {
+		this(amount, comment, false, person, donationId);
+	}
+	
+	// constructor with no comments
+	public DonationDto(double amount, boolean setNameAnonymous, Set<PersonDto> person, Integer donationId) {
+		this(amount, "No comment", setNameAnonymous, person, donationId);
+	}
+	
+	// constructor with no anonymous and no comments
+	public DonationDto(double amount, Set<PersonDto> person, Integer donationId) {
+		this(amount, "No comment", false, person, donationId);
+	}
+	
 	public DonationDto(double amount, String comment, boolean setNameAnonymous, Set<PersonDto> person, Integer donationId) {
 		this.amount = amount;
 		this.comment = comment;

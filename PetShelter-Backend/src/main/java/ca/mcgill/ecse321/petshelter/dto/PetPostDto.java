@@ -17,12 +17,17 @@ public class PetPostDto {
 		
 	}
 	
+	// Pet Post with no description
+	public PetPostDto(boolean availability, PersonDto ownedBy, Set<AdoptRequestDto> hasRequest, 
+			String name, String typeOfPet, QuestionDto relatesTo, Integer petPostId) {
+		this(availability, ownedBy, hasRequest, name, typeOfPet, "No description", relatedTo, petPostId);
+	}
 	
-	public PetPostDto(boolean availability, PersonDto ownedBy, Set<AdoptRequestDto> hasRequests, String name, String typeOfPet, 
+	public PetPostDto(boolean availability, PersonDto ownedBy, Set<AdoptRequestDto> hasRequest, String name, String typeOfPet, 
 			String description, QuestionDto relatesTo, Integer petPostId) {
 		this.availability = availability;
 		this.ownedBy = ownedBy;
-		this.hasRequest = hasRequests;
+		this.hasRequest = hasRequest;
 		this.name = name;
 		this.typeOfPet = typeOfPet;
 		this.description = description;
