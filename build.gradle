@@ -25,10 +25,11 @@ dependencies {
     implementation 'com.google.guava:guava:28.1-jre'
 
     // Use JUnit test framework
-    testImplementation 'junit:junit:4.12',
-    implementation 'junit:junit:4.12',
-    testCompile 'junit:junit:4.12',
-    compile 'junit:junit:4.12'
+    testCompile 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
+    testCompileOnly 'junit:junit:4.12'
+    testRuntimeOnly 'junit:junit:4.12'
+    testAnnotationProcessor 'junit:junit:4.12'
 }
 
 task stage () {
