@@ -1,5 +1,19 @@
 package ca.mcgill.ecse321.petshelter.dto;
 
-public class AppUserDto {
+import ca.mcgill.ecse321.petshelter.model.PersonRole;
 
+public class AppUserDto {
+	private PersonRole appUserRole;
+	
+	public AppUserDto() {
+		
+	}
+	
+	public AppUserDto(PersonRole appUserRole) {
+		this.appUserRole = appUserRole;
+	}
+	
+	public PersonRole getAppUserRole() {
+		return appUserRole;
+	}
 }
