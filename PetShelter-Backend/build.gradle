@@ -13,12 +13,19 @@ repositories {
 }
 
 dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	runtimeOnly 'org.postgresql:postgresql'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
+    	// Use JUnit test framework
+        testCompile 'junit:junit:4.12'
+        testImplementation 'junit:junit:4.12'
+        testCompileOnly 'junit:junit:4.12'
+        testRuntimeOnly 'junit:junit:4.12'
+        testAnnotationProcessor 'junit:junit:4.12'
 }
 
 test {

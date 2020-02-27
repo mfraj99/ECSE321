@@ -26,7 +26,10 @@ dependencies {
 
     // Use JUnit test framework
     testCompile 'junit:junit:4.12'
-    compile 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
+    testCompileOnly 'junit:junit:4.12'
+    testRuntimeOnly 'junit:junit:4.12'
+    testAnnotationProcessor 'junit:junit:4.12'
 }
 
 task stage () {
