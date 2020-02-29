@@ -290,12 +290,4 @@ public class PetShelterPersistenceTests {
 		assertEquals(numberOfPetsCurrentlyOwned, userProfile.getNumberOfPetsCurrentlyOwned());
 		assertEquals(typeOfLivingAccomodation, userProfile.getTypeOfLivingAccomodation());
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 }

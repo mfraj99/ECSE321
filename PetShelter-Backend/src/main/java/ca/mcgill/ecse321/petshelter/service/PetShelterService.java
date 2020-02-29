@@ -182,8 +182,7 @@ public class PetShelterService {
 		return toList(donationRepository.findAll());
 	}
 	
-	
-	
+		
 	@Transactional
 	public boolean deleteDonation(Integer donationId) {
 		if (donationId == null) {
