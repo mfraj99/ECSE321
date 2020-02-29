@@ -12,6 +12,7 @@ import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.stubbing.Answer;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -50,6 +51,23 @@ public class PetShelterServiceTests {
 					
 				});
 	}
+	
+	@Test
+	public void testCreatePerson() {
+		assertEquals(0, service.getAllPersons().size());
+		String username = "Michael";
+		String password = "LMAO";
+		Person person = null;
+		try {
+			person = service.createPerson(username, password);
+			
+		} catch (IllegalArgumentException e) {
+			fail();
+		}
+		assertNotNull(person);
+		assertEquals(username, person.getUsername());
+	}
+	
 	
 	
 	

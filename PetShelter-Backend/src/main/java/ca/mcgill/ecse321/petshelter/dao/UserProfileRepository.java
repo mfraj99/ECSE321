@@ -6,5 +6,5 @@ import ca.mcgill.ecse321.petshelter.model.UserProfile;
 
 public interface UserProfileRepository extends CrudRepository<UserProfile, Integer> {
 
-	UserProfile findByUserProfileId(Integer id);
+	UserProfile findByUserProfileId(int id);
 }

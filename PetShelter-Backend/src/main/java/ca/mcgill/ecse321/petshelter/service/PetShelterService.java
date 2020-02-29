@@ -36,6 +36,12 @@ public class PetShelterService {
 	// ADOPTREQUEST
 	@Transactional
 	public AdoptRequest createAdoptRequest(Person owner, PetPost petPost) {
+		if(owner == null) {
+			throw new IllegalArgumentException("Adoptrequest must have an owner!");
+		}
+		if(petPost == null) {
+			throw new IllegalArgumentException("Adoptrequest must be associated with a pet post!");
+		}
 		AdoptRequest adoptRequest = new AdoptRequest();
 		adoptRequest.setStatus(PENDING);
 		adoptRequest.setRequestedBy(owner);
@@ -47,6 +53,9 @@ public class PetShelterService {
 	@Transactional
 	public AdoptRequest getAdoptRequest(Integer id) {
 		AdoptRequest adoptRequest = adoptRequestRepository.findByAdoptRequestId(id);
+		if(adoptRequest ==null) {
+			throw new IllegalArgumentException("No Adoptrequest found with this Id!");
+		}
 		return adoptRequest;
 	}
 
@@ -86,6 +95,9 @@ public class PetShelterService {
 	@Transactional
 	public AppAdmin getAppAdmin(String username) {
 		AppAdmin appAdmin = appAdminRepository.findByUsername(username);
+		if(appAdmin == null) {
+			throw new IllegalArgumentException("No admin found with this username!");
+		}
 		return appAdmin;
 	}
 
@@ -96,7 +108,7 @@ public class PetShelterService {
 	
 	@Transactional
 	public boolean deleteAppAdmin(String username) {
-		if (username == null) {
+		if (username == null || username.trim().length() == 0) {
 			throw new IllegalArgumentException("Username invalid!");
 		}
 	
@@ -105,7 +117,7 @@ public class PetShelterService {
 		if (appAdmin != null) {
 			appAdminRepository.delete(appAdmin);
 			deleted = true;
-		} else { throw new IllegalArgumentException("Username must be valid!");}
+		} else { throw new IllegalArgumentException("No AppAdmin found with username!");}
 		return deleted;
 	}
 	
@@ -129,7 +141,7 @@ public class PetShelterService {
 	@Transactional
 	public AppUser getAppUser(String username) {
 		if (username == null || username.trim().length() == 0) {
-			throw new IllegalArgumentException("AppUser name cannot be empty!");
+			throw new IllegalArgumentException("No AppUser found with username!");
 		}
 		AppUser appUser = appUserRepository.findByUsername(username);
 		return appUser;
@@ -152,7 +164,7 @@ public class PetShelterService {
 		if (appUser != null) {
 			appUserRepository.delete(appUser);
 			deleted = true;
-		} else { throw new IllegalArgumentException("Username must be valid!");}
+		} else { throw new IllegalArgumentException("No AppUser found with username!");}
 		return deleted;
 	}
 
@@ -174,6 +186,9 @@ public class PetShelterService {
 	@Transactional
 	public Donation getDonation(Integer id) {
 		Donation donation = donationRepository.findByDonationId(id);
+		if(donation ==null) {
+			throw new IllegalArgumentException("No donation found with Id!");
+		}
 		return donation;
 	}
 
@@ -194,7 +209,7 @@ public class PetShelterService {
 		if (donation != null) {
 			donationRepository.delete(donation);
 			deleted = true;
-		} else { throw new IllegalArgumentException("Donation must be valid!");}
+		} else { throw new IllegalArgumentException("No donation found with Id!");}
 		return deleted;
 	}
 
@@ -229,6 +244,9 @@ public class PetShelterService {
 		}
 
 		Person person = personRepository.findByUsername(username);
+		if(person == null) {
+			throw new IllegalArgumentException("Person not found with username!");
+		}
 		return person;
 	}
 
@@ -248,7 +266,7 @@ public class PetShelterService {
 		if (person != null) {
 			personRepository.delete(person);
 			deleted = true;
-		} else { throw new IllegalArgumentException("Username must be valid!");}
+		} else { throw new IllegalArgumentException("Person not found with username!");}
 		return deleted;
 	}
 
@@ -279,6 +297,9 @@ public class PetShelterService {
 	@Transactional
 	public PetPost getPetPost(Integer id) {
 		PetPost petPost = petPostRepository.findByPetPostId(id);
+		if(petPost == null) {
+			throw new IllegalArgumentException("No PetPost found with Id!");
+		}
 		return petPost;
 	}
 
@@ -299,7 +320,7 @@ public class PetShelterService {
 		if (petPost != null) {
 			petPostRepository.delete(petPost);
 			deleted = true;
-		} else { throw new IllegalArgumentException("Pet Post must be valid!");}
+		} else { throw new IllegalArgumentException("No PetPost found with Id!");}
 		return deleted;
 	}
 
@@ -319,6 +340,9 @@ public class PetShelterService {
 	@Transactional
 	public Question getQuestion(Integer id) {
 		Question question = questionRepository.findByQuestionId(id);
+		if(question == null) {
+			throw new IllegalArgumentException("No question found with Id!");
+		}
 		return question;
 	}
 
@@ -338,7 +362,7 @@ public class PetShelterService {
 		if (question != null) {
 			questionRepository.delete(question);
 			deleted = true;
-		} else { throw new IllegalArgumentException("Question must be valid!");}
+		} else { throw new IllegalArgumentException("No question found with Id!");}
 		return deleted;
 	}
 
@@ -371,6 +395,9 @@ public class PetShelterService {
 	@Transactional
 	public UserProfile getUserProfile(Integer id) {
 		UserProfile userProfile = userProfileRepository.findByUserProfileId(id);
+		if(userProfile == null) {
+			throw new IllegalArgumentException("No UserProfile found with Id!");
+		}
 		return userProfile;
 	}
 
@@ -390,7 +417,7 @@ public class PetShelterService {
 		if (userProfile != null) {
 			userProfileRepository.delete(userProfile);
 			deleted = true;
-		} else { throw new IllegalArgumentException("User Profile must be valid!");}
+		} else { throw new IllegalArgumentException("No UserProfile found with Id!");}
 		return deleted;
 	}
 	
