@@ -32,6 +32,14 @@ public class PetShelterService {
 	private QuestionRepository questionRepository;
 	@Autowired
 	private UserProfileRepository userProfileRepository;
+	
+	
+	//variables for tracking the status of logged in users
+	private static Person loggedInUser = null;
+	
+	public Person getLoggedInUser() {
+		return loggedInUser;
+	}
 
 	// ADOPTREQUEST
 	@Transactional
@@ -404,5 +412,70 @@ public class PetShelterService {
 		}
 		return resultList;
 	}
+	
+	//LOGIN AND LOGOUT
+	
+	//login for appusers
+	@Transactional
+	public Person loginAsAppUser(String username, String password) {
+		
+		if(username == null || username.trim().length() == 0) {
+			throw new IllegalArgumentException("Username cannot be empty.");
+		}
+		if(password == null || password.trim().length() == 0) {
+			throw new IllegalArgumentException("Password cannot be empty.");
+		}
 
+		List<AppUser> appUsers = getAllAppUsers();
+
+		AppUser foundAppUser = null;
+		for(AppUser appUser : appUsers) {
+			if(appUser.getUsername().equals(username) && appUser.getPassword().equals(password)) {
+				loggedInUser = appUser;
+				foundAppUser = appUser;
+				break;
+			}
+		}
+
+		if(foundAppUser == null) {
+			throw new IllegalArgumentException("This user account could not be found.");
+		}
+
+		return foundAppUser;
+		
+	}
+	
+	//login for appadmins
+	@Transactional
+	public Person loginAsAppAdmin(String username, String password) {
+		
+		if(username == null || username.trim().length() == 0) {
+			throw new IllegalArgumentException("Username cannot be empty.");
+		}
+		if(password == null || password.trim().length() == 0) {
+			throw new IllegalArgumentException("Password cannot be empty.");
+		}
+
+		AppAdmin appAdmin = this.getAppAdmin(username);
+
+		AppAdmin foundAppAdmin = null;
+		if(appAdmin.getUsername().equals(username) && appAdmin.getPassword().equals(password)) {
+			loggedInUser = appAdmin;
+			foundAppAdmin = appAdmin;
+		}
+
+		if(foundAppAdmin == null) {
+			throw new IllegalArgumentException("This admin account could not be found.");
+		}
+
+		return foundAppAdmin;
+		
+	}
+	
+	@Transactional
+	public void logout() {
+		loggedInUser = null;
+		
+	}
+	
 }
