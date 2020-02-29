@@ -22,6 +22,10 @@ public class PersonDto {
 		
 	}
 	
+	public PersonDto(String username, String password) {
+		this(username, password, null,Collections.EMPTY_SET, Collections.EMPTY_SET, Collections.EMPTY_SET, Collections.EMPTY_SET);
+	}
+	
 	public PersonDto(String username, String password, UserProfile creates) {
 		this(username, password, creates, Collections.EMPTY_SET, Collections.EMPTY_SET, Collections.EMPTY_SET, Collections.EMPTY_SET);
 	}
