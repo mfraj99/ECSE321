@@ -2,8 +2,6 @@ package ca.mcgill.ecse321.petshelter.dto;
 
 import java.util.Set;
 
-import ca.mcgill.ecse321.petshelter.model.Person;
-
 public class DonationDto {
 	private double amount;
 	private String comment;
