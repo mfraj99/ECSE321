@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -174,8 +175,42 @@ public class PetShelterController {
 			throws IllegalArgumentException {
 		Donation donation = service.createDonation(amount, comment, setNameAnonymous);
 		return convertToDto(donation);
+		
 	}
 	
+	@GetMapping(value = { "/donations/", "/donations/" })
+	public DonationDto getDonation(@PathVariable(name = "donationId") Integer donationId){
+		
+		if (donationId == null) {
+			
+			throw new IllegalArgumentException("There is no such Donation Id!");
+		} 
+		else {
+			
+			Donation donation = service.getDonation(donationId);
+			
+			if (donation != null) {
+				return convertToDto(donation);
+			} 
+			else { 
+				throw new IllegalArgumentException("No donation found with Id!");
+			}
+		}
+	}
+	
+	
+	@DeleteMapping(value = { "/donations/", "/donations/" })
+	public boolean deleteDonation(@PathVariable(name = "donationId") Integer donationId){
+		if (donationId == null) {
+			
+			throw new IllegalArgumentException("There is no such Donation Id!");
+		}
+		else {
+			return service.deleteDonation(donationId);
+		}
+	}
+
+		
 	private DonationDto convertToDto(Donation d) {
 		if (d == null) {
 			throw new IllegalArgumentException("There is no such Donation!");
@@ -212,13 +247,13 @@ public class PetShelterController {
 	
 	// PET POST //
 	
-	@GetMapping(value = { "/petpost/", "/petpost/" })
+	@GetMapping(value = { "/petPost/", "/petPost/" })
 	public List<PetPostDto> getAllPetPosts() {
 		return service.getAllPetPosts().stream().map(pp ->
 		convertToDto(pp)).collect(Collectors.toList());
 	}
 
-	@PostMapping(value = { "/petposts/", "/petposts/" })
+	@PostMapping(value = { "/petPosts/", "/petPosts/" })
 	public PetPostDto createPetPostDto(@PathVariable("availability") boolean availability,
 			@RequestParam("ownedBy") Person owner,
 			@RequestParam("name") String name,
@@ -227,6 +262,37 @@ public class PetShelterController {
 			throws IllegalArgumentException {
 		PetPost petPost = service.createPetPost(availability, name, typeOfPet, description, owner);
 		return convertToDto(petPost);
+	}
+	
+	@GetMapping(value = { "/petPosts/", "/petPosts/" })
+	public PetPostDto getPetPost(@PathVariable(name = "petPostId") Integer petPostId){
+		
+		if (petPostId == null) {
+			
+			throw new IllegalArgumentException("There is no such Pet Post Id!");
+		} 
+		else {
+			
+			PetPost petPost = service.getPetPost(petPostId);
+			
+			if (petPost != null) {
+				return convertToDto(petPost);
+			} 
+			else { 
+				throw new IllegalArgumentException("No pet post was found with Id!");
+			}
+		}
+	}
+	
+	@DeleteMapping(value = { "/petPosts/", "/petPosts/" })
+	public boolean deletePetPost(@PathVariable(name = "petPostId") Integer petPostId){
+		if (petPostId == null) {
+			
+			throw new IllegalArgumentException("There is no such Pet Post Id!");
+		}
+		else {
+			return service.deletePetPost(petPostId);
+		}
 	}
 	
 	private PetPostDto convertToDto(PetPost pp) {
@@ -272,6 +338,38 @@ public class PetShelterController {
 			throws IllegalArgumentException {
 		AdoptRequest adoptRequest = service.createAdoptRequest(owner, petPost);
 		return convertToDto(adoptRequest);
+	}
+	
+	@GetMapping(value = { "/adoptRequest/", "/adoptRequest/" })
+	public AdoptRequestDto getAdoptRequest(@PathVariable(
+			name = "adoptRequestId") Integer adoptRequestId){
+		
+		if (adoptRequestId == null) {
+			
+			throw new IllegalArgumentException("There is no such Adopt Request Id!");
+		} 
+		else {
+			
+			AdoptRequest adoptRequest = service.getAdoptRequest(adoptRequestId);
+			
+			if (adoptRequest != null) {
+				return convertToDto(adoptRequest);
+			} 
+			else { 
+				throw new IllegalArgumentException("No AdoptRequest was found with Id!");
+			}
+		}
+	}
+	
+	@DeleteMapping(value = { "/adoptRequest/", "/adoptRequest/" })
+	public boolean deleteAdoptRequest(@PathVariable(name = "adoptRequestId") Integer adoptRequestId){
+		if (adoptRequestId == null) {
+			
+			throw new IllegalArgumentException("There is no such Adopt Request Id!");
+		}
+		else {
+			return service.deleteAdoptRequest(adoptRequestId);
+		}
 	}
 	
 	private AdoptRequestDto convertToDto(AdoptRequest ar) {
