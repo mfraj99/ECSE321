@@ -168,8 +168,8 @@ public class PetShelterController {
 	// LOGIN AND LOGOUT //
 	
 	//appUser login
-	@PostMapping(value = {"/loginuser/{personUsername}", "/loginuser/{personUsername}/"})
-	public String appUserLogin(@PathVariable("personUsername") String personUsername,
+	@PostMapping(value = {"/loginuser/{personusername}", "/loginuser/{personusername}/"})
+	public String appUserLogin(@PathVariable("personusername") String personUsername,
 			@RequestParam String password) {
 		try{
 			service.loginAsAppUser(personUsername, password);
@@ -181,8 +181,8 @@ public class PetShelterController {
 	}
 	
 	//appAdmin login
-	@PostMapping(value = {"/loginadmin/{personUsername}", "/loginadmin/{personUsername}/"})
-	public String appAdminLogin(@PathVariable("personUsername") String personUsername,
+	@PostMapping(value = {"/loginadmin/{personusername}", "/loginadmin/{personusername}/"})
+	public String appAdminLogin(@PathVariable("personusername") String personUsername,
 			@RequestParam String password) {
 		try{
 			service.loginAsAppAdmin(personUsername, password);
@@ -334,7 +334,7 @@ public class PetShelterController {
 	}
 	
 	//get pet post by id
-	@GetMapping(value = { "/petPosts/{petpostid}", "/petposts/{petpostid}/" })
+	@GetMapping(value = { "/petposts/{petPostId}", "/petposts/{petPostId}/" })
 	public PetPostDto getPetPost(@PathVariable(name = "petPostId") Integer petPostId){
 		
 		if (petPostId == null) {
@@ -355,7 +355,7 @@ public class PetShelterController {
 	}
 	
 	//delete pet post by id
-	@DeleteMapping(value = { "/petPosts/{petPostId}", "/petPosts/{petPostId}/" })
+	@DeleteMapping(value = { "/petposts/{petPostId}", "/petposts/{petPostId}/" })
 	public boolean deletePetPost(@PathVariable(name = "petPostId") Integer petPostId){
 		if (petPostId == null) {
 			
@@ -396,17 +396,23 @@ public class PetShelterController {
 	}
 	
 	// ADOPT REQUEST //
-		
-	@GetMapping(value = { "/adoptRequest", "/adoptRequest/" })
+	
+	//get all adopt requests
+	@GetMapping(value = { "/adoptrequest", "/adoptrequest/" })
 	public List<AdoptRequestDto> getAllAdoptRequest() {
 		return service.getAllAdoptRequests().stream().map(ar ->
 		convertToDto(ar)).collect(Collectors.toList());
 	}
 	
-	@PostMapping(value = { "/adoptRequest", "/adoptRequest/" })
-	public AdoptRequestDto createAdoptRequestDto(@PathVariable("owner") Person owner,
-			@RequestParam("petPost") PetPost petPost)
+	//create adopt request by pet post
+	@PostMapping(value = { "/adoptrequest/{petPostId}", "/adoptrequest/{petPostId}/" })
+	public AdoptRequestDto createAdoptRequestDto(@PathVariable("petPostId") Integer petPostId)
 			throws IllegalArgumentException {
+		PetPost petPost = service.getPetPost(petPostId);
+		if(petPost == null) {
+			throw new IllegalArgumentException("There is no such pet post in the database.");
+		}
+		Person owner = service.getAppUser(petPost.getName());
 		AdoptRequest adoptRequest = service.createAdoptRequest(owner, petPost);
 		return convertToDto(adoptRequest);
 	}
@@ -432,7 +438,8 @@ public class PetShelterController {
 //		}
 //	}
 	
-	@DeleteMapping(value = { "/adoptRequest", "/adoptRequest/" })
+	//delete adopt request by id
+	@DeleteMapping(value = { "/adoptrequest/{adoptRequestId}", "/adoptrequest/{adoptRequestId}/" })
 	public boolean deleteAdoptRequest(@PathVariable(name = "adoptRequestId") Integer adoptRequestId){
 		if (adoptRequestId == null) {
 			
@@ -443,6 +450,7 @@ public class PetShelterController {
 		}
 	}
 	
+	//convert adoptrequest to adoptrequestdto
 	private AdoptRequestDto convertToDto(AdoptRequest ar) {
 		if (ar == null) {
 			throw new IllegalArgumentException("There is no such Adopt Request!");
