@@ -8,9 +8,9 @@ public class UserProfileDto {
 	private Integer numberOfPetsCurrentlyOwned;
 	private String typeOfLivingAccomodation;
 	
-	public UserProfileDto() {
-		
-	}
+//	public UserProfileDto() {
+//		
+//	}
 	
 	public UserProfileDto(String address, Integer userProfileId, PersonDto person,
 			Boolean hasExperienceWithPets, Integer numberOfPetsCurrentlyOwned, String typeOfLivingAccomodation) {
