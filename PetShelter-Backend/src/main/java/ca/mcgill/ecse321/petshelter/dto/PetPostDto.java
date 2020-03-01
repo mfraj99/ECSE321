@@ -1,6 +1,5 @@
 package ca.mcgill.ecse321.petshelter.dto;
 
-import java.util.Collections;
 import java.util.Set;
 
 public class PetPostDto {

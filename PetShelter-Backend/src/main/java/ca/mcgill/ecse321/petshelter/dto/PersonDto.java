@@ -3,10 +3,6 @@ package ca.mcgill.ecse321.petshelter.dto;
 import java.util.Collections;
 import java.util.Set;
 
-import ca.mcgill.ecse321.petshelter.model.AdoptRequest;
-import ca.mcgill.ecse321.petshelter.model.Donation;
-import ca.mcgill.ecse321.petshelter.model.PetPost;
-import ca.mcgill.ecse321.petshelter.model.Question;
 import ca.mcgill.ecse321.petshelter.model.UserProfile;
 
 public class PersonDto {
@@ -23,7 +19,7 @@ public class PersonDto {
 	}
 	
 	public PersonDto(String username, String password) {
-		this(username, password, null,Collections.EMPTY_SET, Collections.EMPTY_SET, Collections.EMPTY_SET, Collections.EMPTY_SET);
+		this(username, password, null, Collections.EMPTY_SET, Collections.EMPTY_SET, Collections.EMPTY_SET, Collections.EMPTY_SET);
 	}
 	
 	public PersonDto(String username, String password, UserProfile creates) {
