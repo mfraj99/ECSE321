@@ -93,6 +93,16 @@ public class PetShelterService {
 		if (this.getAllAppAdmins().size() == 1) {
 			throw new IllegalArgumentException("Can only have one Admin!");
 		}
+		if ((username == null || username.trim().length() == 0)
+				&& (password == null || password.trim().length() == 0)) {
+			throw new IllegalArgumentException("AppAdmin name and password cannot be empty!");
+		}
+		if (username == null || username.trim().length() == 0) {
+			throw new IllegalArgumentException("AppAdmin name cannot be empty!");
+		}
+		if (password == null || password.trim().length() == 0) {
+			throw new IllegalArgumentException("AppAdmin password cannot be empty!");
+		}
 		AppAdmin appAdmin = new AppAdmin();
 		appAdmin.setUsername(username);
 		appAdmin.setPassword(password);
@@ -134,9 +144,18 @@ public class PetShelterService {
 	@Transactional
 	public AppUser createAppUser(String username, String password, PersonRole personRole) {
 
+		if ((username == null || username.trim().length() == 0)
+				&& (password == null || password.trim().length() == 0)) {
+			throw new IllegalArgumentException("AppUser name and password cannot be empty!");
+		}
 		if (username == null || username.trim().length() == 0) {
 			throw new IllegalArgumentException("AppUser name cannot be empty!");
 		}
+		if (password == null || password.trim().length() == 0) {
+			throw new IllegalArgumentException("AppUser password cannot be empty!");
+		}
+		
+		
 
 		AppUser appUser = new AppUser();
 		appUser.setUsername(username);
@@ -163,7 +182,7 @@ public class PetShelterService {
 	
 	@Transactional
 	public boolean deleteAppUser(String username) {
-		if (username == null) {
+		if (username == null || username.trim().length()==0) {
 			throw new IllegalArgumentException("Username invalid!");
 		}
 	
