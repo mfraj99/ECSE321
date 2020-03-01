@@ -53,7 +53,7 @@ public class PetShelterController {
 		Question question = service.createQuestion(ques);
 		return convertToDto(question);
 	} 
-	 
+	
 	private QuestionDto convertToDto(Question q) {
 		if (q == null) {
 			throw new IllegalArgumentException("There is no such Question!");
@@ -66,6 +66,16 @@ public class PetShelterController {
 				setPetPostDtos, setPersonDtos, q.getQuestionId());
 				
 		return questionDto;
+	}
+	
+	@DeleteMapping(value = {"/questions, /questions/"})
+	public boolean deleteQuestion(@PathVariable(name = "questionId") Integer questionId){
+		if (questionId == null) {
+			throw new IllegalArgumentException("There is no such Question Id!");
+		}
+		else {
+			return service.deleteQuestion(questionId);
+		}
 	}
 	
 	// USER PROFILE //
@@ -98,6 +108,32 @@ public class PetShelterController {
 		return UserProfileDto;
 	}	
 	
+	@DeleteMapping(value = {"/userprofile, /userprofile/"})
+	public boolean deleteUserProfile(@PathVariable(name = "userProfileId") Integer userProfileId){
+		if (userProfileId == null) {
+			throw new IllegalArgumentException("There is no such user profile Id!");
+		}
+		else {
+			return service.deleteUserProfile(userProfileId);
+		}
+	}
+	
+//	@GetMapping(value = {"/userprofile, /userprofile/"})
+//	public UserProfileDto getUserProfile(@PathVariable(name = "userProfile") Integer userProfileId){
+//		if (userProfileId == null) {
+//			throw new IllegalArgumentException("There is no such user profile Id!");
+//		} 
+//		else {
+//			UserProfile userProfile = service.getUserProfile(userProfileId);
+//			if (userProfile != null) {
+//				return convertToDto(userProfile);
+//			} 
+//			else { 
+//				throw new IllegalArgumentException("No user profile found with Id!");
+//			}
+//		}
+//	}
+	
 	// APP USER //
 	
 	@GetMapping(value = {"/appuser, /appuser/"})
@@ -120,7 +156,8 @@ public class PetShelterController {
 		}
 		AppUserDto appUserDto = new AppUserDto(a.getAppUserRole());
 		return appUserDto;
-	}	
+	}
+	
 	// LOGIN AND LOGOUT //
 	
 	//appUser login
@@ -180,15 +217,11 @@ public class PetShelterController {
 	
 	@GetMapping(value = { "/donations/", "/donations/" })
 	public DonationDto getDonation(@PathVariable(name = "donationId") Integer donationId){
-		
 		if (donationId == null) {
-			
 			throw new IllegalArgumentException("There is no such Donation Id!");
 		} 
 		else {
-			
 			Donation donation = service.getDonation(donationId);
-			
 			if (donation != null) {
 				return convertToDto(donation);
 			} 
@@ -197,7 +230,6 @@ public class PetShelterController {
 			}
 		}
 	}
-	
 	
 	@DeleteMapping(value = { "/donations/", "/donations/" })
 	public boolean deleteDonation(@PathVariable(name = "donationId") Integer donationId){
@@ -340,26 +372,26 @@ public class PetShelterController {
 		return convertToDto(adoptRequest);
 	}
 	
-	@GetMapping(value = { "/adoptRequest/", "/adoptRequest/" })
-	public AdoptRequestDto getAdoptRequest(@PathVariable(
-			name = "adoptRequestId") Integer adoptRequestId){
-		
-		if (adoptRequestId == null) {
-			
-			throw new IllegalArgumentException("There is no such Adopt Request Id!");
-		} 
-		else {
-			
-			AdoptRequest adoptRequest = service.getAdoptRequest(adoptRequestId);
-			
-			if (adoptRequest != null) {
-				return convertToDto(adoptRequest);
-			} 
-			else { 
-				throw new IllegalArgumentException("No AdoptRequest was found with Id!");
-			}
-		}
-	}
+//	@GetMapping(value = { "/adoptRequest/", "/adoptRequest/" })
+//	public AdoptRequestDto getAdoptRequest(@PathVariable(
+//			name = "adoptRequestId") Integer adoptRequestId){
+//		
+//		if (adoptRequestId == null) {
+//			
+//			throw new IllegalArgumentException("There is no such Adopt Request Id!");
+//		} 
+//		else {
+//			
+//			AdoptRequest adoptRequest = service.getAdoptRequest(adoptRequestId);
+//			
+//			if (adoptRequest != null) {
+//				return convertToDto(adoptRequest);
+//			} 
+//			else { 
+//				throw new IllegalArgumentException("No AdoptRequest was found with Id!");
+//			}
+//		}
+//	}
 	
 	@DeleteMapping(value = { "/adoptRequest/", "/adoptRequest/" })
 	public boolean deleteAdoptRequest(@PathVariable(name = "adoptRequestId") Integer adoptRequestId){
