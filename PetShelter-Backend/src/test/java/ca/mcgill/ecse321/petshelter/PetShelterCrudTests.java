@@ -56,6 +56,7 @@ public class PetShelterCrudTests {
 		petPostRepository.deleteAll();
 		questionRepository.deleteAll();
 		userProfileRepository.deleteAll();
+		pss.logout();
 	}
 
 	/*
@@ -956,6 +957,25 @@ public class PetShelterCrudTests {
 	}
 	
 	@Test
+	public void testCreatePetPostWithNullOwner() {
+		assertEquals(0, pss.getAllPetPosts().size());
+
+		boolean avail = true;
+		String name = "Mike";
+		String typeOfPet = "Cat";
+		String desc = "cute cat";
+		String error = "";
+		try {
+			pss.createPetPost(avail, name, typeOfPet, desc, null);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+
+		assertEquals("Pet must have an owner", error);
+		assertEquals(0, pss.getAllPetPosts().size());
+	}
+	
+	@Test
 	public void testDeletePetPost() {
 		assertEquals(0, pss.getAllPetPosts().size());
 		boolean avail = true;
@@ -999,5 +1019,132 @@ public class PetShelterCrudTests {
 		assertEquals("No PetPost found with Id!",error);
 		assertEquals(0, pss.getAllPetPosts().size());
 	}
+	
+	
+	/*
+	 * /////////////////////////////////////////////////////////////////////////////
+	 * / TESTING LOG IN LOG OUT
+	 * /////////////////////////////////////////////////////////////////////////////
+	 * /
+	 */
 
+	@Test
+	public void testLogInAppAdmin() {
+		assertEquals(0, pss.getAllAppAdmins().size());
+		String username= "hello";
+		String password = "world";
+		pss.createAppAdmin(username, password);
+		pss.loginAsAppAdmin(username, password);
+		assertNotNull(pss.getLoggedInUser());
+		assertEquals(username, pss.getLoggedInUser().getUsername());
+		assertEquals(password, pss.getLoggedInUser().getPassword());
+		
+	}
+	@Test
+	public void testLogInAppAdminNullName() {
+		assertEquals(0, pss.getAllAppAdmins().size());
+		String username= "";
+		String password = "world";
+		String error = null;
+		try {
+			pss.loginAsAppAdmin(username, password);
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("Username cannot be empty.", error);
+		assertNull(pss.getLoggedInUser());
+	}
+	
+	@Test
+	public void testLogInAppAdminNullPass() {
+		assertEquals(0, pss.getAllAppAdmins().size());
+		String username= "hello";
+		String password = "";
+		String error = null;
+		try {
+			pss.loginAsAppAdmin(username, password);
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("Password cannot be empty.", error);
+		assertNull(pss.getLoggedInUser());
+	}
+	
+	@Test
+	public void testLogInAppAdminInvalidUser() {
+		assertEquals(0, pss.getAllAppAdmins().size());
+		String username= "hello";
+		String password = "world";
+		String error = null;
+		try {
+			pss.loginAsAppAdmin(username, password);
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("No admin found with this username!", error);
+		assertNull(pss.getLoggedInUser());
+	}
+	
+	
+	
+	
+	@Test
+	public void testLogInAppUser() {
+		assertEquals(0, pss.getAllAppUsers().size());
+		String username= "hello";
+		String password = "world";
+		pss.createAppUser(username, password, null);
+		pss.loginAsAppUser(username, password);
+		assertNotNull(pss.getLoggedInUser());
+		assertEquals(username, pss.getLoggedInUser().getUsername());
+		assertEquals(password, pss.getLoggedInUser().getPassword());
+	}
+	
+	@Test
+	public void testLogInAppUserNullName() {
+		assertEquals(0, pss.getAllAppUsers().size());
+		String username= "";
+		String password = "world";
+		String error = null;
+		try {
+			pss.loginAsAppUser(username, password);
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("Username cannot be empty.", error);
+		assertNull(pss.getLoggedInUser());
+	}
+	
+	@Test
+	public void testLogInAppUserNullPass() {
+		assertEquals(0, pss.getAllAppUsers().size());
+		String username= "hello";
+		String password = "";
+		String error = null;
+		try {
+			pss.loginAsAppUser(username, password);
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("Password cannot be empty.", error);
+		assertNull(pss.getLoggedInUser());
+	}
+	
+	@Test
+	public void testLogInAppUserInvalidUser() {
+		assertEquals(0, pss.getAllAppUsers().size());
+		String username= "hello";
+		String password = "world";
+		String error = null;
+		try {
+			pss.loginAsAppUser(username, password);
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("This user account could not be found.", error);
+		assertNull(pss.getLoggedInUser());
+	}
+	
+	
+	
 }

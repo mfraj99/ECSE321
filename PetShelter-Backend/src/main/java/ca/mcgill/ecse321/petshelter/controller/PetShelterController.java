@@ -70,57 +70,57 @@ public class PetShelterController {
 	
 	// USER PROFILE //
 	
-	@GetMapping(value = {"/userprofile, /userprofile/"})
-	public List<UserProfileDto> getAllUserProfiles(){
-		return service.getAllUserProfiles().stream().map(u -> convertToDto(u)).collect(Collectors.toList());
-	}
+//	@GetMapping(value = {"/userprofile, /userprofile/"})
+//	public List<UserProfileDto> getAllUserProfiles(){
+//		return service.getAllUserProfiles().stream().map(u -> convertToDto(u)).collect(Collectors.toList());
+//	}
+//	
+//	@PostMapping(value = {"/questions, /questions/"})
+//	public UserProfileDto createUserProfileDto(@PathVariable("address") String address,
+//			@RequestParam("hasExperienceWithPets") Boolean hasExperienceWithPets,
+//			@RequestParam("numberOfPetsCurrentlyOwned") int numberOfPetsCurrentlyOwned,
+//			@RequestParam("typeOfLivingAccommodation") String typeOfLivingAccommodation)
+//			throws IllegalArgumentException {
+//
+//		UserProfile userProfile = service.createUserProfile(address, hasExperienceWithPets, numberOfPetsCurrentlyOwned, typeOfLivingAccommodation);
+//		return convertToDto(userProfile);
+//	} 
+//	
+//	private UserProfileDto convertToDto(UserProfile u) {
+//		if (u == null) {
+//			throw new IllegalArgumentException("There is no such user profile!");
+//		}
+//		PersonDto person = convertToDto(u.getPerson());
+//
+//		UserProfileDto UserProfileDto = new UserProfileDto(u.getAddress(), u.getUserProfileId(),
+//				person, u.getHasExperienceWithPets(), u.getNumberOfPetsCurrentlyOwned(),
+//				u.getTypeOfLivingAccomodation());
+//		return UserProfileDto;
+//	}	
 	
-	@PostMapping(value = {"/questions, /questions/"})
-	public UserProfileDto createUserProfileDto(@PathVariable("address") String address,
-			@RequestParam("hasExperienceWithPets") Boolean hasExperienceWithPets,
-			@RequestParam("numberOfPetsCurrentlyOwned") int numberOfPetsCurrentlyOwned,
-			@RequestParam("typeOfLivingAccommodation") String typeOfLivingAccommodation)
-			throws IllegalArgumentException {
-
-		UserProfile userProfile = service.createUserProfile(address, hasExperienceWithPets, numberOfPetsCurrentlyOwned, typeOfLivingAccommodation);
-		return convertToDto(userProfile);
-	} 
-	
-	private UserProfileDto convertToDto(UserProfile u) {
-		if (u == null) {
-			throw new IllegalArgumentException("There is no such user profile!");
-		}
-		PersonDto person = convertToDto(u.getPerson());
-
-		UserProfileDto UserProfileDto = new UserProfileDto(u.getAddress(), u.getUserProfileId(),
-				person, u.getHasExperienceWithPets(), u.getNumberOfPetsCurrentlyOwned(),
-				u.getTypeOfLivingAccomodation());
-		return UserProfileDto;
-	}	
-	
-	// APP USER //
-	
-	@GetMapping(value = {"/userprofile, /userprofile/"})
-	public List<UserProfileDto> getAllAppUser(){
-		return service.getAllUserProfiles().stream().map(u -> convertToDto(u)).collect(Collectors.toList());
-	}
-	
-	@PostMapping(value = {"/questions, /questions/"})
-	public AppUserDto createAppUserDto(@PathVariable("username") String username,
-			@RequestParam("password") String password,
-			@RequestParam("personRole") PersonRole personRole) 
-			throws IllegalArgumentException {
-		AppUser appUser = service.createAppUser(username, password, personRole);
-		return convertToDto(appUser);
-	} 
-	
-	private AppUserDto convertToDto(AppUser a) {
-		if (a == null) {
-			throw new IllegalArgumentException("There is no such app user!");
-		}
-		AppUserDto appUserDto = new AppUserDto(a.getAppUserRole());
-		return appUserDto;
-	}	
+//	// APP USER //
+//	
+//	@GetMapping(value = {"/userprofile, /userprofile/"})
+//	public List<UserProfileDto> getAllAppUser(){
+//		return service.getAllUserProfiles().stream().map(u -> convertToDto(u)).collect(Collectors.toList());
+//	}
+//	
+//	@PostMapping(value = {"/questions, /questions/"})
+//	public AppUserDto createAppUserDto(@PathVariable("username") String username,
+//			@RequestParam("password") String password,
+//			@RequestParam("personRole") PersonRole personRole) 
+//			throws IllegalArgumentException {
+//		AppUser appUser = service.createAppUser(username, password, personRole);
+//		return convertToDto(appUser);
+//	} 
+//	
+//	private AppUserDto convertToDto(AppUser a) {
+//		if (a == null) {
+//			throw new IllegalArgumentException("There is no such app user!");
+//		}
+//		AppUserDto appUserDto = new AppUserDto(a.getAppUserRole());
+//		return appUserDto;
+//	}	
 	// LOGIN AND LOGOUT //
 	
 	//appUser login

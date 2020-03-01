@@ -309,6 +309,9 @@ public class PetShelterService {
 		if (description == null || description.trim().length() == 0) {
 			throw new IllegalArgumentException("Pet must have a description!");
 		}
+		if(owner == null) {
+			throw new IllegalArgumentException("Pet must have an owner");
+		}
 
 		PetPost petPost = new PetPost();
 		petPost.setAvailability(availability);
@@ -462,7 +465,7 @@ public class PetShelterService {
 	
 	//login for appusers
 	@Transactional
-	public Person loginAsAppUser(String username, String password) {
+	public AppUser loginAsAppUser(String username, String password) {
 		
 		if(username == null || username.trim().length() == 0) {
 			throw new IllegalArgumentException("Username cannot be empty.");
@@ -492,7 +495,7 @@ public class PetShelterService {
 	
 	//login for appadmins
 	@Transactional
-	public Person loginAsAppAdmin(String username, String password) {
+	public AppAdmin loginAsAppAdmin(String username, String password) {
 		
 		if(username == null || username.trim().length() == 0) {
 			throw new IllegalArgumentException("Username cannot be empty.");

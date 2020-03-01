@@ -11,12 +11,14 @@ import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
 import static org.junit.Assert.assertNotNull;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.lenient;
+
 import ca.mcgill.ecse321.petshelter.dao.*;
 import ca.mcgill.ecse321.petshelter.model.*;
 import ca.mcgill.ecse321.petshelter.service.PetShelterService;
@@ -844,5 +846,240 @@ public class PetShelterServiceTests {
 		assertEquals("Person password cannot be empty!", error);
 		assertNull(person);
 	}
+	
+	
+	/*
+	 * /////////////////////////////////////////////////////////////////////////////
+	 * / TESTING QUESTION
+	 * /////////////////////////////////////////////////////////////////////////////
+	 * /
+	 */
+
+	// create Question
+	@Test
+	public void testCreateQuestion() {
+		Question question = null;
+		String questionString = "How much food does the pet need?";
+
+		try {
+			question = service.createQuestion(questionString);
+		} catch (IllegalArgumentException e) {
+			fail();
+		}
+		
+		assertNotNull(question);
+		assertEquals(questionString, question.getQuestion());
+	}
+
+	// empty question
+	@Test
+	public void testCreateEmptyQuestion() {
+		Question question = null;
+		String questionString = "";
+		String error = "";
+
+		try {
+			question = service.createQuestion(questionString);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+
+		assertNull(question);
+		assertEquals("Question cannot be empty!", error);
+		
+	}
+	
+	
+	/*
+	 * /////////////////////////////////////////////////////////////////////////////
+	 * / TESTING PETPOST
+	 * /////////////////////////////////////////////////////////////////////////////
+	 * /
+	 */
+
+	// create Pet Post
+	@Test
+	public void testCreatePetPost() {
+		PetPost petPost = null;
+		boolean avail = true;
+		String name = "Mike";
+		String typeOfPet = "Cat";
+		String desc = "Small domestic cat for sale";
+
+		Person person = null;
+	
+		try {
+			person = service.createPerson("username", "password");
+		} catch (IllegalArgumentException e) {
+			fail();
+		}
+		
+		try {
+			petPost = service.createPetPost(avail, name, typeOfPet, desc, person);
+		} catch (IllegalArgumentException e) {
+			fail();
+		}
+
+		assertNotNull(petPost);
+		assertEquals(name, petPost.getName());
+		assertEquals(typeOfPet, petPost.getTypeOfPet());
+		assertEquals(desc, petPost.getDescription());
+	}
+
+	// Pet post with empty name
+	@Test
+	public void testCreatePetPostWithEmptyName() {
+		PetPost petPost = null;
+
+		boolean avail = true;
+		String name = "";
+		String typeOfPet = "Cat";
+		String desc = "Small domestic cat for sale";
+		String error = "";
+		Person person = null;
+		
+		try {
+			person = service.createPerson("user", "password");
+		} catch (IllegalArgumentException e) {
+			fail();
+		}
+		try {
+			petPost = service.createPetPost(avail, name, typeOfPet, desc, person);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertNull(petPost);
+		assertEquals("Pet name cannot be empty!", error);
+	}
+
+	// Pet post with empty type of pet
+	@Test
+	public void testCreatePetPostWithEmptyTypeOfPet() {
+		PetPost petPost = null;
+		boolean avail = true;
+		String name = "Mike";
+		String typeOfPet = "";
+		String desc = "Small domestic cat for sale";
+		String error = "";
+		
+		Person person = null;
+		
+		try {
+			person = service.createPerson("user", "password");
+		} catch (IllegalArgumentException e) {
+			fail();
+		}
+
+		try {
+			petPost = service.createPetPost(avail, name, typeOfPet, desc, person);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+
+		assertNull(petPost);
+		assertEquals("Pet type cannot be empty!", error);
+	}
+	
+
+	// Pet post with empty description
+	@Test
+	public void testCreatePetPostWithEmptyDescription() {
+
+		PetPost petPost = null;
+
+		boolean avail = true;
+		String name = "Mike";
+		String typeOfPet = "Cat";
+		String desc = "";
+		String error = "";
+		
+		Person person = null;
+		
+		try {
+			person = service.createPerson("user", "password");
+		} catch (IllegalArgumentException e) {
+			fail();
+		}
+
+		try {
+			petPost = service.createPetPost(avail, name, typeOfPet, desc, person);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+
+		assertNull(petPost);
+		assertEquals("Pet must have a description!", error);
+	}
+	
+	@Test
+	public void testCreatePetPostWithNullOwner() {
+
+		PetPost petPost = null;
+		boolean avail = true;
+		String name = "Mike";
+		String typeOfPet = "Cat";
+		String desc = "cute cat";
+		String error = "";
+		
+		try {
+			petPost = service.createPetPost(avail, name, typeOfPet, desc, null);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+
+		assertNull(petPost);
+		assertEquals("Pet must have an owner", error);
+	}
+	
+	/*
+	 * /////////////////////////////////////////////////////////////////////////////
+	 * / TESTING LOG IN LOG OUT
+	 * /////////////////////////////////////////////////////////////////////////////
+	 * /
+	 */
+	
+	//login logout needs persistence to work, tests in petsheltercrudtests.java
+
+//	@Test
+//	public void testLogInAppAdmin() {
+//		AppAdmin appAdmin = null;
+//		String username = "hello";
+//		String password = "world";
+//		
+//		try {
+//			appAdmin = service.createAppAdmin(username, password);
+//		} catch (IllegalArgumentException e) {
+//			fail();
+//		}
+//		AppAdmin appAdminService = null;
+//		
+//		try {
+//			appAdminService = service.loginAsAppAdmin(username, password);
+//		} catch (IllegalArgumentException e) {
+//			fail();
+//		}
+//		assertNotNull(appAdminService);
+//	}
+//	
+//	@Test
+//	public void testLogInAppUser() {
+//		AppUser appUser = null;
+//		
+//		try {
+//			appUser = service.createAppUser("user", "password", null);
+//		} catch (IllegalArgumentException e) {
+//			fail();
+//		}
+//		AppUser appUserService = null;
+//		try {
+//			appUserService = service.loginAsAppUser(appUser.getUsername(), appUser.getPassword());
+//		} catch (IllegalArgumentException e) {
+//			fail();
+//		}
+//		assertNotNull(appUserService);	
+//	}
+//	
+//	
+	
 	
 }
