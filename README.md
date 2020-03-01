@@ -1,12 +1,14 @@
 # Welcome to Group 8's Pet Adoption App project!
-This project was created as part of the course ECSE321 - Introduction to Software Development in Winter 2020 at McGill University.
+[![Build Status](https://travis-ci.com/McGill-ECSE321-Winter2020/project-group-08.svg?token=VBu3P4oyjgHgd1q2Qycx&branch=master)](https://travis-ci.com/McGill-ECSE321-Winter2020/project-group-08)
+
+This project was created as part of the course ECSE321 - Introduction to Software Engineering in Winter 2020 at McGill University.
 
 Our team was composed of:
-* Michael Frajman - Project manager and document lead
-* Karl Koerich - Backend developper
-* Shi Tong Li - Testing lead
-* Xinrui Li - Frontend developer
-* Jia Wei Sun - Backend developper and UML specialist
+* [Michael Frajman](https://github.com/mfraj99) - Project manager and document lead
+* [Karl Koerich](https://github.com/karlmiko) - Backend developper
+* [Shi Tong Li](https://github.com/link825) - Testing lead
+* [Xinrui Li](https://github.com/xinruili07) - Frontend developer
+* [Jia Wei Sun](https://github.com/jiaweisun-github) - Backend developper and UML specialist
 
 ## Scope
 The goal of the project was to create a website and app for a pet shelter that allowed for users to view and apply to adoption posts as well as to put their pets up for adoption. 
@@ -14,6 +16,7 @@ The goal of the project was to create a website and app for a pet shelter that a
 ## Directory
 * [Wiki](https://github.com/McGill-ECSE321-Winter2020/project-group-08/wiki)
 * [Sprint 1](#sprint-1)
+* [Sprint 2](#sprint-2)
 
 ## Sprint 1
 ### Main task:
@@ -40,3 +43,20 @@ The goal of the project was to create a website and app for a pet shelter that a
 |Shi Tong Li    |  33.5 hours | 4| 7| 4| 8| 1| 2| 7.5|
 |Xinrui Li      |  27.5 hours | 4| 4| 4| 8| 3| 2| 2.5|
 |Jia Wei Sun    |  22.5 hours | 2| 6| 2| 4 |1 |2 |5.5|
+
+## Sprint 2
+### Main task:
+* Improve aspects of sprint 1 (bug fixes, improveing test suite, adding missing methods to service class, getting Travis to build)
+* Creating a crontroller/implementing RESTful services
+* Creating a test suite for the service class
+* Creating an integration test suite for RESTful services
+* Creating a quality assurance plan
+
+### Documents
+* [Quality assurance plan](https://github.com/McGill-ECSE321-Winter2020/project-group-08/wiki/Quality-Assurance-Plan)
+* [Quality assurance report](https://github.com/McGill-ECSE321-Winter2020/project-group-08/wiki/Quality-Assurance-Report)
+* [RESTful services API](https://github.com/McGill-ECSE321-Winter2020/project-group-08/wiki/RESTful-Services-API)
+* [Sprint 2 summary](https://github.com/McGill-ECSE321-Winter2020/project-group-08/wiki/Report-Sprint-2)
+
+### Effort Table
+(Can also be viewed in our [wiki](https://github.com/McGill-ECSE321-Winter2020/project-group-08/wiki/Effort-Table-2))
