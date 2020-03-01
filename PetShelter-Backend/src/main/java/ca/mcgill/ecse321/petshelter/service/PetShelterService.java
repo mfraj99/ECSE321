@@ -429,7 +429,7 @@ public class PetShelterService {
 		}
 		return userProfile;
 	}
-
+	
 	@Transactional
 	public List<UserProfile> getAllUserProfiles() {
 		return toList(userProfileRepository.findAll());

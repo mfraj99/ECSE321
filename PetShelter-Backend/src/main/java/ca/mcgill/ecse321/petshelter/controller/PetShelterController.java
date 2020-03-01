@@ -39,12 +39,12 @@ public class PetShelterController {
 	
 	// QUESTION //
 	
-	@GetMapping(value = {"/questions, /questions/"})
+	@GetMapping(value = {"/questions", "/questions/"})
 	public List<QuestionDto> getAllQuestions(){
 		return service.getAllQuestions().stream().map(q -> convertToDto(q)).collect(Collectors.toList());
 	}
 	
-	@PostMapping(value = {"/questions, /questions/"})
+	@PostMapping(value = {"/questions", "/questions/"})
 	public QuestionDto createQuestionDto(@PathVariable("question") String ques,
 			@RequestParam("answer") String answer,
 			@RequestParam("questionId") int questionId) 
@@ -69,19 +69,21 @@ public class PetShelterController {
 	
 	// USER PROFILE //
 	
-	@GetMapping(value = {"/userprofile, /userprofile/"})
+	@GetMapping(value = {"/userprofile", "/userprofile/"})
 	public List<UserProfileDto> getAllUserProfiles(){
 		return service.getAllUserProfiles().stream().map(u -> convertToDto(u)).collect(Collectors.toList());
 	}
 	
-	@PostMapping(value = {"/userprofile, /userprofile/"})
-	public UserProfileDto createUserProfileDto(@PathVariable("address") String address,
-			@RequestParam("hasExperienceWithPets") Boolean hasExperienceWithPets,
-			@RequestParam("numberOfPetsCurrentlyOwned") int numberOfPetsCurrentlyOwned,
-			@RequestParam("typeOfLivingAccommodation") String typeOfLivingAccommodation)
+	@PostMapping(value = {"/userprofile/{username}", "/userprofile/{username}/"})
+	public UserProfileDto createUserProfileDto(@PathVariable("username") String username,
+			@RequestParam() String address,
+			@RequestParam() Boolean hasExperienceWithPets,
+			@RequestParam() int numberOfPetsCurrentlyOwned,
+			@RequestParam() String typeOfLivingAccommodation)
 			throws IllegalArgumentException {
 
 		UserProfile userProfile = service.createUserProfile(address, hasExperienceWithPets, numberOfPetsCurrentlyOwned, typeOfLivingAccommodation);
+		userProfile.setPerson(service.getPerson(username));
 		return convertToDto(userProfile);
 	} 
 	
@@ -99,17 +101,17 @@ public class PetShelterController {
 	
 	// APP USER //
 	
-	@GetMapping(value = {"/appuser, /appuser/"})
+	@GetMapping(value = {"/appuser", "/appuser/"})
 	public List<AppUserDto> getAllAppUser(){
 		return service.getAllAppUsers().stream().map(a -> convertToDto(a)).collect(Collectors.toList());
 	}
 	
-	@PostMapping(value = {"/appuser/{username}, /appuser/{username}/"})
+	@PostMapping(value = {"/appuser/{username}", "/appuser/{username}/"})
 	public AppUserDto createAppUserDto(@PathVariable("username") String username,
 			@RequestParam String password,
-			@RequestParam PersonRole personRole) 
+			@RequestParam PersonRole appUserRole) 
 			throws IllegalArgumentException {
-		AppUser appUser = service.createAppUser(username, password, personRole);
+		AppUser appUser = service.createAppUser(username, password, appUserRole);
 		return convertToDto(appUser);
 	} 
 	
@@ -117,29 +119,42 @@ public class PetShelterController {
 		if (a == null) {
 			throw new IllegalArgumentException("There is no such app user!");
 		}
-		AppUserDto appUserDto = new AppUserDto(a.getAppUserRole());
+		AppUserDto appUserDto = new AppUserDto(a.getUsername(), a.getPassword(), a.getAppUserRole());
 		return appUserDto;
 	}	
 	// LOGIN AND LOGOUT //
 	
 	//appUser login
 	@PostMapping(value = {"/loginuser/{personUsername}", "/loginuser/{personUsername}/"})
-	public void appUserLogin(@PathVariable("personUsername") String personUsername,
+	public String appUserLogin(@PathVariable("personUsername") String personUsername,
 			@RequestParam String password) {
-		service.loginAsAppUser(personUsername, password);
+		try{
+			service.loginAsAppUser(personUsername, password);
+			return "Login Successful!";
+		}catch(IllegalArgumentException e) {
+			return e.getMessage();
+		}
+		
 	}
 	
 	//appAdmin login
 	@PostMapping(value = {"/loginadmin/{personUsername}", "/loginadmin/{personUsername}/"})
-	public void appAdminLogin(@PathVariable("personUsername") String personUsername,
+	public String appAdminLogin(@PathVariable("personUsername") String personUsername,
 			@RequestParam String password) {
-		service.loginAsAppAdmin(personUsername, password);
+		try{
+			service.loginAsAppAdmin(personUsername, password);
+			return "Login Successful!";
+		}catch(IllegalArgumentException e) {
+			return e.getMessage();
+		}
+		
 	}
 	
 	//logout
 	@PutMapping(value = {"/logout", "/logout/"})
-	public void logout() {
-		service.logout();
+	public String logout() {
+			service.logout();
+			return "Logout Successful!";
 	}
 	
 	@GetMapping(value = {"/user", "/user/"})
@@ -149,7 +164,8 @@ public class PetShelterController {
 	
 	// APP ADMIN //
 	
-	@PostMapping(value = {"/adminregister/{adminUsername}", "/adminregister/{adminUsername}/"})
+	
+	@PostMapping(value = {"/appadmin/{adminUsername}", "/appadmin/{adminUsername}/"})
 	public PersonDto registerAppAdmin(@PathVariable("adminUsername") String adminUsername,
 			@RequestParam String password){
 
@@ -158,6 +174,7 @@ public class PetShelterController {
 		return convertToDto(appAdmin);
 	}
 	
+
 	// DONATION //
 	
 	@GetMapping(value = { "/donations", "/donations/" })
