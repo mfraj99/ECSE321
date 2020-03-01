@@ -105,10 +105,10 @@ public class PetShelterController {
 		return service.getAllAppUsers().stream().map(a -> convertToDto(a)).collect(Collectors.toList());
 	}
 	
-	@PostMapping(value = {"/appuser, /appuser/"})
+	@PostMapping(value = {"/appuser/{username}, /appuser/{username}/"})
 	public AppUserDto createAppUserDto(@PathVariable("username") String username,
-			@RequestParam("password") String password,
-			@RequestParam("personRole") PersonRole personRole) 
+			@RequestParam String password,
+			@RequestParam PersonRole personRole) 
 			throws IllegalArgumentException {
 		AppUser appUser = service.createAppUser(username, password, personRole);
 		return convertToDto(appUser);
