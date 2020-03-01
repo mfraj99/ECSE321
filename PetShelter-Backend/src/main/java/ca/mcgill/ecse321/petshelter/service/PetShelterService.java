@@ -156,20 +156,7 @@ public class PetShelterService {
 	}
 	
 	
-	@Transactional
-	public AppAdmin changeAppAdminUsername(String usernameOld, String usernameNew) {
-		if(usernameOld == null) {
-			throw new IllegalArgumentException("Old username cannot be empty!");
-		}
-		if(usernameNew == null) {
-			throw new IllegalArgumentException("New username cannot be empty!");
-		}
-		AppAdmin appAdmin = getAppAdmin(usernameOld);
-		appAdmin.setUsername(usernameNew);
-		appAdminRepository.save(appAdmin);
-		
-		return appAdmin;
-	}
+	
 	
 	@Transactional
 	public AppAdmin changeAppAdminPassword(String username, String password) {
@@ -243,20 +230,6 @@ public class PetShelterService {
 	}
 	
 	
-	@Transactional
-	public AppUser changeAppUserUsername(String usernameOld, String usernameNew) {
-		if(usernameOld == null) {
-			throw new IllegalArgumentException("Old username cannot be empty!");
-		}
-		if(usernameNew == null) {
-			throw new IllegalArgumentException("New username cannot be empty!");
-		}
-		AppUser appUser = getAppUser(usernameOld);
-		appUser.setUsername(usernameNew);
-		appUserRepository.save(appUser);
-		
-		return appUser;
-	}
 	
 	@Transactional
 	public AppUser changeAppUserPassword(String username, String password) {
@@ -414,20 +387,6 @@ public class PetShelterService {
 		return deleted;
 	}
 	
-	@Transactional
-	public Person changePersonUsername(String usernameOld, String usernameNew) {
-		if(usernameOld == null) {
-			throw new IllegalArgumentException("Old username cannot be empty!");
-		}
-		if(usernameNew == null) {
-			throw new IllegalArgumentException("New username cannot be empty!");
-		}
-		Person person = getPerson(usernameOld);
-		person.setUsername(usernameNew);
-		personRepository.save(person);
-		
-		return person;
-	}
 	
 	@Transactional
 	public Person changePersonPassword(String username, String password) {
@@ -699,7 +658,7 @@ public class PetShelterService {
 		
 	}
 	@Transactional
-	public UserProfile changeUserProfilenumberOfPetsCurrentlyOwned(Integer id, Integer numberOfPetsCurrentlyOwned) {
+	public UserProfile changeUserProfileNumberOfPetsCurrentlyOwned(Integer id, Integer numberOfPetsCurrentlyOwned) {
 		if(id == null) {
 			throw new IllegalArgumentException("Id cannot be empty!");
 		}
