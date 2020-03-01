@@ -86,6 +86,22 @@ public class PetShelterService {
 		} else { throw new IllegalArgumentException("AdoptRequest must be valid!");}
 		return deleted;
 	}
+	
+	@Transactional
+	public AdoptRequest changeAdoptRequestStatus(Integer id, Status status) {
+		if(id == null) {
+			throw new IllegalArgumentException("AdoptRequest Id cannot be empty!");
+		}
+		if(status == null) {
+			throw new IllegalArgumentException("AdoptRequest status Id cannot be empty!");
+		}
+		AdoptRequest adoptRequest = getAdoptRequest(id);
+		adoptRequest.setStatus(status);
+		adoptRequestRepository.save(adoptRequest);
+		
+		return adoptRequest;
+	}
+
 
 	// APPADMIN
 	@Transactional
@@ -137,6 +153,37 @@ public class PetShelterService {
 			deleted = true;
 		} else { throw new IllegalArgumentException("No AppAdmin found with username!");}
 		return deleted;
+	}
+	
+	
+	@Transactional
+	public AppAdmin changeAppAdminUsername(String usernameOld, String usernameNew) {
+		if(usernameOld == null) {
+			throw new IllegalArgumentException("Old username cannot be empty!");
+		}
+		if(usernameNew == null) {
+			throw new IllegalArgumentException("New username cannot be empty!");
+		}
+		AppAdmin appAdmin = getAppAdmin(usernameOld);
+		appAdmin.setUsername(usernameNew);
+		appAdminRepository.save(appAdmin);
+		
+		return appAdmin;
+	}
+	
+	@Transactional
+	public AppAdmin changeAppAdminPassword(String username, String password) {
+		if(username == null) {
+			throw new IllegalArgumentException("Username cannot be empty!");
+		}
+		if(password == null) {
+			throw new IllegalArgumentException("New password cannot be empty!");
+		}
+		AppAdmin appAdmin = getAppAdmin(username);
+		appAdmin.setPassword(password);
+		appAdminRepository.save(appAdmin);
+		
+		return appAdmin;
 	}
 	
 
@@ -194,6 +241,52 @@ public class PetShelterService {
 		} else { throw new IllegalArgumentException("No AppUser found with username!");}
 		return deleted;
 	}
+	
+	
+	@Transactional
+	public AppUser changeAppUserUsername(String usernameOld, String usernameNew) {
+		if(usernameOld == null) {
+			throw new IllegalArgumentException("Old username cannot be empty!");
+		}
+		if(usernameNew == null) {
+			throw new IllegalArgumentException("New username cannot be empty!");
+		}
+		AppUser appUser = getAppUser(usernameOld);
+		appUser.setUsername(usernameNew);
+		appUserRepository.save(appUser);
+		
+		return appUser;
+	}
+	
+	@Transactional
+	public AppUser changeAppUserPassword(String username, String password) {
+		if(username == null) {
+			throw new IllegalArgumentException("Username cannot be empty!");
+		}
+		if(password == null) {
+			throw new IllegalArgumentException("New password cannot be empty!");
+		}
+		AppUser appUser = getAppUser(username);
+		appUser.setPassword(password);
+		appUserRepository.save(appUser);
+		
+		return appUser;
+	}
+	
+	@Transactional
+	public AppUser changeAppUserPersonRole(String username, PersonRole appUserRole) {
+		if(username == null) {
+			throw new IllegalArgumentException("Username cannot be empty!");
+		}
+		if(appUserRole == null) {
+			throw new IllegalArgumentException("New appuser role cannot be empty!");
+		}
+		AppUser appUser = getAppUser(username);
+		appUser.setAppUserRole(appUserRole);
+		appUserRepository.save(appUser);
+		
+		return appUser;
+	}
 
 
 	// DONATION
@@ -237,6 +330,31 @@ public class PetShelterService {
 			deleted = true;
 		} else { throw new IllegalArgumentException("No donation found with Id!");}
 		return deleted;
+	}
+	
+	@Transactional
+	public Donation changeDonationComment(Integer id, String comment) {
+		if(id == null) {
+			throw new IllegalArgumentException("Donation ID invalid!");
+		}
+		if(comment == null ||comment.trim().length()==0) {
+			throw new IllegalArgumentException("New comment cannot be empty");
+		}
+		Donation donation = getDonation(id);
+		donation.setComment(comment);
+		donationRepository.save(donation);
+		return donation;
+	}
+	
+	@Transactional
+	public Donation changeDonationAnonymous(Integer id, boolean anonymous) {
+		if(id == null) {
+			throw new IllegalArgumentException("Donation ID invalid!");
+		}
+		Donation donation = getDonation(id);
+		donation.setSetNameAnonymous(anonymous);
+		donationRepository.save(donation);
+		return donation;
 	}
 
 	// PERSON
@@ -295,6 +413,36 @@ public class PetShelterService {
 		} else { throw new IllegalArgumentException("Person not found with username!");}
 		return deleted;
 	}
+	
+	@Transactional
+	public Person changePersonUsername(String usernameOld, String usernameNew) {
+		if(usernameOld == null) {
+			throw new IllegalArgumentException("Old username cannot be empty!");
+		}
+		if(usernameNew == null) {
+			throw new IllegalArgumentException("New username cannot be empty!");
+		}
+		Person person = getPerson(usernameOld);
+		person.setUsername(usernameNew);
+		personRepository.save(person);
+		
+		return person;
+	}
+	
+	@Transactional
+	public Person changePersonPassword(String username, String password) {
+		if(username == null) {
+			throw new IllegalArgumentException("Username cannot be empty!");
+		}
+		if(password == null) {
+			throw new IllegalArgumentException("New password cannot be empty!");
+		}
+		Person person = getPerson(username);
+		person.setPassword(password);
+		personRepository.save(person);
+		
+		return person;
+	}
 
 	// PETPOST
 
@@ -352,6 +500,49 @@ public class PetShelterService {
 		} else { throw new IllegalArgumentException("No PetPost found with Id!");}
 		return deleted;
 	}
+	
+	
+	@Transactional
+	public PetPost changePetPostAvailability(Integer id, boolean availability) {
+		if(id == null) {
+			throw new IllegalArgumentException("Pet Post ID invalid!");
+		}
+		PetPost petPost = getPetPost(id);
+		petPost.setAvailability(availability);
+		petPostRepository.save(petPost);
+		return petPost;
+	}
+	
+	@Transactional
+	public PetPost changePetPostName(Integer id, String name) {
+		if(id == null) {
+			throw new IllegalArgumentException("Pet Post ID invalid!");
+		}
+		if(name == null) {
+			throw new IllegalArgumentException("New name cannot be empty");
+		}
+		PetPost petPost = getPetPost(id);
+		petPost.setName(name);
+		petPostRepository.save(petPost);
+		return petPost;
+	}
+	
+	
+	@Transactional
+	public PetPost changePetPostDescription(Integer id, String description) {
+		if(id == null) {
+			throw new IllegalArgumentException("Pet Post ID invalid!");
+		}
+		if(description == null) {
+			throw new IllegalArgumentException("New description cannot be empty");
+		}
+		PetPost petPost = getPetPost(id);
+		petPost.setDescription(description);
+		petPostRepository.save(petPost);
+		return petPost;
+	}
+	
+	
 
 	// QUESTION
 
@@ -394,6 +585,36 @@ public class PetShelterService {
 		} else { throw new IllegalArgumentException("No question found with Id!");}
 		return deleted;
 	}
+	
+	@Transactional
+	public Question changeQuestionString(Integer id, String ques) {
+		if(id == null) {
+			throw new IllegalArgumentException("No question found with Id!");
+		}
+		if(ques==null) {
+			throw new IllegalArgumentException("New question cannot be empty");
+		}
+		Question question = getQuestion(id);
+		question.setQuestion(ques);
+		questionRepository.save(question);
+		return question;
+	}
+	
+	@Transactional
+	public Question changeQuestionAnswer(Integer id, String answer) {
+		if(id == null) {
+			throw new IllegalArgumentException("No question found with Id!");
+		}
+		if(answer==null) {
+			throw new IllegalArgumentException("New answer cannot be empty");
+		}
+		Question question = getQuestion(id);
+		question.setAnswer(answer);
+		questionRepository.save(question);
+		return question;
+	}
+	
+	
 
 	// USERPROFILE
 
@@ -448,6 +669,61 @@ public class PetShelterService {
 			deleted = true;
 		} else { throw new IllegalArgumentException("No UserProfile found with Id!");}
 		return deleted;
+	}
+	
+	
+	@Transactional
+	public UserProfile changeUserProfileAddress(Integer id, String address) {
+		if(id == null) {
+			throw new IllegalArgumentException("Id cannot be empty!");
+		}
+		if(address == null) {
+			throw new IllegalArgumentException("New address cannot be empty");
+		}
+		UserProfile userProfile = getUserProfile(id);
+		userProfile.setAddress(address);
+		userProfileRepository.save(userProfile);
+		return userProfile;
+		
+	}
+	
+	@Transactional
+	public UserProfile changeUserProfileHasExperienceWithPets(Integer id, boolean hasExperienceWithPets) {
+		if(id == null) {
+			throw new IllegalArgumentException("Id cannot be empty!");
+		}
+		UserProfile userProfile = getUserProfile(id);
+		userProfile.setHasExperienceWithPets(hasExperienceWithPets);
+		userProfileRepository.save(userProfile);
+		return userProfile;
+		
+	}
+	@Transactional
+	public UserProfile changeUserProfilenumberOfPetsCurrentlyOwned(Integer id, Integer numberOfPetsCurrentlyOwned) {
+		if(id == null) {
+			throw new IllegalArgumentException("Id cannot be empty!");
+		}
+		if(numberOfPetsCurrentlyOwned == null) {
+			throw new IllegalArgumentException("Number of Pets cannot be empty");
+		}
+		UserProfile userProfile = getUserProfile(id);
+		userProfile.setNumberOfPetsCurrentlyOwned(numberOfPetsCurrentlyOwned);
+		userProfileRepository.save(userProfile);
+		return userProfile;
+		
+	}
+	@Transactional
+	public UserProfile changeUserProfileTypeOfLivingAccommodation(Integer id, String typeOfLivingAccommodation) {
+		if(id == null) {
+			throw new IllegalArgumentException("Id cannot be empty!");
+		}
+		if(typeOfLivingAccommodation == null) {
+			throw new IllegalArgumentException("Living accomodation cannot be empty");
+		}
+		UserProfile userProfile = getUserProfile(id);
+		userProfile.setTypeOfLivingAccomodation(typeOfLivingAccommodation);
+		userProfileRepository.save(userProfile);
+		return userProfile;
 	}
 	
 	
