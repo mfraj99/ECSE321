@@ -79,6 +79,40 @@ public class PetShelterCrudTests {
 		assertEquals(1, allAdoptRequests.size());
 	}
 	
+	@Test
+	public void testCreateAdoptRequestNullOwner() {
+		assertEquals(0,pss.getAllAdoptRequests().size());
+		pss.createPerson("person1", "password");
+		pss.createPetPost(true, "CoronaVirus", "dog", "cute doggo", pss.getPerson("person1"));
+		String error = null;
+		try {
+			pss.createAdoptRequest(null, pss.getAllPetPosts().get(0));
+		} catch (IllegalArgumentException e) {
+			error= e.getMessage();
+		}
+		
+		assertEquals("Adoptrequest must have an owner!", error);
+		assertEquals(0,pss.getAllAdoptRequests().size());
+		
+		
+	}
+	
+	@Test
+	public void testCreateAdoptRequestNullPetPost() {
+		assertEquals(0,pss.getAllAdoptRequests().size());
+		pss.createPerson("person1", "password");
+		String error = null;
+		
+		try {
+			pss.createAdoptRequest(pss.getPerson("person1"), null);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		
+		assertEquals("Adoptrequest must be associated with a pet post!", error);
+		assertEquals(0,pss.getAllAdoptRequests().size());
+	}
+	
 	
 	@Test
 	public void testDeleteAdoptRequest() {
@@ -95,6 +129,37 @@ public class PetShelterCrudTests {
 		
 		//deleting adoptRequest
 		pss.deleteAdoptRequest(pss.getAllAdoptRequests().get(0).getAdoptRequestId());
+		assertEquals(0, pss.getAllAdoptRequests().size());
+	}
+	
+	@Test
+	public void testDeleteAdoptRequestNullId() {
+		assertEquals(0, pss.getAllAdoptRequests().size());
+		String error = null;
+		Integer Id = null;
+		try {
+			pss.deleteAdoptRequest(Id);
+		} catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		
+		assertEquals("AdoptRequestId invalid!", error);
+		assertEquals(0, pss.getAllAdoptRequests().size());
+		
+	}
+	
+	@Test
+	public void testDeleteAdoptRequestInvalidId() {
+		assertEquals(0, pss.getAllAdoptRequests().size());
+		String error = null;
+		Integer Id = 0000;
+		try {
+			pss.deleteAdoptRequest(Id);
+		} catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		
+		assertEquals("AdoptRequest must be valid!", error);
 		assertEquals(0, pss.getAllAdoptRequests().size());
 	}
 
@@ -134,6 +199,49 @@ public class PetShelterCrudTests {
 		assertEquals("Can only have one Admin!", error);
 		assertEquals(size, pss.getAllAppAdmins().size());
 	}
+	
+	@Test
+	public void testDeleteAppAdmin() {
+		//creating person
+		assertEquals(0, pss.getAllAppAdmins().size());
+		String username = "tony";
+		String password = "passowrd";
+		
+		pss.createAppAdmin(username, password);
+		assertEquals(1, pss.getAllAppAdmins().size());
+		//deleting person
+		
+		pss.deleteAppAdmin(username);
+		assertEquals(0, pss.getAllAppAdmins().size());
+	}
+	
+	@Test
+	public void testDeleteAppAdminNullName() {
+		assertEquals(0, pss.getAllAppAdmins().size());
+		String error= null;
+		try {
+			pss.deleteAppAdmin("");
+		} catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("Username invalid!", error);
+		assertEquals(0, pss.getAllAppAdmins().size());
+		
+	}
+	
+	@Test
+	public void testDeleteAppAdminInvalidName() {
+		assertEquals(0, pss.getAllAppAdmins().size());
+		String error = null;
+		try {
+			pss.deleteAppAdmin("username");
+		} catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("No AppAdmin found with username!", error);
+		assertEquals(0, pss.getAllAppAdmins().size());
+	}
+	
 
 	/*
 	 * /////////////////////////////////////////////////////////////////////////////
@@ -175,13 +283,41 @@ public class PetShelterCrudTests {
 		String username = "tony";
 		String password = "passowrd";
 		
-		pss.createPerson(username, password);
-		assertEquals(1, pss.getAllPersons().size());
+		pss.createAppUser(username, password, PersonRole.ADOPTER);
+		assertEquals(1, pss.getAllAppUsers().size());
 		//deleting person
 		
-		pss.deletePerson(username);
-		assertEquals(0, pss.getAllPersons().size());
+		pss.deleteAppUser(username);
+		assertEquals(0, pss.getAllAppUsers().size());
 	}
+	
+	@Test
+	public void testDeleteAppUserNullName() {
+		assertEquals(0, pss.getAllAppUsers().size());
+		String error= null;
+		try {
+			pss.deleteAppUser("");
+		} catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("Username invalid!", error);
+		assertEquals(0, pss.getAllAppUsers().size());
+		
+	}
+	
+	@Test
+	public void testDeleteAppUserInvalidName() {
+		assertEquals(0, pss.getAllAppUsers().size());
+		String error = null;
+		try {
+			pss.deleteAppUser("username");
+		} catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("No AppUser found with username!", error);
+		assertEquals(0, pss.getAllAppAdmins().size());
+	}
+	
 	/*
 	 * /////////////////////////////////////////////////////////////////////////////
 	 * / TESTING DONATION
@@ -246,6 +382,33 @@ public class PetShelterCrudTests {
 		
 		
 		pss.deleteDonation(pss.getAllDonations().get(0).getDonationId());
+		assertEquals(0, pss.getAllDonations().size());
+	}
+	
+	@Test
+	public void testDeleteDonationNullId() {
+		assertEquals(0, pss.getAllDonations().size());
+		String error = null;
+		try {
+			pss.deleteDonation(null);
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("Donation ID invalid!", error);
+		assertEquals(0, pss.getAllDonations().size());
+		
+	}
+	
+	@Test
+	public void testDeleteDonationInvalidId() {
+		assertEquals(0, pss.getAllDonations().size());
+		String error = null;
+		try {
+			pss.deleteDonation(0000);
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("No donation found with Id!", error);
 		assertEquals(0, pss.getAllDonations().size());
 	}
 
@@ -380,6 +543,33 @@ public class PetShelterCrudTests {
 		assertEquals(0, pss.getAllUserProfiles().size());
 		
 	}
+	
+	@Test
+	public void testDeleteUserProfileNullId() {
+		assertEquals(0, pss.getAllUserProfiles().size());
+		String error = null;
+		try {
+			pss.deleteUserProfile(null);
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("User Profile ID invalid!",error);
+		assertEquals(0, pss.getAllUserProfiles().size());
+	}
+	
+	@Test
+	public void testDeleteUserProfileInvalidId() {
+		assertEquals(0, pss.getAllUserProfiles().size());
+		String error = null;
+		try {
+			pss.deleteUserProfile(0000);
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("No UserProfile found with Id!",error);
+		assertEquals(0, pss.getAllUserProfiles().size());
+	}
+
 
 	/*
 	 * /////////////////////////////////////////////////////////////////////////////
@@ -554,6 +744,32 @@ public class PetShelterCrudTests {
 		pss.deletePerson(username);
 		assertEquals(0, pss.getAllPersons().size());
 	}
+	
+	@Test
+	public void testDeletePersonNullName() {
+		assertEquals(0, pss.getAllPersons().size());
+		String error = null;
+		try {
+			pss.deletePerson(null);
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("Username invalid!", error);
+		assertEquals(0, pss.getAllPersons().size());
+	}
+	
+	@Test
+	public void testDeletePersonInvalidName() {
+		assertEquals(0, pss.getAllPersons().size());
+		String error = null;
+		try {
+			pss.deletePerson("Michael");
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("Person not found with username!", error);
+		assertEquals(0, pss.getAllPersons().size());
+	}
 
 	/*
 	 * /////////////////////////////////////////////////////////////////////////////
@@ -610,6 +826,32 @@ public class PetShelterCrudTests {
 		
 		pss.deleteQuestion(pss.getAllQuestions().get(0).getQuestionId());
 		
+		assertEquals(0, pss.getAllQuestions().size());
+	}
+	
+	@Test
+	public void testDeleteQuestionNullId() {
+		assertEquals(0, pss.getAllQuestions().size());
+		String error = null;
+		try {
+			pss.deleteQuestion(null);
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("Question ID invalid!", error);
+		assertEquals(0, pss.getAllQuestions().size());
+	}
+	
+	@Test
+	public void testDeleteQuestionInvalidId() {
+		assertEquals(0, pss.getAllQuestions().size());
+		String error = null;
+		try {
+			pss.deleteQuestion(000);
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("No question found with Id!", error);
 		assertEquals(0, pss.getAllQuestions().size());
 	}
 
@@ -730,6 +972,32 @@ public class PetShelterCrudTests {
 		
 		assertEquals(0, pss.getAllPetPosts().size());
 		
+	}
+	
+	@Test
+	public void testDeletePetPostNullId() {
+		assertEquals(0, pss.getAllPetPosts().size());
+		String error = null;
+		try {
+			pss.deletePetPost(null);
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("Pet Post ID invalid!",error);
+		assertEquals(0, pss.getAllPetPosts().size());
+	}
+	
+	@Test
+	public void testDeletePetPostInvalidId() {
+		assertEquals(0, pss.getAllPetPosts().size());
+		String error = null;
+		try {
+			pss.deletePetPost(000);
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("No PetPost found with Id!",error);
+		assertEquals(0, pss.getAllPetPosts().size());
 	}
 
 }
