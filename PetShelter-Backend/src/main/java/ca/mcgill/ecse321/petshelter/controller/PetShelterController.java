@@ -3,6 +3,7 @@ package ca.mcgill.ecse321.petshelter.controller;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,15 +15,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ca.mcgill.ecse321.petshelter.dto.PersonDto;
 import ca.mcgill.ecse321.petshelter.model.AppAdmin;
+import ca.mcgill.ecse321.petshelter.model.AppUser;
 import ca.mcgill.ecse321.petshelter.model.Person;
+import ca.mcgill.ecse321.petshelter.model.PersonRole;
 import ca.mcgill.ecse321.petshelter.dto.AdoptRequestDto;
+import ca.mcgill.ecse321.petshelter.dto.AppUserDto;
 import ca.mcgill.ecse321.petshelter.dto.DonationDto;
 import ca.mcgill.ecse321.petshelter.dto.PetPostDto;
 import ca.mcgill.ecse321.petshelter.dto.QuestionDto;
+import ca.mcgill.ecse321.petshelter.dto.UserProfileDto;
 import ca.mcgill.ecse321.petshelter.model.AdoptRequest;
 import ca.mcgill.ecse321.petshelter.model.Donation;
 import ca.mcgill.ecse321.petshelter.model.PetPost;
 import ca.mcgill.ecse321.petshelter.model.Question;
+import ca.mcgill.ecse321.petshelter.model.UserProfile;
 import ca.mcgill.ecse321.petshelter.service.PetShelterService;
 
 @CrossOrigin(origins = "*")
@@ -32,16 +38,90 @@ public class PetShelterController {
 	@Autowired
 	private PetShelterService service;
 	
-//	private AppAdminDto convertToDto(AppAdmin a) {
-//		if(a == null) {
-//			throw new IllegalArgumentException("There is no such AppAdmin!");
-//		}
-//		Person appAdminDto = new appAdminDto(a.getUsername(), a.getPassword());
-//		return appAdminDto;
-//		
-//	}
+	// QUESTION //
 	
-	//LOGIN AND LOGOUT
+	@GetMapping(value = {"/questions, /questions/"})
+	public List<QuestionDto> getAllQuestions(){
+		return service.getAllQuestions().stream().map(q -> convertToDto(q)).collect(Collectors.toList());
+	}
+	
+	@PostMapping(value = {"/questions, /questions/"})
+	public QuestionDto createQuestionDto(@PathVariable("question") String ques,
+			@RequestParam("answer") String answer,
+			@RequestParam("questionId") int questionId) 
+			throws IllegalArgumentException {
+		Question question = service.createQuestion(ques);
+		return convertToDto(question);
+	} 
+	 
+	private QuestionDto convertToDto(Question q) {
+		if (q == null) {
+			throw new IllegalArgumentException("There is no such Question!");
+		}
+		
+		Set<PetPostDto> setPetPostDtos = createSetPetPostDto(q.getIsRelatedTo());
+		Set<PersonDto> setPersonDtos = createSetPersonDto(q.getPerson());
+
+		QuestionDto questionDto = new QuestionDto(q.getQuestion(), q.getAnswer(),
+				setPetPostDtos, setPersonDtos, q.getQuestionId());
+				
+		return questionDto;
+	}
+	
+	// USER PROFILE //
+	
+	@GetMapping(value = {"/userprofile, /userprofile/"})
+	public List<UserProfileDto> getAllUserProfiles(){
+		return service.getAllUserProfiles().stream().map(u -> convertToDto(u)).collect(Collectors.toList());
+	}
+	
+	@PostMapping(value = {"/questions, /questions/"})
+	public UserProfileDto createUserProfileDto(@PathVariable("address") String address,
+			@RequestParam("hasExperienceWithPets") Boolean hasExperienceWithPets,
+			@RequestParam("numberOfPetsCurrentlyOwned") int numberOfPetsCurrentlyOwned,
+			@RequestParam("typeOfLivingAccommodation") String typeOfLivingAccommodation)
+			throws IllegalArgumentException {
+
+		UserProfile userProfile = service.createUserProfile(address, hasExperienceWithPets, numberOfPetsCurrentlyOwned, typeOfLivingAccommodation);
+		return convertToDto(userProfile);
+	} 
+	
+	private UserProfileDto convertToDto(UserProfile u) {
+		if (u == null) {
+			throw new IllegalArgumentException("There is no such user profile!");
+		}
+		PersonDto person = convertToDto(u.getPerson());
+
+		UserProfileDto UserProfileDto = new UserProfileDto(u.getAddress(), u.getUserProfileId(),
+				person, u.getHasExperienceWithPets(), u.getNumberOfPetsCurrentlyOwned(),
+				u.getTypeOfLivingAccomodation());
+		return UserProfileDto;
+	}	
+	
+	// APP USER //
+	
+	@GetMapping(value = {"/userprofile, /userprofile/"})
+	public List<UserProfileDto> getAllAppUser(){
+		return service.getAllUserProfiles().stream().map(u -> convertToDto(u)).collect(Collectors.toList());
+	}
+	
+	@PostMapping(value = {"/questions, /questions/"})
+	public AppUserDto createAppUserDto(@PathVariable("username") String username,
+			@RequestParam("password") String password,
+			@RequestParam("personRole") PersonRole personRole) 
+			throws IllegalArgumentException {
+		AppUser appUser = service.createAppUser(username, password, personRole);
+		return convertToDto(appUser);
+	} 
+	
+	private AppUserDto convertToDto(AppUser a) {
+		if (a == null) {
+			throw new IllegalArgumentException("There is no such app user!");
+		}
+		AppUserDto appUserDto = new AppUserDto(a.getAppUserRole());
+		return appUserDto;
+	}	
+	// LOGIN AND LOGOUT //
 	
 	//appUser login
 	@PostMapping(value = {"/loginuser/{personUsername}", "/loginuser/{personUsername}/"})
@@ -68,7 +148,8 @@ public class PetShelterController {
 		return convertToDto((Person)service.getLoggedInUser());
 	}
 	
-	//APPADMIN
+	// APP ADMIN //
+	
 	@PostMapping(value = {"/adminregister/{adminUsername}", "/adminregister/{adminUsername}/"})
 	public PersonDto registerAppAdmin(@PathVariable("adminUsername") String adminUsername,
 			@RequestParam String password){
@@ -176,20 +257,6 @@ public class PetShelterController {
 			petPostDtoSet.add(petPostDto);
 		}
 		return petPostDtoSet;
-	}
-	
-	private QuestionDto convertToDto(Question q) {
-		if (q == null) {
-			throw new IllegalArgumentException("There is no such Question!");
-		}
-		
-		Set<PetPostDto> setPetPostDtos = createSetPetPostDto(q.getIsRelatedTo());
-		Set<PersonDto> setPersonDtos = createSetPersonDto(q.getPerson());
-	
-		QuestionDto questionDto = new QuestionDto(q.getQuestion(), q.getAnswer(),
-				setPetPostDtos, setPersonDtos, q.getQuestionId());
-				
-		return questionDto;
 	}
 	
 	// ADOPT REQUEST //
