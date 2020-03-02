@@ -744,10 +744,9 @@ public class PetShelterCrudTests {
 		String username = "JWS";
 		String password = "3GPA";
 		String error = null;
-		PersonRole personRole = PersonRole.OWNER;
 		pss.createAppUser(username, password, PersonRole.ADOPTER);
 		try {
-			pss.changeAppUserPersonRole(null, personRole);
+			pss.changeAppUserPersonRole(username, null);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -926,7 +925,7 @@ public class PetShelterCrudTests {
 		pss.createDonation(amount, comment, setNameAnonymous);
 		setNameAnonymous = true;
 		try {
-			pss.changeDonationAnonymous(pss.getAllDonations().get(0).getDonationId(), setNameAnonymous);
+			pss.changeDonationAnonymous(null, setNameAnonymous);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
