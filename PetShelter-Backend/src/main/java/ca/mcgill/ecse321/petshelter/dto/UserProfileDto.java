@@ -7,13 +7,13 @@ public class UserProfileDto {
 	private Boolean hasExperienceWithPets;
 	private Integer numberOfPetsCurrentlyOwned;
 	private String typeOfLivingAccomodation;
-	
+
 	public UserProfileDto() {
-		
+
 	}
-	
-	public UserProfileDto(String address, Integer userProfileId, PersonDto person,
-			Boolean hasExperienceWithPets, Integer numberOfPetsCurrentlyOwned, String typeOfLivingAccomodation) {
+
+	public UserProfileDto(String address, Integer userProfileId, PersonDto person, Boolean hasExperienceWithPets,
+			Integer numberOfPetsCurrentlyOwned, String typeOfLivingAccomodation) {
 		this.address = address;
 		this.userProfileId = userProfileId;
 		this.person = person;

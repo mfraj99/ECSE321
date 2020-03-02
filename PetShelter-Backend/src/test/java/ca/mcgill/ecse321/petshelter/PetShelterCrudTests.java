@@ -679,19 +679,19 @@ public class PetShelterCrudTests {
 		assertEquals(newPassword, pss.getAllAppUsers().get(0).getPassword());
 		assertEquals(1, allAppUsers.size());
 	}
-	
+
 	@Test
 	public void testUpdateAppUserPassNullName() {
 		assertEquals(0, pss.getAllAppUsers().size());
 		String error = null;
-		try{
+		try {
 			pss.changeAppUserPassword(null, "hello");
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		assertEquals("Username cannot be empty!", error);
 	}
-	
+
 	@Test
 	public void testUpdateAppUserPassNullPass() {
 		assertEquals(0, pss.getAllAppUsers().size());
@@ -699,18 +699,15 @@ public class PetShelterCrudTests {
 		String password = "3GPA";
 		String error = null;
 		pss.createAppUser(username, password, PersonRole.ADOPTER);
-		try{
+		try {
 			pss.changeAppUserPassword(username, null);
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		assertEquals("New password cannot be empty!", error);
 		assertEquals(1, pss.getAllAppUsers().size());
 	}
-	
 
-	
-	
 	@Test
 	public void testUpdateAppUserRole() {
 		assertEquals(0, pss.getAllAppUsers().size());
@@ -723,7 +720,7 @@ public class PetShelterCrudTests {
 		assertEquals(personRole, pss.getAllAppUsers().get(0).getAppUserRole());
 		assertEquals(1, allAppUsers.size());
 	}
-	
+
 	@Test
 	public void testUpdateAppUserRoleNullName() {
 		assertEquals(0, pss.getAllAppUsers().size());
@@ -732,15 +729,15 @@ public class PetShelterCrudTests {
 		String error = null;
 		PersonRole personRole = PersonRole.OWNER;
 		pss.createAppUser(username, password, PersonRole.ADOPTER);
-		try{
+		try {
 			pss.changeAppUserPersonRole(null, personRole);
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		assertEquals("Username cannot be empty!", error);
 		assertEquals(1, pss.getAllAppUsers().size());
 	}
-	
+
 	@Test
 	public void testUpdateAppUserRoleNullRole() {
 		assertEquals(0, pss.getAllAppUsers().size());
@@ -749,9 +746,9 @@ public class PetShelterCrudTests {
 		String error = null;
 		PersonRole personRole = PersonRole.OWNER;
 		pss.createAppUser(username, password, PersonRole.ADOPTER);
-		try{
+		try {
 			pss.changeAppUserPersonRole(null, personRole);
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		assertEquals("New appuser role cannot be empty!", error);
@@ -864,7 +861,7 @@ public class PetShelterCrudTests {
 		assertEquals(comment, pss.getAllDonations().get(0).getComment());
 		assertEquals(1, pss.getAllDonations().size());
 	}
-	
+
 	@Test
 	public void testUpdateDonationCommentNullId() {
 		assertEquals(0, pss.getAllDonations().size());
@@ -875,15 +872,15 @@ public class PetShelterCrudTests {
 		String error = null;
 		pss.createDonation(amount, comment, setNameAnonymous);
 		comment = "LMAO";
-		try{
+		try {
 			pss.changeDonationComment(null, comment);
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
-		assertEquals("Donation ID invalid!",error);
+		assertEquals("Donation ID invalid!", error);
 		assertEquals(1, pss.getAllDonations().size());
 	}
-	
+
 	@Test
 	public void testUpdateDonationCommentNullComment() {
 		assertEquals(0, pss.getAllDonations().size());
@@ -894,12 +891,12 @@ public class PetShelterCrudTests {
 		String error = null;
 		pss.createDonation(amount, comment, setNameAnonymous);
 		comment = "LMAO";
-		try{
+		try {
 			pss.changeDonationComment(pss.getAllDonations().get(0).getDonationId(), null);
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
-		assertEquals("New comment cannot be empty",error);
+		assertEquals("New comment cannot be empty", error);
 		assertEquals(1, pss.getAllDonations().size());
 	}
 
@@ -917,7 +914,7 @@ public class PetShelterCrudTests {
 		assertEquals(setNameAnonymous, pss.getAllDonations().get(0).isSetNameAnonymous());
 		assertEquals(1, pss.getAllDonations().size());
 	}
-	
+
 	@Test
 	public void testUpdateDonationAnonymousNullId() {
 		assertEquals(0, pss.getAllDonations().size());
@@ -928,15 +925,13 @@ public class PetShelterCrudTests {
 		String error = null;
 		pss.createDonation(amount, comment, setNameAnonymous);
 		setNameAnonymous = true;
-		try{
+		try {
 			pss.changeDonationAnonymous(pss.getAllDonations().get(0).getDonationId(), setNameAnonymous);
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
-		assertEquals("Donation ID invalid!",error);
+		assertEquals("Donation ID invalid!", error);
 	}
-	
-	
 
 	/*
 	 * /////////////////////////////////////////////////////////////////////////////
@@ -1110,7 +1105,7 @@ public class PetShelterCrudTests {
 		pss.changeUserProfileAddress(pss.getAllUserProfiles().get(0).getUserProfileId(), newAddress);
 		assertEquals(newAddress, pss.getAllUserProfiles().get(0).getAddress());
 	}
-	
+
 	@Test
 	public void testUpdateUserProfileAddressNullId() {
 		assertEquals(0, pss.getAllUserProfiles().size());
@@ -1123,16 +1118,16 @@ public class PetShelterCrudTests {
 
 		String newAddress = "6789 Boulevard";
 		String error = null;
-		
-		try{
+
+		try {
 			pss.changeUserProfileAddress(null, newAddress);
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
-		assertEquals("Id cannot be empty!",error);
+		assertEquals("Id cannot be empty!", error);
 		assertEquals(1, pss.getAllUserProfiles().size());
 	}
-	
+
 	@Test
 	public void testUpdateUserProfileAddressNullAddress() {
 		assertEquals(0, pss.getAllUserProfiles().size());
@@ -1144,12 +1139,12 @@ public class PetShelterCrudTests {
 		pss.createUserProfile(address, petExperience, petsOwned, livingAccommodations);
 		String error = null;
 
-		try{
+		try {
 			pss.changeUserProfileAddress(pss.getAllUserProfiles().get(0).getUserProfileId(), null);
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
-		assertEquals("New address cannot be empty",error);
+		assertEquals("New address cannot be empty", error);
 		assertEquals(1, pss.getAllUserProfiles().size());
 	}
 
@@ -1168,7 +1163,7 @@ public class PetShelterCrudTests {
 				hasExperienceWithPets);
 		assertEquals(hasExperienceWithPets, pss.getAllUserProfiles().get(0).getHasExperienceWithPets());
 	}
-	
+
 	@Test
 	public void testUpdateUserProfileHasExperienceWithPetsNullId() {
 		assertEquals(0, pss.getAllUserProfiles().size());
@@ -1180,16 +1175,14 @@ public class PetShelterCrudTests {
 		pss.createUserProfile(address, petExperience, petsOwned, livingAccommodations);
 		String error = null;
 		boolean hasExperienceWithPets = true;
-		try{
-			pss.changeUserProfileHasExperienceWithPets(null,
-				hasExperienceWithPets);} catch(IllegalArgumentException e) {
-					error = e.getMessage();
-				}
-		assertEquals("Id cannot be empty!",error);
+		try {
+			pss.changeUserProfileHasExperienceWithPets(null, hasExperienceWithPets);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("Id cannot be empty!", error);
 
 	}
-	
-	
 
 	@Test
 	public void testUpdateUserProfileNumberOfPetsCurrentlyOwned() {
@@ -1206,7 +1199,7 @@ public class PetShelterCrudTests {
 				newPetsOwned);
 		assertEquals(newPetsOwned, pss.getAllUserProfiles().get(0).getNumberOfPetsCurrentlyOwned());
 	}
-	
+
 	@Test
 	public void testUpdateUserProfileNumberOfPetsCurrentlyOwnedNullId() {
 		assertEquals(0, pss.getAllUserProfiles().size());
@@ -1219,14 +1212,14 @@ public class PetShelterCrudTests {
 		String error = null;
 
 		int newPetsOwned = 2;
-		try{
-			pss.changeUserProfileNumberOfPetsCurrentlyOwned(null,newPetsOwned);
-		}catch(IllegalArgumentException e) {
+		try {
+			pss.changeUserProfileNumberOfPetsCurrentlyOwned(null, newPetsOwned);
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
-		assertEquals("Id cannot be empty!",error);
+		assertEquals("Id cannot be empty!", error);
 	}
-	
+
 	@Test
 	public void testUpdateUserProfileNumberOfPetsCurrentlyOwnedNullNumber() {
 		assertEquals(0, pss.getAllUserProfiles().size());
@@ -1239,12 +1232,12 @@ public class PetShelterCrudTests {
 
 		String error = null;
 		int newPetsOwned = 2;
-		try{
-			pss.changeUserProfileNumberOfPetsCurrentlyOwned(pss.getAllUserProfiles().get(0).getUserProfileId(),null);
-		}catch(IllegalArgumentException e) {
+		try {
+			pss.changeUserProfileNumberOfPetsCurrentlyOwned(pss.getAllUserProfiles().get(0).getUserProfileId(), null);
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
-		assertEquals("Number of Pets cannot be empty",error);
+		assertEquals("Number of Pets cannot be empty", error);
 	}
 
 	@Test
@@ -1262,7 +1255,7 @@ public class PetShelterCrudTests {
 				newLivingAccommodations);
 		assertEquals(newLivingAccommodations, pss.getAllUserProfiles().get(0).getTypeOfLivingAccomodation());
 	}
-	
+
 	@Test
 	public void testUpdateUserProfileTypeOfLivingAccommodationNullId() {
 		assertEquals(0, pss.getAllUserProfiles().size());
@@ -1275,14 +1268,14 @@ public class PetShelterCrudTests {
 
 		String error = null;
 		String newLivingAccommodations = "house";
-		try{
-			pss.changeUserProfileTypeOfLivingAccommodation(null,newLivingAccommodations);
-		}catch(IllegalArgumentException e) {
+		try {
+			pss.changeUserProfileTypeOfLivingAccommodation(null, newLivingAccommodations);
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
-		assertEquals("Id cannot be empty!",error);
+		assertEquals("Id cannot be empty!", error);
 	}
-	
+
 	@Test
 	public void testUpdateUserProfileTypeOfLivingAccommodationNullString() {
 		assertEquals(0, pss.getAllUserProfiles().size());
@@ -1295,12 +1288,12 @@ public class PetShelterCrudTests {
 
 		String error = null;
 		String newLivingAccommodations = "house";
-		try{
-			pss.changeUserProfileTypeOfLivingAccommodation(pss.getAllUserProfiles().get(0).getUserProfileId(),null);
-		}catch(IllegalArgumentException e) {
+		try {
+			pss.changeUserProfileTypeOfLivingAccommodation(pss.getAllUserProfiles().get(0).getUserProfileId(), null);
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
-		assertEquals("Living accomodation cannot be empty",error);
+		assertEquals("Living accomodation cannot be empty", error);
 	}
 
 	/*
@@ -1515,7 +1508,7 @@ public class PetShelterCrudTests {
 		assertEquals(newPassword, pss.getAllPersons().get(0).getPassword());
 		assertEquals(1, allPersons.size());
 	}
-	
+
 	@Test
 	public void testUpdatePersonPassNullName() {
 		assertEquals(0, pss.getAllPersons().size());
@@ -1523,15 +1516,15 @@ public class PetShelterCrudTests {
 		String password = "3GPA";
 		pss.createPerson(username, password);
 		String error = null;
-		try{
+		try {
 			pss.changePersonPassword(null, "hello");
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		assertEquals("Username cannot be empty!", error);
 		assertEquals(1, pss.getAllPersons().size());
 	}
-	
+
 	@Test
 	public void testUpdatePersonPassNullPass() {
 		assertEquals(0, pss.getAllPersons().size());
@@ -1539,16 +1532,14 @@ public class PetShelterCrudTests {
 		String password = "3GPA";
 		pss.createPerson(username, password);
 		String error = null;
-		try{
+		try {
 			pss.changePersonPassword(username, null);
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		assertEquals("New password cannot be empty!", error);
 		assertEquals(1, pss.getAllPersons().size());
 	}
-	
-	
 
 	/*
 	 * /////////////////////////////////////////////////////////////////////////////
@@ -1643,7 +1634,7 @@ public class PetShelterCrudTests {
 		pss.changeQuestionString(pss.getAllQuestions().get(0).getQuestionId(), newQuestion);
 		assertEquals(newQuestion, pss.getAllQuestions().get(0).getQuestion());
 	}
-	
+
 	@Test
 	public void testUpdateQuestionStringNullId() {
 		assertEquals(0, pss.getAllQuestions().size());
@@ -1651,24 +1642,24 @@ public class PetShelterCrudTests {
 		pss.createQuestion(question);
 		String newQuestion = "hello hello";
 		String error = null;
-		try{
+		try {
 			pss.changeQuestionString(null, newQuestion);
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		assertEquals("No question found with Id!", error);
 		assertEquals(1, pss.getAllQuestions().size());
 	}
-	
+
 	@Test
 	public void testUpdateQuestionStringNullQuestion() {
 		assertEquals(0, pss.getAllQuestions().size());
 		String question = "how are you";
 		pss.createQuestion(question);
 		String error = null;
-		try{
+		try {
 			pss.changeQuestionString(pss.getAllQuestions().get(0).getQuestionId(), null);
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		assertEquals("New question cannot be empty", error);
@@ -1684,7 +1675,7 @@ public class PetShelterCrudTests {
 		pss.changeQuestionAnswer(pss.getAllQuestions().get(0).getQuestionId(), answer);
 		assertEquals(answer, pss.getAllQuestions().get(0).getAnswer());
 	}
-	
+
 	@Test
 	public void testUpdateQuestionAnswerNullId() {
 		assertEquals(0, pss.getAllQuestions().size());
@@ -1692,24 +1683,24 @@ public class PetShelterCrudTests {
 		pss.createQuestion(question);
 		String answer = "hello hello";
 		String error = null;
-		try{
+		try {
 			pss.changeQuestionAnswer(null, answer);
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		assertEquals("No question found with Id!", error);
 		assertEquals(1, pss.getAllQuestions().size());
 	}
-	
+
 	@Test
 	public void testUpdateQuestionAnswerNullAnswer() {
 		assertEquals(0, pss.getAllQuestions().size());
 		String question = "how are you";
 		pss.createQuestion(question);
 		String error = null;
-		try{
+		try {
 			pss.changeQuestionAnswer(pss.getAllQuestions().get(0).getQuestionId(), null);
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		assertEquals("New answer cannot be empty", error);
@@ -1895,7 +1886,7 @@ public class PetShelterCrudTests {
 		assertEquals(availability, pss.getAllPetPosts().get(0).isAvailability());
 
 	}
-	
+
 	@Test
 	public void testUpdatePetPostAvailabilityNullId() {
 		assertEquals(0, pss.getAllAppUsers().size());
@@ -1908,9 +1899,9 @@ public class PetShelterCrudTests {
 		pss.createPetPost(avail, name, typeOfPet, desc, pss.getPerson("username"));
 		boolean availability = false;
 		String error = null;
-		try{
+		try {
 			pss.changePetPostAvailability(null, availability);
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		assertEquals("Pet Post ID invalid!", error);
@@ -1931,7 +1922,7 @@ public class PetShelterCrudTests {
 		pss.changePetPostName(pss.getAllPetPosts().get(0).getPetPostId(), newName);
 		assertEquals(newName, pss.getAllPetPosts().get(0).getName());
 	}
-	
+
 	@Test
 	public void testUpdatePetPostNameNullId() {
 		assertEquals(0, pss.getAllAppUsers().size());
@@ -1944,14 +1935,14 @@ public class PetShelterCrudTests {
 		pss.createPetPost(avail, name, typeOfPet, desc, pss.getPerson("username"));
 		String newName = "Drake";
 
-		try{
+		try {
 			pss.changePetPostName(null, newName);
-		}catch (IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		assertEquals("Pet Post ID invalid!", error);
 	}
-	
+
 	@Test
 	public void testUpdatePetPostNameNullName() {
 		assertEquals(0, pss.getAllAppUsers().size());
@@ -1963,15 +1954,13 @@ public class PetShelterCrudTests {
 		pss.createPerson("username", "password");
 		pss.createPetPost(avail, name, typeOfPet, desc, pss.getPerson("username"));
 		String error = null;
-		try{
+		try {
 			pss.changePetPostName(pss.getAllPetPosts().get(0).getPetPostId(), null);
-		}catch (IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		assertEquals("New name cannot be empty", error);
 	}
-	
-	
 
 	@Test
 	public void testUpdatePetPostDescription() {
@@ -1988,7 +1977,7 @@ public class PetShelterCrudTests {
 		pss.changePetPostDescription(pss.getAllPetPosts().get(0).getPetPostId(), description);
 		assertEquals(description, pss.getAllPetPosts().get(0).getDescription());
 	}
-	
+
 	@Test
 	public void testUpdatePetPostDescriptionNullId() {
 		assertEquals(0, pss.getAllAppUsers().size());
@@ -2002,14 +1991,14 @@ public class PetShelterCrudTests {
 		String description = "Very large dog";
 
 		String error = null;
-		try{
+		try {
 			pss.changePetPostDescription(null, description);
-		}catch (IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		assertEquals("Pet Post ID invalid!", error);
 	}
-	
+
 	@Test
 	public void testUpdatePetPostDescriptionNullDescription() {
 		assertEquals(0, pss.getAllAppUsers().size());
@@ -2021,9 +2010,9 @@ public class PetShelterCrudTests {
 		pss.createPerson("username", "password");
 		pss.createPetPost(avail, name, typeOfPet, desc, pss.getPerson("username"));
 		String error = null;
-		try{
+		try {
 			pss.changePetPostDescription(pss.getAllPetPosts().get(0).getPetPostId(), null);
-		}catch (IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		assertEquals("New description cannot be empty", error);

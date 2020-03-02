@@ -55,7 +55,7 @@ public class Person {
 
 	private Set<PetPost> owns;
 
-	@OneToMany(mappedBy = "ownedBy", cascade={CascadeType.ALL})
+	@OneToMany(mappedBy = "ownedBy", cascade = { CascadeType.ALL })
 	public Set<PetPost> getOwns() {
 		return this.owns;
 	}

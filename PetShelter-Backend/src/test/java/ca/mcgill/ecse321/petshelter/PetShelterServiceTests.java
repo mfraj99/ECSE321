@@ -23,19 +23,18 @@ import ca.mcgill.ecse321.petshelter.dao.*;
 import ca.mcgill.ecse321.petshelter.model.*;
 import ca.mcgill.ecse321.petshelter.service.PetShelterService;
 
-
 @ExtendWith(MockitoExtension.class)
 public class PetShelterServiceTests {
-	
+
 	@Mock
 	private AdoptRequestRepository adoptRequestDao;
-	@Mock 
+	@Mock
 	private AppAdminRepository appAdminDao;
-	@Mock 
+	@Mock
 	private AppUserRepository appUserDao;
 	@Mock
 	private DonationRepository donationDao;
-	@Mock 
+	@Mock
 	private PersonRepository personDao;
 	@Mock
 	private PetPostRepository petPostDao;
@@ -43,32 +42,30 @@ public class PetShelterServiceTests {
 	private QuestionRepository questionDao;
 	@Mock
 	private UserProfileRepository userProfileDao;
-	
-	
+
 	@InjectMocks
 	private PetShelterService service;
-	
+
 	private static final String PERSON_KEY = "TestPerson";
 	private static final String PASSWORD_KEY = "TestPassword";
-	
+
 	@BeforeEach
 	public void setMockOutput() {
-		lenient().when(personDao.findByUsername(anyString())).thenAnswer((InvocationOnMock 
-				invocation) -> {
-					if(invocation.getArgument(0).equals(PERSON_KEY)) {
-						Person person = new Person();
-						person.setUsername(PERSON_KEY);
-						person.setPassword(PASSWORD_KEY);
-						return person;
-					} else {
-						return null;
-					}
-					
-				});
+		lenient().when(personDao.findByUsername(anyString())).thenAnswer((InvocationOnMock invocation) -> {
+			if (invocation.getArgument(0).equals(PERSON_KEY)) {
+				Person person = new Person();
+				person.setUsername(PERSON_KEY);
+				person.setPassword(PASSWORD_KEY);
+				return person;
+			} else {
+				return null;
+			}
+
+		});
 		Answer<?> returnParameterAsAnswer = (InvocationOnMock invocation) -> {
 			return invocation.getArgument(0);
 		};
-		
+
 		lenient().when(appAdminDao.save(any(AppAdmin.class))).thenAnswer(returnParameterAsAnswer);
 		lenient().when(appUserDao.save(any(AppUser.class))).thenAnswer(returnParameterAsAnswer);
 		lenient().when(adoptRequestDao.save(any(AdoptRequest.class))).thenAnswer(returnParameterAsAnswer);
@@ -77,11 +74,9 @@ public class PetShelterServiceTests {
 		lenient().when(petPostDao.save(any(PetPost.class))).thenAnswer(returnParameterAsAnswer);
 		lenient().when(questionDao.save(any(Question.class))).thenAnswer(returnParameterAsAnswer);
 		lenient().when(userProfileDao.save(any(UserProfile.class))).thenAnswer(returnParameterAsAnswer);
-	
+
 	}
-	
-	
-	
+
 	/*
 	 * /////////////////////////////////////////////////////////////////////////////
 	 * / TESTING ADOPTREQUEST
@@ -97,59 +92,59 @@ public class PetShelterServiceTests {
 		try {
 			person1 = service.createPerson("person1", "password");
 			person2 = service.createPerson("person2", "password");
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			fail();
 		}
 		PetPost petPost = null;
 		try {
 			petPost = service.createPetPost(true, "Ebola", "dog", "cute doggo", person1);
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			fail();
 		}
-		
+
 		AdoptRequest adoptRequest = null;
 		try {
 			adoptRequest = service.createAdoptRequest(person2, petPost);
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			fail();
 		}
 		assertNotNull(adoptRequest);
 		assertEquals(person2, adoptRequest.getRequestedBy());
 		assertEquals(petPost, adoptRequest.getRequesting());
 	}
-	
+
 	@Test
 	public void testCreateAdoptRequestNullOwner() {
 		Person person1 = null;
 		PetPost petPost = null;
 		try {
-			person1= service.createPerson("person1", "password");
+			person1 = service.createPerson("person1", "password");
 			petPost = service.createPetPost(true, "CoronaVirus", "dog", "cute doggo", person1);
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			fail();
 		}
-		
+
 		String error = null;
 		AdoptRequest adoptRequest = null;
 		try {
-			adoptRequest=service.createAdoptRequest(null, petPost);
+			adoptRequest = service.createAdoptRequest(null, petPost);
 		} catch (IllegalArgumentException e) {
-			error= e.getMessage();
+			error = e.getMessage();
 		}
 		assertNull(adoptRequest);
-		assertEquals("Adoptrequest must have an owner!", error);		
-		
+		assertEquals("Adoptrequest must have an owner!", error);
+
 	}
-	
+
 	@Test
 	public void testCreateAdoptRequestNullPetPost() {
 		Person person1 = null;
 		try {
 			person1 = service.createPerson("person1", "password");
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			fail();
 		}
-		
+
 		String error = null;
 		AdoptRequest adoptRequest = null;
 		try {
@@ -160,8 +155,7 @@ public class PetShelterServiceTests {
 		assertNull(adoptRequest);
 		assertEquals("Adoptrequest must be associated with a pet post!", error);
 	}
-	
-	
+
 	/*
 	 * /////////////////////////////////////////////////////////////////////////////
 	 * / TESTING APPADMIN
@@ -178,16 +172,17 @@ public class PetShelterServiceTests {
 		AppAdmin appAdmin = null;
 		try {
 			appAdmin = service.createAppAdmin(username, password);
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			fail();
 		}
-		
+
 		assertNotNull(appAdmin);
 		assertEquals(username, appAdmin.getUsername());
 		assertEquals(password, appAdmin.getPassword());
 	}
 
-	// more than one admin, cannot do that test since mockito doesnt persist the previous AppAdmin
+	// more than one admin, cannot do that test since mockito doesnt persist the
+	// previous AppAdmin
 //	@Test
 //	public void testCreateAppAdminMoreThanOne() {
 //		String error = null;
@@ -205,8 +200,6 @@ public class PetShelterServiceTests {
 //		assertEquals("Can only have one Admin!", error);
 //		assertNull(appAdmin);
 //	}
-	
-	
 
 	@Test
 	public void testCreateAppAdminNullUandP() {
@@ -234,7 +227,7 @@ public class PetShelterServiceTests {
 		String error = null;
 		AppAdmin appAdmin = null;
 		try {
-			appAdmin =service.createAppAdmin(username, password);
+			appAdmin = service.createAppAdmin(username, password);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -253,7 +246,7 @@ public class PetShelterServiceTests {
 		AppAdmin appAdmin = null;
 
 		try {
-			appAdmin =service.createAppAdmin(username, password);
+			appAdmin = service.createAppAdmin(username, password);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -272,7 +265,7 @@ public class PetShelterServiceTests {
 		AppAdmin appAdmin = null;
 
 		try {
-			appAdmin =service.createAppAdmin(username, password);
+			appAdmin = service.createAppAdmin(username, password);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -291,7 +284,7 @@ public class PetShelterServiceTests {
 		AppAdmin appAdmin = null;
 
 		try {
-			appAdmin =service.createAppAdmin(username, password);
+			appAdmin = service.createAppAdmin(username, password);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -309,7 +302,7 @@ public class PetShelterServiceTests {
 		AppAdmin appAdmin = null;
 
 		try {
-			appAdmin =service.createAppAdmin(username, password);
+			appAdmin = service.createAppAdmin(username, password);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -327,17 +320,14 @@ public class PetShelterServiceTests {
 		AppAdmin appAdmin = null;
 
 		try {
-			appAdmin =service.createAppAdmin(username, password);
+			appAdmin = service.createAppAdmin(username, password);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		assertEquals("AppAdmin password cannot be empty!", error);
 		assertNull(appAdmin);
 	}
-	
-	
-	
-	
+
 	/*
 	 * /////////////////////////////////////////////////////////////////////////////
 	 * / TESTING APPUSER
@@ -351,7 +341,7 @@ public class PetShelterServiceTests {
 		String username = "JWS";
 		String password = "3GPA";
 		PersonRole personRole = ca.mcgill.ecse321.petshelter.model.PersonRole.ADOPTER;
-		AppUser appUser= null;
+		AppUser appUser = null;
 		try {
 			appUser = service.createAppUser(username, password, personRole);
 		} catch (IllegalArgumentException e) {
@@ -380,7 +370,7 @@ public class PetShelterServiceTests {
 		assertEquals(password, appUser.getPassword());
 		assertEquals(personRole, appUser.getAppUserRole());
 	}
-	
+
 	// create AppUser no role
 	@Test
 	public void testCreateAppUserNoRole() {
@@ -398,7 +388,7 @@ public class PetShelterServiceTests {
 		assertEquals(password, appUser.getPassword());
 		assertEquals(null, appUser.getAppUserRole());
 	}
-	
+
 	@Test
 	public void testCreateAppUserNullUandP() {
 		String username = null;
@@ -425,7 +415,7 @@ public class PetShelterServiceTests {
 		String error = null;
 		AppUser appUser = null;
 		try {
-			appUser =service.createAppUser(username, password, null);
+			appUser = service.createAppUser(username, password, null);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -444,7 +434,7 @@ public class PetShelterServiceTests {
 		AppUser appUser = null;
 
 		try {
-			appUser =service.createAppUser(username, password, null);
+			appUser = service.createAppUser(username, password, null);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -463,7 +453,7 @@ public class PetShelterServiceTests {
 		AppUser appUser = null;
 
 		try {
-			appUser =service.createAppUser(username, password, null);
+			appUser = service.createAppUser(username, password, null);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -482,7 +472,7 @@ public class PetShelterServiceTests {
 		AppUser appUser = null;
 
 		try {
-			appUser =service.createAppUser(username, password, null);
+			appUser = service.createAppUser(username, password, null);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -500,7 +490,7 @@ public class PetShelterServiceTests {
 		AppUser appUser = null;
 
 		try {
-			appUser =service.createAppUser(username, password, null);
+			appUser = service.createAppUser(username, password, null);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -518,15 +508,14 @@ public class PetShelterServiceTests {
 		AppUser appUser = null;
 
 		try {
-			appUser =service.createAppUser(username, password, null);
+			appUser = service.createAppUser(username, password, null);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		assertEquals("AppUser password cannot be empty!", error);
 		assertNull(appUser);
 	}
-	
-	
+
 	/*
 	 * /////////////////////////////////////////////////////////////////////////////
 	 * / TESTING DONATION
@@ -547,7 +536,7 @@ public class PetShelterServiceTests {
 		} catch (IllegalArgumentException e) {
 			fail();
 		}
-		
+
 		assertNotNull(donation);
 		assertEquals(amount, donation.getAmount());
 		assertEquals(comment, donation.getComment());
@@ -559,7 +548,7 @@ public class PetShelterServiceTests {
 	@Test
 	public void testCreateDonationInvalidAmount() {
 
-		Donation donation= null;
+		Donation donation = null;
 		double amount = -1;
 		String comment = "WOW";
 		boolean setNameAnonymous = false;
@@ -574,8 +563,7 @@ public class PetShelterServiceTests {
 		assertEquals("Donation amount cannot be 0!", error);
 
 	}
-	
-	
+
 	/*
 	 * /////////////////////////////////////////////////////////////////////////////
 	 * / TESTING USER PROFILE
@@ -584,7 +572,6 @@ public class PetShelterServiceTests {
 	 */
 	@Test
 	public void createUserProfile() {
-		
 
 		UserProfile userProfile = null;
 		String address = "12345 Street Blvd.";
@@ -608,7 +595,7 @@ public class PetShelterServiceTests {
 	// invalid number of pets value
 	@Test
 	public void testCreateUserProfileInvalidPetAmount() {
-	
+
 		UserProfile userProfile = null;
 		String address = "12345 Street Blvd.";
 		boolean petExperience = false;
@@ -665,7 +652,6 @@ public class PetShelterServiceTests {
 		}
 		assertNull(userProfile);
 		assertEquals("Address cannot be empty!", error);
-		
 
 	}
 
@@ -689,20 +675,14 @@ public class PetShelterServiceTests {
 		assertEquals("Living Accommodations cannot be empty!", error);
 
 	}
-	
-	
-	
-	
-	
-	
-	
+
 	/*
 	 * /////////////////////////////////////////////////////////////////////////////
 	 * / TESTING PERSON
 	 * /////////////////////////////////////////////////////////////////////////////
 	 * /
 	 */
-	
+
 	@Test
 	public void testCreatePerson() {
 		assertEquals(0, service.getAllPersons().size());
@@ -711,7 +691,7 @@ public class PetShelterServiceTests {
 		Person person = null;
 		try {
 			person = service.createPerson(username, password);
-			
+
 		} catch (IllegalArgumentException e) {
 			fail();
 		}
@@ -719,7 +699,7 @@ public class PetShelterServiceTests {
 		assertEquals(username, person.getUsername());
 		assertEquals(password, person.getPassword());
 	}
-	
+
 	@Test
 	public void testCreatePersonNullUandP() {
 		String username = null;
@@ -746,7 +726,7 @@ public class PetShelterServiceTests {
 		String error = null;
 		Person person = null;
 		try {
-			person =service.createPerson(username, password);
+			person = service.createPerson(username, password);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -765,7 +745,7 @@ public class PetShelterServiceTests {
 		Person person = null;
 
 		try {
-			person =service.createPerson(username, password);
+			person = service.createPerson(username, password);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -784,7 +764,7 @@ public class PetShelterServiceTests {
 		Person person = null;
 
 		try {
-			person =service.createPerson(username, password);
+			person = service.createPerson(username, password);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -803,7 +783,7 @@ public class PetShelterServiceTests {
 		Person person = null;
 
 		try {
-			person =service.createPerson(username, password);
+			person = service.createPerson(username, password);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -821,7 +801,7 @@ public class PetShelterServiceTests {
 		Person person = null;
 
 		try {
-			person =service.createPerson(username, password);
+			person = service.createPerson(username, password);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
@@ -839,15 +819,14 @@ public class PetShelterServiceTests {
 		Person person = null;
 
 		try {
-			person =service.createPerson(username, password);
+			person = service.createPerson(username, password);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		assertEquals("Person password cannot be empty!", error);
 		assertNull(person);
 	}
-	
-	
+
 	/*
 	 * /////////////////////////////////////////////////////////////////////////////
 	 * / TESTING QUESTION
@@ -866,7 +845,7 @@ public class PetShelterServiceTests {
 		} catch (IllegalArgumentException e) {
 			fail();
 		}
-		
+
 		assertNotNull(question);
 		assertEquals(questionString, question.getQuestion());
 	}
@@ -886,10 +865,9 @@ public class PetShelterServiceTests {
 
 		assertNull(question);
 		assertEquals("Question cannot be empty!", error);
-		
+
 	}
-	
-	
+
 	/*
 	 * /////////////////////////////////////////////////////////////////////////////
 	 * / TESTING PETPOST
@@ -907,13 +885,13 @@ public class PetShelterServiceTests {
 		String desc = "Small domestic cat for sale";
 
 		Person person = null;
-	
+
 		try {
 			person = service.createPerson("username", "password");
 		} catch (IllegalArgumentException e) {
 			fail();
 		}
-		
+
 		try {
 			petPost = service.createPetPost(avail, name, typeOfPet, desc, person);
 		} catch (IllegalArgumentException e) {
@@ -937,7 +915,7 @@ public class PetShelterServiceTests {
 		String desc = "Small domestic cat for sale";
 		String error = "";
 		Person person = null;
-		
+
 		try {
 			person = service.createPerson("user", "password");
 		} catch (IllegalArgumentException e) {
@@ -961,9 +939,9 @@ public class PetShelterServiceTests {
 		String typeOfPet = "";
 		String desc = "Small domestic cat for sale";
 		String error = "";
-		
+
 		Person person = null;
-		
+
 		try {
 			person = service.createPerson("user", "password");
 		} catch (IllegalArgumentException e) {
@@ -979,7 +957,6 @@ public class PetShelterServiceTests {
 		assertNull(petPost);
 		assertEquals("Pet type cannot be empty!", error);
 	}
-	
 
 	// Pet post with empty description
 	@Test
@@ -992,9 +969,9 @@ public class PetShelterServiceTests {
 		String typeOfPet = "Cat";
 		String desc = "";
 		String error = "";
-		
+
 		Person person = null;
-		
+
 		try {
 			person = service.createPerson("user", "password");
 		} catch (IllegalArgumentException e) {
@@ -1010,7 +987,7 @@ public class PetShelterServiceTests {
 		assertNull(petPost);
 		assertEquals("Pet must have a description!", error);
 	}
-	
+
 	@Test
 	public void testCreatePetPostWithNullOwner() {
 
@@ -1020,7 +997,7 @@ public class PetShelterServiceTests {
 		String typeOfPet = "Cat";
 		String desc = "cute cat";
 		String error = "";
-		
+
 		try {
 			petPost = service.createPetPost(avail, name, typeOfPet, desc, null);
 		} catch (IllegalArgumentException e) {
@@ -1030,15 +1007,15 @@ public class PetShelterServiceTests {
 		assertNull(petPost);
 		assertEquals("Pet must have an owner", error);
 	}
-	
+
 	/*
 	 * /////////////////////////////////////////////////////////////////////////////
 	 * / TESTING LOG IN LOG OUT
 	 * /////////////////////////////////////////////////////////////////////////////
 	 * /
 	 */
-	
-	//login logout needs persistence to work, tests in petsheltercrudtests.java
+
+	// login logout needs persistence to work, tests in petsheltercrudtests.java
 
 //	@Test
 //	public void testLogInAppAdmin() {
@@ -1080,6 +1057,5 @@ public class PetShelterServiceTests {
 //	}
 //	
 //	
-	
-	
+
 }

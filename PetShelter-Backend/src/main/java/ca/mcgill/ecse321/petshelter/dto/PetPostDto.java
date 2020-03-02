@@ -11,19 +11,19 @@ public class PetPostDto {
 	private String description;
 	private QuestionDto relatesTo;
 	private Integer petPostId;
-	
+
 	public PetPostDto() {
-		
+
 	}
-	
+
 	// Pet Post with no description
-	public PetPostDto(boolean availability, PersonDto ownedBy, Set<AdoptRequestDto> hasRequest, 
-			String name, String typeOfPet, QuestionDto relatesTo, Integer petPostId) {
+	public PetPostDto(boolean availability, PersonDto ownedBy, Set<AdoptRequestDto> hasRequest, String name,
+			String typeOfPet, QuestionDto relatesTo, Integer petPostId) {
 		this(availability, ownedBy, hasRequest, name, typeOfPet, "No description", relatesTo, petPostId);
 	}
-	
-	public PetPostDto(boolean availability, PersonDto ownedBy, Set<AdoptRequestDto> hasRequest, String name, String typeOfPet, 
-			String description, QuestionDto relatesTo, Integer petPostId) {
+
+	public PetPostDto(boolean availability, PersonDto ownedBy, Set<AdoptRequestDto> hasRequest, String name,
+			String typeOfPet, String description, QuestionDto relatesTo, Integer petPostId) {
 		this.availability = availability;
 		this.ownedBy = ownedBy;
 		this.hasRequest = hasRequest;
@@ -41,7 +41,7 @@ public class PetPostDto {
 	public PersonDto getOwnedBy() {
 		return this.ownedBy;
 	}
-	
+
 	public Set<AdoptRequestDto> getHasRequest() {
 		return this.hasRequest;
 	}
