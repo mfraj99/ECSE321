@@ -24,8 +24,6 @@ public class PetShelterIntegrationTests {
 	private JSONObject response;
 	private final String usernameUser = "TestUser";
 	private final String passwordUser = "TestPassword";
-	private final String usernameAdmin = "TestAdmin";
-	private final String passwordAdmin = "Password123";
 	private final String address = "123 rue Mcgill";
 	private final int numberOfPetsCurrentlyOwned = 2;
 	private final String typeOfLivingAccommodation = "I live in a condo";

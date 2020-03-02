@@ -14,8 +14,6 @@ import ca.mcgill.ecse321.petshelter.model.*;
 public class PetShelterService {
 
 	private static final Status PENDING = ca.mcgill.ecse321.petshelter.model.Status.PENDING;
-	private static final PersonRole ADOPTER = ca.mcgill.ecse321.petshelter.model.PersonRole.ADOPTER;
-
 	@Autowired
 	private AdoptRequestRepository adoptRequestRepository;
 	@Autowired

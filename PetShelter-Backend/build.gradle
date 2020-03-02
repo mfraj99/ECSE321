@@ -47,10 +47,15 @@ jacocoTestCoverageVerification {
 	}
 }
 
-task integrationTest(type:Exec){
-	commandLine 'cmd', '/c', 'curl -s -H "Content-Type: application/json" -X POST --data @data @database/admin http://localhost:5432/appadmin'
+//task integrationTest(type:Exec){
+//	commandLine 'curl -s -H "Content-Type: application/json" gradle -X POST --data @data @database/admin http://localhost:5432/appadmin'
+//	commandLine 'curl -s -H "Content-Type: application/json" -X POST --data @data @database/appuser http://localhost:5432/appuser'
+//	commandLine 'curl -s -H "Content-Type: application/json" -X POST --data @data @database/appuser2 http://localhost:5432/appuser'
+//	commandLine 'curl -s -H "Content-Type: application/json" -X POST --data @data @database/appuser3 http://localhost:5432/appuser'
+//	commandLine 'curl -s GET http://localhost:5432/appuser'
+	
 
-}
+//}
 
 
 

@@ -1231,7 +1231,6 @@ public class PetShelterCrudTests {
 		pss.createUserProfile(address, petExperience, petsOwned, livingAccommodations);
 
 		String error = null;
-		int newPetsOwned = 2;
 		try {
 			pss.changeUserProfileNumberOfPetsCurrentlyOwned(pss.getAllUserProfiles().get(0).getUserProfileId(), null);
 		} catch (IllegalArgumentException e) {
@@ -1287,7 +1286,6 @@ public class PetShelterCrudTests {
 		pss.createUserProfile(address, petExperience, petsOwned, livingAccommodations);
 
 		String error = null;
-		String newLivingAccommodations = "house";
 		try {
 			pss.changeUserProfileTypeOfLivingAccommodation(pss.getAllUserProfiles().get(0).getUserProfileId(), null);
 		} catch (IllegalArgumentException e) {
