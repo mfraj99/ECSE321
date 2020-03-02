@@ -167,50 +167,44 @@ public class PetShelterController {
 		return appUserDto;
 	}
 	
-	/*@Transactional
-	public AppUser changeAppUserUsername(String usernameOld, String usernameNew) {
-		if(usernameOld == null) {
+	// change appUser username
+	@PostMapping(value = { "/appuser/{username}\", \"/appuser/{username}/" })
+	public void changeAppUserUsername(@PathVariable("username") String usernameOld, @RequestParam String usernameNew) {
+		if (usernameOld == null) {
 			throw new IllegalArgumentException("Old username cannot be empty!");
-		}
-		if(usernameNew == null) {
+		} else if (usernameNew == null) {
 			throw new IllegalArgumentException("New username cannot be empty!");
+		} else {
+			service.changeAppUserUsername(usernameOld, usernameNew);
 		}
-		AppUser appUser = getAppUser(usernameOld);
-		appUser.setUsername(usernameNew);
-		appUserRepository.save(appUser);
-		
-		return appUser;
 	}
-	
-	@Transactional
-	public AppUser changeAppUserPassword(String username, String password) {
-		if(username == null) {
+
+	// change appUser password
+	@PostMapping(value = { "/appuser/{username}\", \"/appuser/{username}/" })
+	public void changeAppUserPassword(@PathVariable("username") String username, @RequestParam String password) {
+		if (username == null) {
 			throw new IllegalArgumentException("Username cannot be empty!");
 		}
-		if(password == null) {
+		if (password == null) {
 			throw new IllegalArgumentException("New password cannot be empty!");
+		} else {
+			service.changeAppUserPassword(username, password);
 		}
-		AppUser appUser = getAppUser(username);
-		appUser.setPassword(password);
-		appUserRepository.save(appUser);
-		
-		return appUser;
 	}
 	
-	@Transactional
-	public AppUser changeAppUserPersonRole(String username, PersonRole appUserRole) {
-		if(username == null) {
+	// change appUser personRole
+	@PostMapping(value = { "/appuser/{username}\", \"/appuser/{username}/" })
+	public void changeAppUserPassword(@PathVariable("username") String username,
+			@RequestParam PersonRole appUserRole) {
+		if (username == null) {
 			throw new IllegalArgumentException("Username cannot be empty!");
 		}
 		if(appUserRole == null) {
 			throw new IllegalArgumentException("New appuser role cannot be empty!");
+		} else {
+			service.changeAppUserPersonRole(username, appUserRole);
 		}
-		AppUser appUser = getAppUser(username);
-		appUser.setAppUserRole(appUserRole);
-		appUserRepository.save(appUser);
-		
-		return appUser;
-	}*/
+	}
 	
 	// LOGIN AND LOGOUT //
 	
