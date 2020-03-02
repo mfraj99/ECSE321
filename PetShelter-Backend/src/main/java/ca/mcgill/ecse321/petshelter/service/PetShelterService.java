@@ -378,8 +378,6 @@ public class PetShelterService {
 		return person;
 	}
 	
-	
-
 
 	@Transactional
 	public Person getPerson(String username) {

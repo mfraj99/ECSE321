@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +30,7 @@ import ca.mcgill.ecse321.petshelter.model.AdoptRequest;
 import ca.mcgill.ecse321.petshelter.model.Donation;
 import ca.mcgill.ecse321.petshelter.model.PetPost;
 import ca.mcgill.ecse321.petshelter.model.Question;
+import ca.mcgill.ecse321.petshelter.model.Status;
 import ca.mcgill.ecse321.petshelter.model.UserProfile;
 import ca.mcgill.ecse321.petshelter.service.PetShelterService;
 
@@ -165,6 +167,51 @@ public class PetShelterController {
 		return appUserDto;
 	}
 	
+	/*@Transactional
+	public AppUser changeAppUserUsername(String usernameOld, String usernameNew) {
+		if(usernameOld == null) {
+			throw new IllegalArgumentException("Old username cannot be empty!");
+		}
+		if(usernameNew == null) {
+			throw new IllegalArgumentException("New username cannot be empty!");
+		}
+		AppUser appUser = getAppUser(usernameOld);
+		appUser.setUsername(usernameNew);
+		appUserRepository.save(appUser);
+		
+		return appUser;
+	}
+	
+	@Transactional
+	public AppUser changeAppUserPassword(String username, String password) {
+		if(username == null) {
+			throw new IllegalArgumentException("Username cannot be empty!");
+		}
+		if(password == null) {
+			throw new IllegalArgumentException("New password cannot be empty!");
+		}
+		AppUser appUser = getAppUser(username);
+		appUser.setPassword(password);
+		appUserRepository.save(appUser);
+		
+		return appUser;
+	}
+	
+	@Transactional
+	public AppUser changeAppUserPersonRole(String username, PersonRole appUserRole) {
+		if(username == null) {
+			throw new IllegalArgumentException("Username cannot be empty!");
+		}
+		if(appUserRole == null) {
+			throw new IllegalArgumentException("New appuser role cannot be empty!");
+		}
+		AppUser appUser = getAppUser(username);
+		appUser.setAppUserRole(appUserRole);
+		appUserRepository.save(appUser);
+		
+		return appUser;
+	}*/
+	
 	// LOGIN AND LOGOUT //
 	
 	//appUser login
@@ -280,6 +327,35 @@ public class PetShelterController {
 		return donationDto;
 	}
 	
+	//change donationComment
+	@PostMapping(value = {"/donations/{donationId}", "/donations/{donationId}"})
+	public void changeDonationComment(@PathVariable("donationId") Integer donationId,
+			@RequestParam String comment){
+		if(donationId == null) {
+			throw new IllegalArgumentException("Donation ID invalid!");
+		}
+		else if(comment == null ||comment.trim().length()==0) {
+			throw new IllegalArgumentException("New comment cannot be empty");
+		}
+		else {
+			service.changeDonationComment(donationId, comment);
+		}
+	}
+	
+	//change donationComment
+	@PostMapping(value = {"/donations/{donationId}", "/donations/{donationId}"})
+	public void changeDonationAnonymous(@PathVariable("donationId") Integer donationId,
+			@RequestParam Boolean anonymous){
+		if(donationId == null) {
+			throw new IllegalArgumentException("Donation ID invalid!");
+		}
+		else {
+			service.changeDonationAnonymous(donationId, anonymous);
+		}
+	}
+	
+	// PERSON //
+	
 	private PersonDto convertToDto(Person p) {
 		if (p == null) {
 			throw new IllegalArgumentException("There is no such Person!");
@@ -303,6 +379,7 @@ public class PetShelterController {
 		}
 		return personDtoSet;
 	}
+	
 	
 	// PET POST //
 	
@@ -365,6 +442,50 @@ public class PetShelterController {
 			return service.deletePetPost(petPostId);
 		}
 	}
+	
+	//change petpost description
+	@PostMapping(value = {"/petposts/{petPostId}", "/petposts/{petPostId}"})
+	public void changePetPostDescription(@PathVariable("petPostId") Integer petPostId,
+			@RequestParam String description){
+		if(petPostId == null) {
+			throw new IllegalArgumentException("Pet Post ID invalid!");
+		}
+		else if(description == null) {
+			throw new IllegalArgumentException("New description cannot be empty");
+		}
+		else {
+			service.changePetPostDescription(petPostId, description);
+		}
+	}
+	
+	//change petpost availability
+	@PostMapping(value = {"/petposts/{petPostId}", "/petposts/{petPostId}"})
+	public void changePetPostAvailability(@PathVariable("petPostId") Integer petPostId,
+			@RequestParam Boolean availability){
+		
+		if(petPostId == null) {
+			throw new IllegalArgumentException("Pet Post ID invalid!");
+		}
+		else { 
+			service.changePetPostAvailability(petPostId, availability);
+		}
+	}
+	
+	//change petpost name
+	@PostMapping(value = {"/petposts/{petPostId}", "/petposts/{petPostId}"})
+	public void changePetPostName (@PathVariable("petPostId") Integer petPostId,
+			@RequestParam String name) {
+		if (petPostId == null) {
+			throw new IllegalArgumentException("Pet Post ID invalid!");
+		}
+		else if(name == null) {
+			throw new IllegalArgumentException("New name cannot be empty");
+		}
+		else { 
+			service.changePetPostName(petPostId, name);
+		}
+	}
+	
 	
 	private PetPostDto convertToDto(PetPost pp) {
 		if (pp == null) {
@@ -447,6 +568,21 @@ public class PetShelterController {
 		}
 		else {
 			return service.deleteAdoptRequest(adoptRequestId);
+		}
+	}
+	
+	//change adopt request status
+	@PostMapping(value = {"/adoptrequest/{adoptRequestId}", "/adoptrequest/{adoptRequestId}"})
+	public void changeAdoptRequestStatus(@PathVariable("adoptRequestId") Integer adoptRequestId,
+			@RequestParam Status status){
+		
+		if(adoptRequestId == null) {
+			throw new IllegalArgumentException("AdoptRequest Id cannot be empty!");
+		}
+		else if(status == null) {
+			throw new IllegalArgumentException("AdoptRequest status Id cannot be empty!");
+		}
+		else { service.changeAdoptRequestStatus(adoptRequestId, status);
 		}
 	}
 	
