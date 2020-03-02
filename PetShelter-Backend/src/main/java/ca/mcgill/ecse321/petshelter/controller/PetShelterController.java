@@ -67,7 +67,6 @@ public class PetShelterController {
 
 		return questions;
 	}
-<<<<<<< HEAD
 	
 	// change Question
 	@PutMapping(value = { "/questions/{questionId}", "/questions/{questionId}/" })
@@ -90,10 +89,6 @@ public class PetShelterController {
 	}
 	
 	//convert question to questiondto
-=======
-
-	// convert question to questiondto
->>>>>>> a8ed9918f4f38d3e28b9c35062779053b0b3922c
 	private QuestionDto convertToDto(Question q) {
 		if (q == null) {
 			throw new IllegalArgumentException("There is no such Question!");
@@ -136,24 +131,18 @@ public class PetShelterController {
 		UserProfileDto UserProfileDto = new UserProfileDto(u.getAddress(), u.getUserProfileId(), person,
 				u.getHasExperienceWithPets(), u.getNumberOfPetsCurrentlyOwned(), u.getTypeOfLivingAccomodation());
 		return UserProfileDto;
-<<<<<<< HEAD
 	}	
 	
-	@DeleteMapping(value = {"/userprofile/{userProfileId}", "/userprofile/{userProfileId}/"})
-	public boolean deleteUserProfile(@PathVariable(name = "userProfileId") Integer userProfileId){
-=======
-	}
 
 	@DeleteMapping(value = { "/userprofile", "/userprofile/" })
 	public boolean deleteUserProfile(@PathVariable(name = "userProfileId") Integer userProfileId) {
->>>>>>> a8ed9918f4f38d3e28b9c35062779053b0b3922c
 		if (userProfileId == null) {
 			throw new IllegalArgumentException("There is no such user profile Id!");
 		} else {
 			return service.deleteUserProfile(userProfileId);
 		}
 	}
-<<<<<<< HEAD
+	
 	// change Question
 	@PutMapping(value = { "/userprofile/{userProfileId}", "/questions/{userProfileId}/" })
 	public void changeQuestionString(@PathVariable("userProfileId") Integer userProfileId, @RequestParam UserProfile newUserProfile) {
@@ -164,9 +153,6 @@ public class PetShelterController {
 		}
 	}
 	
-=======
-
->>>>>>> a8ed9918f4f38d3e28b9c35062779053b0b3922c
 	// APP USER //
 
 	@GetMapping(value = { "/appuser", "/appuser/" })
@@ -419,7 +405,6 @@ public class PetShelterController {
 			return service.deletePetPost(petPostId);
 		}
 	}
-<<<<<<< HEAD
 	
 	//update PetPost
 	@PutMapping(value = {"/petposts/description/{petPostId}", "/petposts/description/{petPostId}/"})
@@ -433,43 +418,6 @@ public class PetShelterController {
 		}
 		else {
 			service.updatePetPost(petPostId, newPetPost);
-=======
-
-	// change petpost description
-	@PutMapping(value = { "/petposts/description/{petPostId}", "/petposts/description/{petPostId}/" })
-	public void changePetPostDescription(@PathVariable("petPostId") Integer petPostId,
-			@RequestParam String description) {
-		if (petPostId == null) {
-			throw new IllegalArgumentException("Pet Post ID invalid!");
-		} else if (description == null) {
-			throw new IllegalArgumentException("New description cannot be empty");
-		} else {
-			service.changePetPostDescription(petPostId, description);
-		}
-	}
-
-	// change petpost availability
-	@PutMapping(value = { "/petposts/availability/{petPostId}", "/petposts/availability/{petPostId}/" })
-	public void changePetPostAvailability(@PathVariable("petPostId") Integer petPostId,
-			@RequestParam boolean availability) {
-
-		if (petPostId == null) {
-			throw new IllegalArgumentException("Pet Post ID invalid!");
-		} else {
-			service.changePetPostAvailability(petPostId, availability);
-		}
-	}
-
-	// change petpost name
-	@PutMapping(value = { "/petposts/petname/{petPostId}", "/petposts/petname/{petPostId}/" })
-	public void changePetPostName(@PathVariable("petPostId") Integer petPostId, @RequestParam String name) {
-		if (petPostId == null) {
-			throw new IllegalArgumentException("Pet Post ID invalid!");
-		} else if (name == null) {
-			throw new IllegalArgumentException("New name cannot be empty");
-		} else {
-			service.changePetPostName(petPostId, name);
->>>>>>> a8ed9918f4f38d3e28b9c35062779053b0b3922c
 		}
 	}
 

@@ -457,46 +457,13 @@ public class PetShelterService {
 	}
 
 	@Transactional
-<<<<<<< HEAD
+
 	public PetPost updatePetPost(Integer id, PetPost newPetPost) {
 		if(id == null) {
 			throw new IllegalArgumentException("Pet Post ID invalid!");
 		}
 		if (newPetPost == null) {
 			throw new IllegalArgumentException("new Pet Post ID is invalid!");
-=======
-	public PetPost changePetPostAvailability(Integer id, boolean availability) {
-		if (id == null) {
-			throw new IllegalArgumentException("Pet Post ID invalid!");
-		}
-		PetPost petPost = getPetPost(id);
-		petPost.setAvailability(availability);
-		petPostRepository.save(petPost);
-		return petPost;
-	}
-
-	@Transactional
-	public PetPost changePetPostName(Integer id, String name) {
-		if (id == null) {
-			throw new IllegalArgumentException("Pet Post ID invalid!");
-		}
-		if (name == null) {
-			throw new IllegalArgumentException("New name cannot be empty");
-		}
-		PetPost petPost = getPetPost(id);
-		petPost.setName(name);
-		petPostRepository.save(petPost);
-		return petPost;
-	}
-
-	@Transactional
-	public PetPost changePetPostDescription(Integer id, String description) {
-		if (id == null) {
-			throw new IllegalArgumentException("Pet Post ID invalid!");
-		}
-		if (description == null) {
-			throw new IllegalArgumentException("New description cannot be empty");
->>>>>>> a8ed9918f4f38d3e28b9c35062779053b0b3922c
 		}
 		PetPost petPost = getPetPost(id);
 		petPost.setAvailability(newPetPost.isAvailability());
@@ -637,48 +604,12 @@ public class PetShelterService {
 	}
 
 	@Transactional
-<<<<<<< HEAD
 	public UserProfile updateUserProfile(Integer id, UserProfile newUserProfile) {
 		if(id == null) {
 			throw new IllegalArgumentException("Id cannot be empty!");
 		}
 		if(newUserProfile == null) {
 			throw new IllegalArgumentException("New user profile is invalid!");
-=======
-	public UserProfile changeUserProfileAddress(Integer id, String address) {
-		if (id == null) {
-			throw new IllegalArgumentException("Id cannot be empty!");
-		}
-		if (address == null) {
-			throw new IllegalArgumentException("New address cannot be empty");
-		}
-		UserProfile userProfile = getUserProfile(id);
-		userProfile.setAddress(address);
-		userProfileRepository.save(userProfile);
-		return userProfile;
-
-	}
-
-	@Transactional
-	public UserProfile changeUserProfileHasExperienceWithPets(Integer id, boolean hasExperienceWithPets) {
-		if (id == null) {
-			throw new IllegalArgumentException("Id cannot be empty!");
-		}
-		UserProfile userProfile = getUserProfile(id);
-		userProfile.setHasExperienceWithPets(hasExperienceWithPets);
-		userProfileRepository.save(userProfile);
-		return userProfile;
-
-	}
-
-	@Transactional
-	public UserProfile changeUserProfileNumberOfPetsCurrentlyOwned(Integer id, Integer numberOfPetsCurrentlyOwned) {
-		if (id == null) {
-			throw new IllegalArgumentException("Id cannot be empty!");
-		}
-		if (numberOfPetsCurrentlyOwned == null) {
-			throw new IllegalArgumentException("Number of Pets cannot be empty");
->>>>>>> a8ed9918f4f38d3e28b9c35062779053b0b3922c
 		}
 		UserProfile userProfile = getUserProfile(id);
 		userProfile.setAddress(newUserProfile.getAddress());
@@ -689,25 +620,7 @@ public class PetShelterService {
 		return userProfile;
 
 	}
-<<<<<<< HEAD
-	
-=======
 
-	@Transactional
-	public UserProfile changeUserProfileTypeOfLivingAccommodation(Integer id, String typeOfLivingAccommodation) {
-		if (id == null) {
-			throw new IllegalArgumentException("Id cannot be empty!");
-		}
-		if (typeOfLivingAccommodation == null) {
-			throw new IllegalArgumentException("Living accomodation cannot be empty");
-		}
-		UserProfile userProfile = getUserProfile(id);
-		userProfile.setTypeOfLivingAccomodation(typeOfLivingAccommodation);
-		userProfileRepository.save(userProfile);
-		return userProfile;
-	}
-
->>>>>>> a8ed9918f4f38d3e28b9c35062779053b0b3922c
 	private <T> List<T> toList(Iterable<T> iterable) {
 		List<T> resultList = new ArrayList<T>();
 		for (T t : iterable) {
