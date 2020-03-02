@@ -29,6 +29,7 @@ import ca.mcgill.ecse321.petshelter.model.AdoptRequest;
 import ca.mcgill.ecse321.petshelter.model.Donation;
 import ca.mcgill.ecse321.petshelter.model.PetPost;
 import ca.mcgill.ecse321.petshelter.model.Question;
+import ca.mcgill.ecse321.petshelter.model.Status;
 import ca.mcgill.ecse321.petshelter.model.UserProfile;
 import ca.mcgill.ecse321.petshelter.service.PetShelterService;
 
@@ -56,7 +57,7 @@ public class PetShelterController {
 	} 
 	
 	//delete question by id
-	@DeleteMapping(value = {"/questions/{questionId}", "/questions/{questionId}"})
+	@DeleteMapping(value = {"/questions/{questionId}", "/questions/{questionId}/"})
 	public List<QuestionDto> deleteQuestionById(@PathVariable("questionId") Integer questionId) {
 		service.deleteQuestion(questionId);
 
@@ -93,7 +94,7 @@ public class PetShelterController {
 	@PostMapping(value = {"/userprofile/{username}", "/userprofile/{username}/"})
 	public UserProfileDto createUserProfileDto(@PathVariable("username") String username,
 			@RequestParam() String address,
-			@RequestParam() Boolean hasExperienceWithPets,
+			@RequestParam() boolean hasExperienceWithPets,
 			@RequestParam() int numberOfPetsCurrentlyOwned,
 			@RequestParam() String typeOfLivingAccommodation)
 			throws IllegalArgumentException {
@@ -125,22 +126,6 @@ public class PetShelterController {
 		}
 	}
 	
-//	@GetMapping(value = {"/userprofile, /userprofile/"})
-//	public UserProfileDto getUserProfile(@PathVariable(name = "userProfile") Integer userProfileId){
-//		if (userProfileId == null) {
-//			throw new IllegalArgumentException("There is no such user profile Id!");
-//		} 
-//		else {
-//			UserProfile userProfile = service.getUserProfile(userProfileId);
-//			if (userProfile != null) {
-//				return convertToDto(userProfile);
-//			} 
-//			else { 
-//				throw new IllegalArgumentException("No user profile found with Id!");
-//			}
-//		}
-//	}
-	
 	// APP USER //
 	
 	@GetMapping(value = {"/appuser", "/appuser/"})
@@ -163,6 +148,33 @@ public class PetShelterController {
 		}
 		AppUserDto appUserDto = new AppUserDto(a.getUsername(), a.getPassword(), a.getAppUserRole());
 		return appUserDto;
+	}
+
+	// change appUser password
+	@PutMapping(value = { "/appuser/password/{username}", "/appuser/password/{username}/" })
+	public void changeAppUserPassword(@PathVariable("username") String username, @RequestParam String password) {
+		if (username == null) {
+			throw new IllegalArgumentException("Username cannot be empty!");
+		}
+		if (password == null) {
+			throw new IllegalArgumentException("New password cannot be empty!");
+		} else {
+			service.changeAppUserPassword(username, password);
+		}
+	}
+	
+	// change appUser personRole
+	@PutMapping(value = { "/appuser/role/{username}", "/appuser/role/{username}/" })
+	public void changeAppUserRole(@PathVariable("username") String username,
+			@RequestParam PersonRole appUserRole) {
+		if (username == null) {
+			throw new IllegalArgumentException("Username cannot be empty!");
+		}
+		if(appUserRole == null) {
+			throw new IllegalArgumentException("New appuser role cannot be empty!");
+		} else {
+			service.changeAppUserPersonRole(username, appUserRole);
+		}
 	}
 	
 	// LOGIN AND LOGOUT //
@@ -232,8 +244,7 @@ public class PetShelterController {
 	public DonationDto createDonationDto(
 			@RequestParam("amount") double amount,
 			@RequestParam("comment") String comment,
-			@RequestParam("setNameAnonymous") boolean setNameAnonymous,
-			@RequestParam("donationId") Integer donationId) 
+			@RequestParam("setNameAnonymous") boolean setNameAnonymous)
 			throws IllegalArgumentException {
 		Donation donation = service.createDonation(amount, comment, setNameAnonymous);
 		return convertToDto(donation);
@@ -280,6 +291,35 @@ public class PetShelterController {
 		return donationDto;
 	}
 	
+	//change donationComment
+	@PutMapping(value = {"/donations/comment/{donationId}", "/donations/comment/{donationId}/"})
+	public void changeDonationComment(@PathVariable("donationId") Integer donationId,
+			@RequestParam String comment){
+		if(donationId == null) {
+			throw new IllegalArgumentException("Donation ID invalid!");
+		}
+		else if(comment == null ||comment.trim().length()==0) {
+			throw new IllegalArgumentException("New comment cannot be empty");
+		}
+		else {
+			service.changeDonationComment(donationId, comment);
+		}
+	}
+	
+	//change donation anonymity
+	@PutMapping(value = {"/donations/anonymity/{donationId}", "/donations/anonymity/{donationId}/"})
+	public void changeDonationAnonymous(@PathVariable("donationId") Integer donationId,
+			@RequestParam boolean anonymous){
+		if(donationId == null) {
+			throw new IllegalArgumentException("Donation ID invalid!");
+		}
+		else {
+			service.changeDonationAnonymous(donationId, anonymous);
+		}
+	}
+	
+	// PERSON //
+	
 	private PersonDto convertToDto(Person p) {
 		if (p == null) {
 			throw new IllegalArgumentException("There is no such Person!");
@@ -303,6 +343,7 @@ public class PetShelterController {
 		}
 		return personDtoSet;
 	}
+	
 	
 	// PET POST //
 	
@@ -366,6 +407,50 @@ public class PetShelterController {
 		}
 	}
 	
+	//change petpost description
+	@PutMapping(value = {"/petposts/description/{petPostId}", "/petposts/description/{petPostId}/"})
+	public void changePetPostDescription(@PathVariable("petPostId") Integer petPostId,
+			@RequestParam String description){
+		if(petPostId == null) {
+			throw new IllegalArgumentException("Pet Post ID invalid!");
+		}
+		else if(description == null) {
+			throw new IllegalArgumentException("New description cannot be empty");
+		}
+		else {
+			service.changePetPostDescription(petPostId, description);
+		}
+	}
+	
+	//change petpost availability
+	@PutMapping(value = {"/petposts/availability/{petPostId}", "/petposts/availability/{petPostId}/"})
+	public void changePetPostAvailability(@PathVariable("petPostId") Integer petPostId,
+			@RequestParam boolean availability){
+		
+		if(petPostId == null) {
+			throw new IllegalArgumentException("Pet Post ID invalid!");
+		}
+		else { 
+			service.changePetPostAvailability(petPostId, availability);
+		}
+	}
+	
+	//change petpost name
+	@PutMapping(value = {"/petposts/petname/{petPostId}", "/petposts/petname/{petPostId}/"})
+	public void changePetPostName (@PathVariable("petPostId") Integer petPostId,
+			@RequestParam String name) {
+		if (petPostId == null) {
+			throw new IllegalArgumentException("Pet Post ID invalid!");
+		}
+		else if(name == null) {
+			throw new IllegalArgumentException("New name cannot be empty");
+		}
+		else { 
+			service.changePetPostName(petPostId, name);
+		}
+	}
+	
+	
 	private PetPostDto convertToDto(PetPost pp) {
 		if (pp == null) {
 			throw new IllegalArgumentException("There is no such Pet Post!");
@@ -417,27 +502,6 @@ public class PetShelterController {
 		return convertToDto(adoptRequest);
 	}
 	
-//	@GetMapping(value = { "/adoptRequest/", "/adoptRequest/" })
-//	public AdoptRequestDto getAdoptRequest(@PathVariable(
-//			name = "adoptRequestId") Integer adoptRequestId){
-//		
-//		if (adoptRequestId == null) {
-//			
-//			throw new IllegalArgumentException("There is no such Adopt Request Id!");
-//		} 
-//		else {
-//			
-//			AdoptRequest adoptRequest = service.getAdoptRequest(adoptRequestId);
-//			
-//			if (adoptRequest != null) {
-//				return convertToDto(adoptRequest);
-//			} 
-//			else { 
-//				throw new IllegalArgumentException("No AdoptRequest was found with Id!");
-//			}
-//		}
-//	}
-	
 	//delete adopt request by id
 	@DeleteMapping(value = { "/adoptrequest/{adoptRequestId}", "/adoptrequest/{adoptRequestId}/" })
 	public boolean deleteAdoptRequest(@PathVariable(name = "adoptRequestId") Integer adoptRequestId){
@@ -447,6 +511,21 @@ public class PetShelterController {
 		}
 		else {
 			return service.deleteAdoptRequest(adoptRequestId);
+		}
+	}
+	
+	//change adopt request status
+	@PutMapping(value = {"/adoptrequest/status/{adoptRequestId}", "/adoptrequest/status/{adoptRequestId}/"})
+	public void changeAdoptRequestStatus(@PathVariable("adoptRequestId") Integer adoptRequestId,
+			@RequestParam Status status){
+		
+		if(adoptRequestId == null) {
+			throw new IllegalArgumentException("AdoptRequest Id cannot be empty!");
+		}
+		else if(status == null) {
+			throw new IllegalArgumentException("AdoptRequest status Id cannot be empty!");
+		}
+		else { service.changeAdoptRequestStatus(adoptRequestId, status);
 		}
 	}
 	
