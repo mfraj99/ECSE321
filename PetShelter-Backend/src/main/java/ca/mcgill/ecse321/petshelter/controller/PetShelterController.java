@@ -58,7 +58,7 @@ public class PetShelterController {
 	} 
 	
 	//delete question by id
-	@DeleteMapping(value = {"/questions/{questionId}", "/questions/{questionId}"})
+	@DeleteMapping(value = {"/questions/{questionId}", "/questions/{questionId}/"})
 	public List<QuestionDto> deleteQuestionById(@PathVariable("questionId") Integer questionId) {
 		service.deleteQuestion(questionId);
 
@@ -168,7 +168,7 @@ public class PetShelterController {
 	}
 	
 	// change appUser username
-	@PostMapping(value = { "/appuser/{username}\", \"/appuser/{username}/" })
+	@PostMapping(value = { "/appuser/{username}", "/appuser/{username}/" })
 	public void changeAppUserUsername(@PathVariable("username") String usernameOld, @RequestParam String usernameNew) {
 		if (usernameOld == null) {
 			throw new IllegalArgumentException("Old username cannot be empty!");
@@ -180,7 +180,7 @@ public class PetShelterController {
 	}
 
 	// change appUser password
-	@PostMapping(value = { "/appuser/{username}\", \"/appuser/{username}/" })
+	@PostMapping(value = { "/appuser/{username}", "/appuser/{username}/" })
 	public void changeAppUserPassword(@PathVariable("username") String username, @RequestParam String password) {
 		if (username == null) {
 			throw new IllegalArgumentException("Username cannot be empty!");
@@ -193,7 +193,7 @@ public class PetShelterController {
 	}
 	
 	// change appUser personRole
-	@PostMapping(value = { "/appuser/{username}\", \"/appuser/{username}/" })
+	@PostMapping(value = { "/appuser/{username}", "/appuser/{username}/" })
 	public void changeAppUserPassword(@PathVariable("username") String username,
 			@RequestParam PersonRole appUserRole) {
 		if (username == null) {
@@ -322,7 +322,7 @@ public class PetShelterController {
 	}
 	
 	//change donationComment
-	@PostMapping(value = {"/donations/{donationId}", "/donations/{donationId}"})
+	@PostMapping(value = {"/donations/{donationId}", "/donations/{donationId}/"})
 	public void changeDonationComment(@PathVariable("donationId") Integer donationId,
 			@RequestParam String comment){
 		if(donationId == null) {
@@ -337,7 +337,7 @@ public class PetShelterController {
 	}
 	
 	//change donationComment
-	@PostMapping(value = {"/donations/{donationId}", "/donations/{donationId}"})
+	@PostMapping(value = {"/donations/{donationId}", "/donations/{donationId}/"})
 	public void changeDonationAnonymous(@PathVariable("donationId") Integer donationId,
 			@RequestParam Boolean anonymous){
 		if(donationId == null) {
@@ -438,7 +438,7 @@ public class PetShelterController {
 	}
 	
 	//change petpost description
-	@PostMapping(value = {"/petposts/{petPostId}", "/petposts/{petPostId}"})
+	@PostMapping(value = {"/petposts/{petPostId}", "/petposts/{petPostId}/"})
 	public void changePetPostDescription(@PathVariable("petPostId") Integer petPostId,
 			@RequestParam String description){
 		if(petPostId == null) {
@@ -453,7 +453,7 @@ public class PetShelterController {
 	}
 	
 	//change petpost availability
-	@PostMapping(value = {"/petposts/{petPostId}", "/petposts/{petPostId}"})
+	@PostMapping(value = {"/petposts/{petPostId}", "/petposts/{petPostId}/"})
 	public void changePetPostAvailability(@PathVariable("petPostId") Integer petPostId,
 			@RequestParam Boolean availability){
 		
@@ -466,7 +466,7 @@ public class PetShelterController {
 	}
 	
 	//change petpost name
-	@PostMapping(value = {"/petposts/{petPostId}", "/petposts/{petPostId}"})
+	@PostMapping(value = {"/petposts/{petPostId}", "/petposts/{petPostId}/"})
 	public void changePetPostName (@PathVariable("petPostId") Integer petPostId,
 			@RequestParam String name) {
 		if (petPostId == null) {
@@ -566,7 +566,7 @@ public class PetShelterController {
 	}
 	
 	//change adopt request status
-	@PostMapping(value = {"/adoptrequest/{adoptRequestId}", "/adoptrequest/{adoptRequestId}"})
+	@PostMapping(value = {"/adoptrequest/{adoptRequestId}", "/adoptrequest/{adoptRequestId}/"})
 	public void changeAdoptRequestStatus(@PathVariable("adoptRequestId") Integer adoptRequestId,
 			@RequestParam Status status){
 		
