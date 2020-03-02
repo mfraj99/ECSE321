@@ -67,8 +67,28 @@ public class PetShelterController {
 
 		return questions;
 	}
-
-	// convert question to questiondto
+	
+	// change Question
+	@PutMapping(value = { "/questions/{questionId}", "/questions/{questionId}/" })
+	public void changeQuestionString(@PathVariable("questionId") Integer questionId, @RequestParam String questionString) {
+		if (questionString == null) {
+			throw new IllegalArgumentException("New question cannot be empty!");
+		} else {
+			service.changeQuestionString(questionId, questionString);
+		}
+	}
+	
+	// change answer to question
+	@PutMapping(value = { "/questions/{questionId}", "/questions/{questionId}/" })
+	public void changeQuestionAnswer(@PathVariable("questionId") Integer questionId, @RequestParam String answer) {
+		if (answer == null) {
+			throw new IllegalArgumentException("New answer cannot be empty!");
+		} else {
+			service.changeQuestionAnswer(questionId, answer);
+		}
+	}
+	
+	//convert question to questiondto
 	private QuestionDto convertToDto(Question q) {
 		if (q == null) {
 			throw new IllegalArgumentException("There is no such Question!");
@@ -111,7 +131,8 @@ public class PetShelterController {
 		UserProfileDto UserProfileDto = new UserProfileDto(u.getAddress(), u.getUserProfileId(), person,
 				u.getHasExperienceWithPets(), u.getNumberOfPetsCurrentlyOwned(), u.getTypeOfLivingAccomodation());
 		return UserProfileDto;
-	}
+	}	
+	
 
 	@DeleteMapping(value = { "/userprofile", "/userprofile/" })
 	public boolean deleteUserProfile(@PathVariable(name = "userProfileId") Integer userProfileId) {
@@ -121,7 +142,17 @@ public class PetShelterController {
 			return service.deleteUserProfile(userProfileId);
 		}
 	}
-
+	
+	// change Question
+	@PutMapping(value = { "/userprofile/{userProfileId}", "/questions/{userProfileId}/" })
+	public void changeQuestionString(@PathVariable("userProfileId") Integer userProfileId, @RequestParam UserProfile newUserProfile) {
+		if (newUserProfile == null) {
+			throw new IllegalArgumentException("New user profile is invalid!");
+		} else {
+			service.updateUserProfile(userProfileId, newUserProfile);
+		}
+	}
+	
 	// APP USER //
 
 	@GetMapping(value = { "/appuser", "/appuser/" })
@@ -374,41 +405,19 @@ public class PetShelterController {
 			return service.deletePetPost(petPostId);
 		}
 	}
-
-	// change petpost description
-	@PutMapping(value = { "/petposts/description/{petPostId}", "/petposts/description/{petPostId}/" })
-	public void changePetPostDescription(@PathVariable("petPostId") Integer petPostId,
-			@RequestParam String description) {
-		if (petPostId == null) {
+	
+	//update PetPost
+	@PutMapping(value = {"/petposts/description/{petPostId}", "/petposts/description/{petPostId}/"})
+	public void updatePetPost(@PathVariable("petPostId") Integer petPostId,
+			@RequestParam PetPost newPetPost){
+		if(petPostId == null) {
 			throw new IllegalArgumentException("Pet Post ID invalid!");
-		} else if (description == null) {
-			throw new IllegalArgumentException("New description cannot be empty");
-		} else {
-			service.changePetPostDescription(petPostId, description);
 		}
-	}
-
-	// change petpost availability
-	@PutMapping(value = { "/petposts/availability/{petPostId}", "/petposts/availability/{petPostId}/" })
-	public void changePetPostAvailability(@PathVariable("petPostId") Integer petPostId,
-			@RequestParam boolean availability) {
-
-		if (petPostId == null) {
-			throw new IllegalArgumentException("Pet Post ID invalid!");
-		} else {
-			service.changePetPostAvailability(petPostId, availability);
+		else if(newPetPost == null) {
+			throw new IllegalArgumentException("New pet post is invalid!");
 		}
-	}
-
-	// change petpost name
-	@PutMapping(value = { "/petposts/petname/{petPostId}", "/petposts/petname/{petPostId}/" })
-	public void changePetPostName(@PathVariable("petPostId") Integer petPostId, @RequestParam String name) {
-		if (petPostId == null) {
-			throw new IllegalArgumentException("Pet Post ID invalid!");
-		} else if (name == null) {
-			throw new IllegalArgumentException("New name cannot be empty");
-		} else {
-			service.changePetPostName(petPostId, name);
+		else {
+			service.updatePetPost(petPostId, newPetPost);
 		}
 	}
 
