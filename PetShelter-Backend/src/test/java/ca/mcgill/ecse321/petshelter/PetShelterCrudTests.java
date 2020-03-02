@@ -7,9 +7,11 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
 
+import org.junit.FixMethodOrder;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -18,7 +20,7 @@ import ca.mcgill.ecse321.petshelter.dao.*;
 import ca.mcgill.ecse321.petshelter.model.*;
 import ca.mcgill.ecse321.petshelter.service.*;
 
-
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class PetShelterCrudTests {
@@ -161,6 +163,43 @@ public class PetShelterCrudTests {
 		assertEquals("AdoptRequest must be valid!", error);
 		assertEquals(0, pss.getAllAdoptRequests().size());
 	}
+	
+	@Test
+	public void testUpdateAdoptRequestStatus() {
+		assertEquals(0, pss.getAllAdoptRequests().size());
+		assertEquals(0, pss.getAllAdoptRequests().size());
+		pss.createPerson("person1", "password");
+		pss.createPerson("person2", "password");
+		pss.createPetPost(true, "Ebola", "dog", "cute doggo", pss.getPerson("person1"));
+		int id = pss.getAllPetPosts().get(0).getPetPostId();
+		
+		pss.createAdoptRequest(pss.getPerson("person2"), pss.getPetPost(id));
+		id = pss.getAllAdoptRequests().get(0).getAdoptRequestId();
+		Status status = Status.APPROVED;
+		pss.changeAdoptRequestStatus(id, status);
+		assertEquals(1, pss.getAllAdoptRequests().size());
+		assertEquals(status, pss.getAdoptRequest(id).getStatus());
+	}
+	
+
+	
+	@Test
+	public void testUpdateAdoptRequestInvalidStatus() {
+		pss.createPerson("person1", "password");
+		pss.createPerson("person2", "password");
+		pss.createPetPost(true, "Ebola", "dog", "cute doggo", pss.getPerson("person1"));
+		int id = pss.getAllPetPosts().get(0).getPetPostId();
+		
+		pss.createAdoptRequest(pss.getPerson("person2"), pss.getPetPost(id));
+		id = pss.getAllAdoptRequests().get(0).getAdoptRequestId();
+		String error =null;
+		try{
+			pss.changeAdoptRequestStatus(id, null);
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("AdoptRequest status Id cannot be empty!", error);
+	}
 
 	/*
 	 * /////////////////////////////////////////////////////////////////////////////
@@ -241,6 +280,21 @@ public class PetShelterCrudTests {
 		assertEquals(0, pss.getAllAppAdmins().size());
 	}
 	
+	
+	@Test
+	public void testUpdateAppAdminPass() {
+		assertEquals(0, pss.getAllAppAdmins().size());
+		String username = "JWS";
+		String password = "3GPA";
+		String newPassword= "hello";
+		pss.createAppAdmin(username, password);
+		List<AppAdmin> allAppAdmins = pss.getAllAppAdmins();
+		pss.changeAppAdminPassword(username, "hello");
+		assertEquals(newPassword, pss.getAllAppAdmins().get(0).getPassword());
+		assertEquals(1, allAppAdmins.size());
+	}
+	
+	
 
 	/*
 	 * /////////////////////////////////////////////////////////////////////////////
@@ -316,6 +370,36 @@ public class PetShelterCrudTests {
 		assertEquals("No AppUser found with username!", error);
 		assertEquals(0, pss.getAllAppAdmins().size());
 	}
+	
+	
+	@Test
+	public void testUpdateAppUserPass() {
+		assertEquals(0, pss.getAllAppUsers().size());
+		String username = "JWS";
+		String password = "3GPA";
+		String newPassword= "hello";
+		pss.createAppUser(username, password, PersonRole.ADOPTER);
+		List<AppUser> allAppUsers = pss.getAllAppUsers();
+		pss.changeAppUserPassword(username, "hello");
+		assertEquals(newPassword, pss.getAllAppUsers().get(0).getPassword());
+		assertEquals(1, allAppUsers.size());
+	}
+	
+	@Test
+	public void testUpdateAppUserRole() {
+		assertEquals(0, pss.getAllAppUsers().size());
+		String username = "JWS";
+		String password = "3GPA";
+		PersonRole personRole = PersonRole.OWNER;
+		pss.createAppUser(username, password, PersonRole.ADOPTER);
+		List<AppUser> allAppUsers = pss.getAllAppUsers();
+		pss.changeAppUserPersonRole(username, personRole);
+		assertEquals(personRole, pss.getAllAppUsers().get(0).getAppUserRole());
+		assertEquals(1, allAppUsers.size());
+	}
+	
+	
+	
 	
 	/*
 	 * /////////////////////////////////////////////////////////////////////////////
@@ -410,6 +494,38 @@ public class PetShelterCrudTests {
 		assertEquals("No donation found with Id!", error);
 		assertEquals(0, pss.getAllDonations().size());
 	}
+	
+	@Test
+	public void testUpdateDonationComment() {
+		assertEquals(0, pss.getAllDonations().size());
+
+		double amount = 20;
+		String comment = "WOW";
+		boolean setNameAnonymous = false;
+		
+		pss.createDonation(amount, comment, setNameAnonymous);
+		comment = "LMAO";
+		pss.changeDonationComment(pss.getAllDonations().get(0).getDonationId(), comment);
+		assertEquals(comment, pss.getAllDonations().get(0).getComment());
+		assertEquals(1, pss.getAllDonations().size());
+	}
+	
+	@Test
+	public void testUpdateDonationAnonymous() {
+		assertEquals(0, pss.getAllDonations().size());
+
+		double amount = 20;
+		String comment = "WOW";
+		boolean setNameAnonymous = false;
+		
+		pss.createDonation(amount, comment, setNameAnonymous);
+		setNameAnonymous= true;
+		pss.changeDonationAnonymous(pss.getAllDonations().get(0).getDonationId(), setNameAnonymous);
+		assertEquals(setNameAnonymous, pss.getAllDonations().get(0).isSetNameAnonymous());
+		assertEquals(1, pss.getAllDonations().size());
+	}
+	
+	
 
 	/*
 	 * /////////////////////////////////////////////////////////////////////////////
@@ -568,6 +684,68 @@ public class PetShelterCrudTests {
 		assertEquals("No UserProfile found with Id!",error);
 		assertEquals(0, pss.getAllUserProfiles().size());
 	}
+	
+	
+	@Test
+	public void testUpdateUserProfileAddress() {
+		assertEquals(0, pss.getAllUserProfiles().size());
+
+		String address = "12345 Street Blvd.";
+		boolean petExperience = false;
+		int petsOwned = 0;
+		String livingAccommodations = "I live in an apartment. It is very small.";
+		pss.createUserProfile(address, petExperience, petsOwned, livingAccommodations);
+		
+		String newAddress= "6789 Boulevard";
+		pss.changeUserProfileAddress(pss.getAllUserProfiles().get(0).getUserProfileId(), newAddress);
+		assertEquals(newAddress, pss.getAllUserProfiles().get(0).getAddress());
+	}
+	
+	@Test
+	public void testUpdateUserProfileHasExperienceWithPets() {
+		assertEquals(0, pss.getAllUserProfiles().size());
+
+		String address = "12345 Street Blvd.";
+		boolean petExperience = false;
+		int petsOwned = 0;
+		String livingAccommodations = "I live in an apartment. It is very small.";
+		pss.createUserProfile(address, petExperience, petsOwned, livingAccommodations);
+		
+		boolean hasExperienceWithPets= true;
+		pss.changeUserProfileHasExperienceWithPets(pss.getAllUserProfiles().get(0).getUserProfileId(), hasExperienceWithPets);
+		assertEquals(hasExperienceWithPets, pss.getAllUserProfiles().get(0).getHasExperienceWithPets());
+	}
+	
+	@Test
+	public void testUpdateUserProfileNumberOfPetsCurrentlyOwned() {
+		assertEquals(0, pss.getAllUserProfiles().size());
+
+		String address = "12345 Street Blvd.";
+		boolean petExperience = false;
+		int petsOwned = 0;
+		String livingAccommodations = "I live in an apartment. It is very small.";
+		pss.createUserProfile(address, petExperience, petsOwned, livingAccommodations);
+		
+		int newPetsOwned= 2;
+		pss.changeUserProfileNumberOfPetsCurrentlyOwned(pss.getAllUserProfiles().get(0).getUserProfileId(), newPetsOwned);
+		assertEquals(newPetsOwned, pss.getAllUserProfiles().get(0).getNumberOfPetsCurrentlyOwned());
+	}
+	@Test
+	public void testUpdateUserProfileTypeOfLivingAccommodation() {
+		assertEquals(0, pss.getAllUserProfiles().size());
+
+		String address = "12345 Street Blvd.";
+		boolean petExperience = false;
+		int petsOwned = 0;
+		String livingAccommodations = "I live in an apartment. It is very small.";
+		pss.createUserProfile(address, petExperience, petsOwned, livingAccommodations);
+		
+		String newLivingAccommodations= "house";
+		pss.changeUserProfileTypeOfLivingAccommodation(pss.getAllUserProfiles().get(0).getUserProfileId(), newLivingAccommodations);
+		assertEquals(newLivingAccommodations, pss.getAllUserProfiles().get(0).getTypeOfLivingAccomodation());
+	}
+	
+	
 
 
 	/*
@@ -770,6 +948,21 @@ public class PetShelterCrudTests {
 		assertEquals(0, pss.getAllPersons().size());
 	}
 
+
+	
+	@Test
+	public void testUpdatePersonPass() {
+		assertEquals(0, pss.getAllPersons().size());
+		String username = "JWS";
+		String password = "3GPA";
+		String newPassword= "hello";
+		pss.createPerson(username, password);
+		List<Person> allPersons = pss.getAllPersons();
+		pss.changePersonPassword(username, "hello");
+		assertEquals(newPassword, pss.getAllPersons().get(0).getPassword());
+		assertEquals(1, allPersons.size());
+	}
+	
 	/*
 	 * /////////////////////////////////////////////////////////////////////////////
 	 * / TESTING QUESTION
@@ -852,6 +1045,26 @@ public class PetShelterCrudTests {
 		}
 		assertEquals("No question found with Id!", error);
 		assertEquals(0, pss.getAllQuestions().size());
+	}
+	
+	@Test
+	public void testUpdateQuestionString() {
+		assertEquals(0, pss.getAllQuestions().size());
+		String question = "how are you";
+		pss.createQuestion(question);
+		String newQuestion = "hello hello";
+		pss.changeQuestionString(pss.getAllQuestions().get(0).getQuestionId(), newQuestion);
+		assertEquals(newQuestion, pss.getAllQuestions().get(0).getQuestion());
+	}
+	
+	@Test
+	public void testUpdateQuestionAnswer() {
+		assertEquals(0, pss.getAllQuestions().size());
+		String question = "how are you";
+		pss.createQuestion(question);
+		String answer = "hello hello";
+		pss.changeQuestionAnswer(pss.getAllQuestions().get(0).getQuestionId(), answer);
+		assertEquals(answer, pss.getAllQuestions().get(0).getAnswer());
 	}
 
 	/*
@@ -1018,6 +1231,56 @@ public class PetShelterCrudTests {
 		assertEquals(0, pss.getAllPetPosts().size());
 	}
 	
+	@Test
+	public void testUpdatePetPostAvailability() {
+		assertEquals(0, pss.getAllAppUsers().size());
+		boolean avail = true;
+		String name = "Mike";
+		String typeOfPet = "Cat";
+		String desc = "Small domestic cat for sale";
+
+		pss.createPerson("username", "password");
+		pss.createPetPost(avail, name, typeOfPet, desc, pss.getPerson("username"));
+		boolean availability = false;
+		
+		pss.changePetPostAvailability(pss.getAllPetPosts().get(0).getPetPostId(), availability);
+		assertEquals(availability, pss.getAllPetPosts().get(0).isAvailability());
+		
+	}
+	
+	@Test
+	public void testUpdatePetPostName() {
+		assertEquals(0, pss.getAllAppUsers().size());
+		boolean avail = true;
+		String name = "Mike";
+		String typeOfPet = "Cat";
+		String desc = "Small domestic cat for sale";
+
+		pss.createPerson("username", "password");
+		pss.createPetPost(avail, name, typeOfPet, desc, pss.getPerson("username"));
+		String newName = "Drake";
+		
+		pss.changePetPostName(pss.getAllPetPosts().get(0).getPetPostId(), newName);
+		assertEquals(newName, pss.getAllPetPosts().get(0).getName());
+	}
+	
+	@Test
+	public void testUpdatePetPostDescription() {
+		assertEquals(0, pss.getAllAppUsers().size());
+		boolean avail = true;
+		String name = "Mike";
+		String typeOfPet = "Cat";
+		String desc = "Small domestic cat for sale";
+
+		pss.createPerson("username", "password");
+		pss.createPetPost(avail, name, typeOfPet, desc, pss.getPerson("username"));
+		String description = "Very large dog";
+		
+		pss.changePetPostDescription(pss.getAllPetPosts().get(0).getPetPostId(), description);
+		assertEquals(description, pss.getAllPetPosts().get(0).getDescription());
+	}
+	
+	
 	
 	/*
 	 * /////////////////////////////////////////////////////////////////////////////
@@ -1142,6 +1405,8 @@ public class PetShelterCrudTests {
 		assertEquals("This user account could not be found.", error);
 		assertNull(pss.getLoggedInUser());
 	}
+	
+	
 	
 	
 	
