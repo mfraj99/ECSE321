@@ -166,21 +166,9 @@ public class PetShelterController {
 		AppUserDto appUserDto = new AppUserDto(a.getUsername(), a.getPassword(), a.getAppUserRole());
 		return appUserDto;
 	}
-	
-	// change appUser username
-	@PostMapping(value = { "/appuser/{username}", "/appuser/{username}/" })
-	public void changeAppUserUsername(@PathVariable("username") String usernameOld, @RequestParam String usernameNew) {
-		if (usernameOld == null) {
-			throw new IllegalArgumentException("Old username cannot be empty!");
-		} else if (usernameNew == null) {
-			throw new IllegalArgumentException("New username cannot be empty!");
-		} else {
-			service.changeAppUserUsername(usernameOld, usernameNew);
-		}
-	}
 
 	// change appUser password
-	@PostMapping(value = { "/appuser/{username}", "/appuser/{username}/" })
+	@PutMapping(value = { "/appuser/password/{username}", "/appuser/password/{username}/" })
 	public void changeAppUserPassword(@PathVariable("username") String username, @RequestParam String password) {
 		if (username == null) {
 			throw new IllegalArgumentException("Username cannot be empty!");
@@ -193,8 +181,8 @@ public class PetShelterController {
 	}
 	
 	// change appUser personRole
-	@PostMapping(value = { "/appuser/{username}", "/appuser/{username}/" })
-	public void changeAppUserPassword(@PathVariable("username") String username,
+	@PutMapping(value = { "/appuser/role/{username}", "/appuser/role/{username}/" })
+	public void changeAppUserRole(@PathVariable("username") String username,
 			@RequestParam PersonRole appUserRole) {
 		if (username == null) {
 			throw new IllegalArgumentException("Username cannot be empty!");
@@ -322,7 +310,7 @@ public class PetShelterController {
 	}
 	
 	//change donationComment
-	@PostMapping(value = {"/donations/{donationId}", "/donations/{donationId}/"})
+	@PutMapping(value = {"/donations/comment/{donationId}", "/donations/comment/{donationId}/"})
 	public void changeDonationComment(@PathVariable("donationId") Integer donationId,
 			@RequestParam String comment){
 		if(donationId == null) {
@@ -336,8 +324,8 @@ public class PetShelterController {
 		}
 	}
 	
-	//change donationComment
-	@PostMapping(value = {"/donations/{donationId}", "/donations/{donationId}/"})
+	//change donation anonymity
+	@PutMapping(value = {"/donations/anonymity/{donationId}", "/donations/anonymity/{donationId}/"})
 	public void changeDonationAnonymous(@PathVariable("donationId") Integer donationId,
 			@RequestParam Boolean anonymous){
 		if(donationId == null) {
@@ -438,7 +426,7 @@ public class PetShelterController {
 	}
 	
 	//change petpost description
-	@PostMapping(value = {"/petposts/{petPostId}", "/petposts/{petPostId}/"})
+	@PutMapping(value = {"/petposts/description/{petPostId}", "/petposts/description/{petPostId}/"})
 	public void changePetPostDescription(@PathVariable("petPostId") Integer petPostId,
 			@RequestParam String description){
 		if(petPostId == null) {
@@ -453,7 +441,7 @@ public class PetShelterController {
 	}
 	
 	//change petpost availability
-	@PostMapping(value = {"/petposts/{petPostId}", "/petposts/{petPostId}/"})
+	@PutMapping(value = {"/petposts/availability/{petPostId}", "/petposts/availability/{petPostId}/"})
 	public void changePetPostAvailability(@PathVariable("petPostId") Integer petPostId,
 			@RequestParam Boolean availability){
 		
@@ -466,7 +454,7 @@ public class PetShelterController {
 	}
 	
 	//change petpost name
-	@PostMapping(value = {"/petposts/{petPostId}", "/petposts/{petPostId}/"})
+	@PutMapping(value = {"/petposts/petname/{petPostId}", "/petposts/petname/{petPostId}/"})
 	public void changePetPostName (@PathVariable("petPostId") Integer petPostId,
 			@RequestParam String name) {
 		if (petPostId == null) {
@@ -566,7 +554,7 @@ public class PetShelterController {
 	}
 	
 	//change adopt request status
-	@PostMapping(value = {"/adoptrequest/{adoptRequestId}", "/adoptrequest/{adoptRequestId}/"})
+	@PutMapping(value = {"/adoptrequest/status/{adoptRequestId}", "/adoptrequest/status/{adoptRequestId}/"})
 	public void changeAdoptRequestStatus(@PathVariable("adoptRequestId") Integer adoptRequestId,
 			@RequestParam Status status){
 		
