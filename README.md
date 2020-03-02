@@ -46,7 +46,7 @@ The goal of the project was to create a website and app for a pet shelter that a
 
 ## Sprint 2
 ### Main task:
-* Improve aspects of sprint 1 (bug fixes, improveing test suite, adding missing methods to service class, getting Travis to build)
+* Improve aspects of sprint 1 (bug fixes, improving test suite, adding missing methods to service class, getting Travis to build)
 * Creating a crontroller/implementing RESTful services
 * Creating a test suite for the service class
 * Creating an integration test suite for RESTful services
@@ -60,3 +60,11 @@ The goal of the project was to create a website and app for a pet shelter that a
 
 ### Effort Table
 (Can also be viewed in our [wiki](https://github.com/McGill-ECSE321-Winter2020/project-group-08/wiki/Effort-Table-2))
+
+|Team Member|Total hours|Persistence layer and deliverable 1 fixes| RESTful services|QA planning|Backend unit testing|Backend integration testing|Build System and CI|Documentation|Meetings|
+|-----------|-----------|-----------------|------------------|------------|-----------------|-------------------------|------------------|-------------|--------|
+|Michael Frajman| 29 hours   | 0 |15| 2| 3| 0|0 | 6| 3|
+|Karl Koerich   | 27 hours   |1  |16| 2| 1| 0|0 | 4| 3|
+|Shi Tong Li    | 39 hours   |2  |20| 2| 6| 4|0 | 2| 3|
+|Xinrui Li      | 35 hours   |2  |15| 2| 4| 0|6 | 4| 2|
+|Jia Wei Sun    | 17  hours | 1 | 10 | 1 | 1 | 0 | 0 | 2| 2|

@@ -13,20 +13,23 @@ public class PersonDto {
 	private Set<PetPostDto> owns;
 	private Set<DonationDto> donation;
 	private Set<QuestionDto> question;
-	
+
 	public PersonDto() {
-		
+
 	}
-	
+
 	public PersonDto(String username, String password) {
-		this(username, password, null, Collections.EMPTY_SET, Collections.EMPTY_SET, Collections.EMPTY_SET, Collections.EMPTY_SET);
+		this(username, password, null, Collections.EMPTY_SET, Collections.EMPTY_SET, Collections.EMPTY_SET,
+				Collections.EMPTY_SET);
 	}
-	
+
 	public PersonDto(String username, String password, UserProfile creates) {
-		this(username, password, creates, Collections.EMPTY_SET, Collections.EMPTY_SET, Collections.EMPTY_SET, Collections.EMPTY_SET);
+		this(username, password, creates, Collections.EMPTY_SET, Collections.EMPTY_SET, Collections.EMPTY_SET,
+				Collections.EMPTY_SET);
 	}
-	
-	public PersonDto(String username, String password, UserProfile creates, Set<AdoptRequestDto> fillsIn, Set<PetPostDto> owns, Set<DonationDto> donation, Set<QuestionDto> question) {
+
+	public PersonDto(String username, String password, UserProfile creates, Set<AdoptRequestDto> fillsIn,
+			Set<PetPostDto> owns, Set<DonationDto> donation, Set<QuestionDto> question) {
 		this.username = username;
 		this.password = password;
 		this.creates = creates;
@@ -35,7 +38,7 @@ public class PersonDto {
 		this.donation = donation;
 		this.question = question;
 	}
-	
+
 	public String getUsername() {
 		return this.username;
 	}

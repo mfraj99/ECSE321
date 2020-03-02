@@ -36,38 +36,38 @@ import ca.mcgill.ecse321.petshelter.service.PetShelterService;
 @CrossOrigin(origins = "*")
 @RestController
 public class PetShelterController {
-	
+
 	@Autowired
 	private PetShelterService service;
-	
+
 	// QUESTION //
-	
-	//get all questions
-	@GetMapping(value = {"/questions", "/questions/"})
-	public List<QuestionDto> getAllQuestions(){
+
+	// get all questions
+	@GetMapping(value = { "/questions", "/questions/" })
+	public List<QuestionDto> getAllQuestions() {
 		return service.getAllQuestions().stream().map(q -> convertToDto(q)).collect(Collectors.toList());
 	}
-	
-	//create new question
-	@PostMapping(value = {"/questions/{question}", "/questions/{question}/"})
-	public QuestionDto createQuestionDto(@PathVariable("question") String ques) 
-			throws IllegalArgumentException {
+
+	// create new question
+	@PostMapping(value = { "/questions/{question}", "/questions/{question}/" })
+	public QuestionDto createQuestionDto(@PathVariable("question") String ques) throws IllegalArgumentException {
 		Question question = service.createQuestion(ques);
 		return convertToDto(question);
-	} 
-	
-	//delete question by id
-	@DeleteMapping(value = {"/questions/{questionId}", "/questions/{questionId}/"})
+	}
+
+	// delete question by id
+	@DeleteMapping(value = { "/questions/{questionId}", "/questions/{questionId}/" })
 	public List<QuestionDto> deleteQuestionById(@PathVariable("questionId") Integer questionId) {
 		service.deleteQuestion(questionId);
 
 		List<QuestionDto> questions = new ArrayList<QuestionDto>();
-		for(Question question : service.getAllQuestions()) {
+		for (Question question : service.getAllQuestions()) {
 			questions.add(convertToDto(question));
 		}
 
 		return questions;
 	}
+<<<<<<< HEAD
 	
 	// change Question
 	@PutMapping(value = { "/questions/{questionId}", "/questions/{questionId}/" })
@@ -90,61 +90,70 @@ public class PetShelterController {
 	}
 	
 	//convert question to questiondto
+=======
+
+	// convert question to questiondto
+>>>>>>> a8ed9918f4f38d3e28b9c35062779053b0b3922c
 	private QuestionDto convertToDto(Question q) {
 		if (q == null) {
 			throw new IllegalArgumentException("There is no such Question!");
 		}
-		
+
 		Set<PetPostDto> setPetPostDtos = createSetPetPostDto(q.getIsRelatedTo());
 		Set<PersonDto> setPersonDtos = createSetPersonDto(q.getPerson());
 
-		QuestionDto questionDto = new QuestionDto(q.getQuestion(), q.getAnswer(),
-				setPetPostDtos, setPersonDtos, q.getQuestionId());
-				
+		QuestionDto questionDto = new QuestionDto(q.getQuestion(), q.getAnswer(), setPetPostDtos, setPersonDtos,
+				q.getQuestionId());
+
 		return questionDto;
 	}
-	
+
 	// USER PROFILE //
-	
-	@GetMapping(value = {"/userprofile", "/userprofile/"})
-	public List<UserProfileDto> getAllUserProfiles(){
+
+	@GetMapping(value = { "/userprofile", "/userprofile/" })
+	public List<UserProfileDto> getAllUserProfiles() {
 		return service.getAllUserProfiles().stream().map(u -> convertToDto(u)).collect(Collectors.toList());
 	}
-	
-	@PostMapping(value = {"/userprofile/{username}", "/userprofile/{username}/"})
+
+	@PostMapping(value = { "/userprofile/{username}", "/userprofile/{username}/" })
 	public UserProfileDto createUserProfileDto(@PathVariable("username") String username,
-			@RequestParam() String address,
-			@RequestParam() boolean hasExperienceWithPets,
-			@RequestParam() int numberOfPetsCurrentlyOwned,
-			@RequestParam() String typeOfLivingAccommodation)
+			@RequestParam() String address, @RequestParam() boolean hasExperienceWithPets,
+			@RequestParam() int numberOfPetsCurrentlyOwned, @RequestParam() String typeOfLivingAccommodation)
 			throws IllegalArgumentException {
 
-		UserProfile userProfile = service.createUserProfile(address, hasExperienceWithPets, numberOfPetsCurrentlyOwned, typeOfLivingAccommodation);
+		UserProfile userProfile = service.createUserProfile(address, hasExperienceWithPets, numberOfPetsCurrentlyOwned,
+				typeOfLivingAccommodation);
 		userProfile.setPerson(service.getPerson(username));
 		return convertToDto(userProfile);
-	} 
-	
+	}
+
 	private UserProfileDto convertToDto(UserProfile u) {
 		if (u == null) {
 			throw new IllegalArgumentException("There is no such user profile!");
 		}
 		PersonDto person = convertToDto(u.getPerson());
 
-		UserProfileDto UserProfileDto = new UserProfileDto(u.getAddress(), u.getUserProfileId(),
-				person, u.getHasExperienceWithPets(), u.getNumberOfPetsCurrentlyOwned(),
-				u.getTypeOfLivingAccomodation());
+		UserProfileDto UserProfileDto = new UserProfileDto(u.getAddress(), u.getUserProfileId(), person,
+				u.getHasExperienceWithPets(), u.getNumberOfPetsCurrentlyOwned(), u.getTypeOfLivingAccomodation());
 		return UserProfileDto;
+<<<<<<< HEAD
 	}	
 	
 	@DeleteMapping(value = {"/userprofile/{userProfileId}", "/userprofile/{userProfileId}/"})
 	public boolean deleteUserProfile(@PathVariable(name = "userProfileId") Integer userProfileId){
+=======
+	}
+
+	@DeleteMapping(value = { "/userprofile", "/userprofile/" })
+	public boolean deleteUserProfile(@PathVariable(name = "userProfileId") Integer userProfileId) {
+>>>>>>> a8ed9918f4f38d3e28b9c35062779053b0b3922c
 		if (userProfileId == null) {
 			throw new IllegalArgumentException("There is no such user profile Id!");
-		}
-		else {
+		} else {
 			return service.deleteUserProfile(userProfileId);
 		}
 	}
+<<<<<<< HEAD
 	// change Question
 	@PutMapping(value = { "/userprofile/{userProfileId}", "/questions/{userProfileId}/" })
 	public void changeQuestionString(@PathVariable("userProfileId") Integer userProfileId, @RequestParam UserProfile newUserProfile) {
@@ -155,22 +164,23 @@ public class PetShelterController {
 		}
 	}
 	
+=======
+
+>>>>>>> a8ed9918f4f38d3e28b9c35062779053b0b3922c
 	// APP USER //
-	
-	@GetMapping(value = {"/appuser", "/appuser/"})
-	public List<AppUserDto> getAllAppUser(){
+
+	@GetMapping(value = { "/appuser", "/appuser/" })
+	public List<AppUserDto> getAllAppUser() {
 		return service.getAllAppUsers().stream().map(a -> convertToDto(a)).collect(Collectors.toList());
 	}
-	
-	@PostMapping(value = {"/appuser/{username}", "/appuser/{username}/"})
-	public AppUserDto createAppUserDto(@PathVariable("username") String username,
-			@RequestParam String password,
-			@RequestParam PersonRole appUserRole) 
-			throws IllegalArgumentException {
+
+	@PostMapping(value = { "/appuser/{username}", "/appuser/{username}/" })
+	public AppUserDto createAppUserDto(@PathVariable("username") String username, @RequestParam String password,
+			@RequestParam PersonRole appUserRole) throws IllegalArgumentException {
 		AppUser appUser = service.createAppUser(username, password, appUserRole);
 		return convertToDto(appUser);
-	} 
-	
+	}
+
 	private AppUserDto convertToDto(AppUser a) {
 		if (a == null) {
 			throw new IllegalArgumentException("There is no such app user!");
@@ -191,250 +201,225 @@ public class PetShelterController {
 			service.changeAppUserPassword(username, password);
 		}
 	}
-	
+
 	// change appUser personRole
 	@PutMapping(value = { "/appuser/role/{username}", "/appuser/role/{username}/" })
-	public void changeAppUserRole(@PathVariable("username") String username,
-			@RequestParam PersonRole appUserRole) {
+	public void changeAppUserRole(@PathVariable("username") String username, @RequestParam PersonRole appUserRole) {
 		if (username == null) {
 			throw new IllegalArgumentException("Username cannot be empty!");
 		}
-		if(appUserRole == null) {
+		if (appUserRole == null) {
 			throw new IllegalArgumentException("New appuser role cannot be empty!");
 		} else {
 			service.changeAppUserPersonRole(username, appUserRole);
 		}
 	}
-	
+
 	// LOGIN AND LOGOUT //
-	
-	//appUser login
-	@PostMapping(value = {"/loginuser/{personusername}", "/loginuser/{personusername}/"})
-	public String appUserLogin(@PathVariable("personusername") String personUsername,
-			@RequestParam String password) {
-		try{
+
+	// appUser login
+	@PostMapping(value = { "/loginuser/{personusername}", "/loginuser/{personusername}/" })
+	public String appUserLogin(@PathVariable("personusername") String personUsername, @RequestParam String password) {
+		try {
 			service.loginAsAppUser(personUsername, password);
 			return "Login Successful!";
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			return e.getMessage();
 		}
-		
+
 	}
-	
-	//appAdmin login
-	@PostMapping(value = {"/loginadmin/{personusername}", "/loginadmin/{personusername}/"})
-	public String appAdminLogin(@PathVariable("personusername") String personUsername,
-			@RequestParam String password) {
-		try{
+
+	// appAdmin login
+	@PostMapping(value = { "/loginadmin/{personusername}", "/loginadmin/{personusername}/" })
+	public String appAdminLogin(@PathVariable("personusername") String personUsername, @RequestParam String password) {
+		try {
 			service.loginAsAppAdmin(personUsername, password);
 			return "Login Successful!";
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			return e.getMessage();
 		}
-		
+
 	}
-	
-	//logout
-	@PutMapping(value = {"/logout", "/logout/"})
+
+	// logout
+	@PutMapping(value = { "/logout", "/logout/" })
 	public String logout() {
-			service.logout();
-			return "Logout Successful!";
+		service.logout();
+		return "Logout Successful!";
 	}
-	
-	@GetMapping(value = {"/user", "/user/"})
+
+	@GetMapping(value = { "/user", "/user/" })
 	public PersonDto getLoggedUser() {
-		return convertToDto((Person)service.getLoggedInUser());
+		return convertToDto((Person) service.getLoggedInUser());
 	}
-	
+
 	// APP ADMIN //
-	
-	
-	@PostMapping(value = {"/appadmin/{adminUsername}", "/appadmin/{adminUsername}/"})
+
+	@PostMapping(value = { "/appadmin/{adminUsername}", "/appadmin/{adminUsername}/" })
 	public PersonDto registerAppAdmin(@PathVariable("adminUsername") String adminUsername,
-			@RequestParam String password){
+			@RequestParam String password) {
 
 		AppAdmin appAdmin = service.createAppAdmin(adminUsername, password);
 
 		return convertToDto(appAdmin);
 	}
-	
 
 	// DONATION //
-	
-	//get all donations
+
+	// get all donations
 	@GetMapping(value = { "/donations", "/donations/" })
 	public List<DonationDto> getAllDonations() {
-		return service.getAllDonations().stream().map(d ->
-		convertToDto(d)).collect(Collectors.toList());
+		return service.getAllDonations().stream().map(d -> convertToDto(d)).collect(Collectors.toList());
 	}
 
-	//create new donation
+	// create new donation
 	@PostMapping(value = { "/donations", "/donations/" })
-	public DonationDto createDonationDto(
-			@RequestParam("amount") double amount,
-			@RequestParam("comment") String comment,
-			@RequestParam("setNameAnonymous") boolean setNameAnonymous)
-			throws IllegalArgumentException {
+	public DonationDto createDonationDto(@RequestParam("amount") double amount, @RequestParam("comment") String comment,
+			@RequestParam("setNameAnonymous") boolean setNameAnonymous) throws IllegalArgumentException {
 		Donation donation = service.createDonation(amount, comment, setNameAnonymous);
 		return convertToDto(donation);
-		
+
 	}
-	
-	//get donation by id
+
+	// get donation by id
 	@GetMapping(value = { "/donations/{donationId}", "/donations/{donationId}/" })
-	public DonationDto getDonation(@PathVariable(name = "donationId") Integer donationId){
+	public DonationDto getDonation(@PathVariable(name = "donationId") Integer donationId) {
 		if (donationId == null) {
 			throw new IllegalArgumentException("There is no such Donation Id!");
-		} 
-		else {
+		} else {
 			Donation donation = service.getDonation(donationId);
 			if (donation != null) {
 				return convertToDto(donation);
-			} 
-			else { 
+			} else {
 				throw new IllegalArgumentException("No donation found with Id!");
 			}
 		}
 	}
-	
-	//delete donation by id
+
+	// delete donation by id
 	@DeleteMapping(value = { "/donations/{donationId}", "/donations/{donationId}/" })
-	public boolean deleteDonation(@PathVariable(name = "donationId") Integer donationId){
+	public boolean deleteDonation(@PathVariable(name = "donationId") Integer donationId) {
 		if (donationId == null) {
-			
+
 			throw new IllegalArgumentException("There is no such Donation Id!");
-		}
-		else {
+		} else {
 			return service.deleteDonation(donationId);
 		}
 	}
 
-	//convert donation to donationdto	
+	// convert donation to donationdto
 	private DonationDto convertToDto(Donation d) {
 		if (d == null) {
 			throw new IllegalArgumentException("There is no such Donation!");
 		}
-	
-		DonationDto donationDto = new DonationDto(d.getAmount(), d.getComment(),
-				false, createSetPersonDto(d.getPerson()), d.getDonationId());
+
+		DonationDto donationDto = new DonationDto(d.getAmount(), d.getComment(), false,
+				createSetPersonDto(d.getPerson()), d.getDonationId());
 		return donationDto;
 	}
-	
-	//change donationComment
-	@PutMapping(value = {"/donations/comment/{donationId}", "/donations/comment/{donationId}/"})
-	public void changeDonationComment(@PathVariable("donationId") Integer donationId,
-			@RequestParam String comment){
-		if(donationId == null) {
+
+	// change donationComment
+	@PutMapping(value = { "/donations/comment/{donationId}", "/donations/comment/{donationId}/" })
+	public void changeDonationComment(@PathVariable("donationId") Integer donationId, @RequestParam String comment) {
+		if (donationId == null) {
 			throw new IllegalArgumentException("Donation ID invalid!");
-		}
-		else if(comment == null ||comment.trim().length()==0) {
+		} else if (comment == null || comment.trim().length() == 0) {
 			throw new IllegalArgumentException("New comment cannot be empty");
-		}
-		else {
+		} else {
 			service.changeDonationComment(donationId, comment);
 		}
 	}
-	
-	//change donation anonymity
-	@PutMapping(value = {"/donations/anonymity/{donationId}", "/donations/anonymity/{donationId}/"})
+
+	// change donation anonymity
+	@PutMapping(value = { "/donations/anonymity/{donationId}", "/donations/anonymity/{donationId}/" })
 	public void changeDonationAnonymous(@PathVariable("donationId") Integer donationId,
-			@RequestParam boolean anonymous){
-		if(donationId == null) {
+			@RequestParam boolean anonymous) {
+		if (donationId == null) {
 			throw new IllegalArgumentException("Donation ID invalid!");
-		}
-		else {
+		} else {
 			service.changeDonationAnonymous(donationId, anonymous);
 		}
 	}
-	
+
 	// PERSON //
-	
+
 	private PersonDto convertToDto(Person p) {
 		if (p == null) {
 			throw new IllegalArgumentException("There is no such Person!");
 		}
-	
-		PersonDto personDto = new PersonDto(p.getUsername(),
-				p.getPassword(), p.getCreates());
+
+		PersonDto personDto = new PersonDto(p.getUsername(), p.getPassword(), p.getCreates());
 		return personDto;
 	}
-	
+
 	private Set<PersonDto> createSetPersonDto(Set<Person> p) {
 		if (p == null) {
 			throw new IllegalArgumentException("There is no such Person!");
 		}
-		
+
 		Set<PersonDto> personDtoSet = new HashSet<PersonDto>();
 		for (Person person : p) {
-			PersonDto personDto = new PersonDto(person.getUsername(),
-					person.getPassword(), person.getCreates());
+			PersonDto personDto = new PersonDto(person.getUsername(), person.getPassword(), person.getCreates());
 			personDtoSet.add(personDto);
 		}
 		return personDtoSet;
 	}
-	
-	
+
 	// PET POST //
-	
-	//get list of pet posts
+
+	// get list of pet posts
 	@GetMapping(value = { "/petpost", "/petpost/" })
 	public List<PetPostDto> getAllPetPosts() {
-		return service.getAllPetPosts().stream().map(pp ->
-		convertToDto(pp)).collect(Collectors.toList());
+		return service.getAllPetPosts().stream().map(pp -> convertToDto(pp)).collect(Collectors.toList());
 	}
 
-	//create a new pet post
+	// create a new pet post
 	@PostMapping(value = { "/petposts", "/petposts/" })
-	public PetPostDto createPetPostDto(
-			@RequestParam("availability") boolean availability,
-			@RequestParam("ownedBy") String username,
-			@RequestParam("name") String petname,
-			@RequestParam("typeOfPet") String typeOfPet,
-			@RequestParam("description") String description)
+	public PetPostDto createPetPostDto(@RequestParam("availability") boolean availability,
+			@RequestParam("ownedBy") String username, @RequestParam("name") String petname,
+			@RequestParam("typeOfPet") String typeOfPet, @RequestParam("description") String description)
 			throws IllegalArgumentException {
 		Person owner = service.getAppUser(username);
-		if(owner == null) {
+		if (owner == null) {
 			owner = service.getAppAdmin(username);
-			if(owner == null) {
-			throw new IllegalArgumentException("There is no such owner in the database.");
+			if (owner == null) {
+				throw new IllegalArgumentException("There is no such owner in the database.");
 			}
 		}
 		PetPost petPost = service.createPetPost(availability, petname, typeOfPet, description, owner);
 		return convertToDto(petPost);
 	}
-	
-	//get pet post by id
+
+	// get pet post by id
 	@GetMapping(value = { "/petposts/{petPostId}", "/petposts/{petPostId}/" })
-	public PetPostDto getPetPost(@PathVariable(name = "petPostId") Integer petPostId){
-		
+	public PetPostDto getPetPost(@PathVariable(name = "petPostId") Integer petPostId) {
+
 		if (petPostId == null) {
-			
+
 			throw new IllegalArgumentException("There is no such Pet Post Id!");
-		} 
-		else {
-			
+		} else {
+
 			PetPost petPost = service.getPetPost(petPostId);
-			
+
 			if (petPost != null) {
 				return convertToDto(petPost);
-			} 
-			else { 
+			} else {
 				throw new IllegalArgumentException("No pet post was found with Id!");
 			}
 		}
 	}
-	
-	//delete pet post by id
+
+	// delete pet post by id
 	@DeleteMapping(value = { "/petposts/{petPostId}", "/petposts/{petPostId}/" })
-	public boolean deletePetPost(@PathVariable(name = "petPostId") Integer petPostId){
+	public boolean deletePetPost(@PathVariable(name = "petPostId") Integer petPostId) {
 		if (petPostId == null) {
-			
+
 			throw new IllegalArgumentException("There is no such Pet Post Id!");
-		}
-		else {
+		} else {
 			return service.deletePetPost(petPostId);
 		}
 	}
+<<<<<<< HEAD
 	
 	//update PetPost
 	@PutMapping(value = {"/petposts/description/{petPostId}", "/petposts/description/{petPostId}/"})
@@ -448,31 +433,66 @@ public class PetShelterController {
 		}
 		else {
 			service.updatePetPost(petPostId, newPetPost);
+=======
+
+	// change petpost description
+	@PutMapping(value = { "/petposts/description/{petPostId}", "/petposts/description/{petPostId}/" })
+	public void changePetPostDescription(@PathVariable("petPostId") Integer petPostId,
+			@RequestParam String description) {
+		if (petPostId == null) {
+			throw new IllegalArgumentException("Pet Post ID invalid!");
+		} else if (description == null) {
+			throw new IllegalArgumentException("New description cannot be empty");
+		} else {
+			service.changePetPostDescription(petPostId, description);
 		}
 	}
-	
-	
+
+	// change petpost availability
+	@PutMapping(value = { "/petposts/availability/{petPostId}", "/petposts/availability/{petPostId}/" })
+	public void changePetPostAvailability(@PathVariable("petPostId") Integer petPostId,
+			@RequestParam boolean availability) {
+
+		if (petPostId == null) {
+			throw new IllegalArgumentException("Pet Post ID invalid!");
+		} else {
+			service.changePetPostAvailability(petPostId, availability);
+		}
+	}
+
+	// change petpost name
+	@PutMapping(value = { "/petposts/petname/{petPostId}", "/petposts/petname/{petPostId}/" })
+	public void changePetPostName(@PathVariable("petPostId") Integer petPostId, @RequestParam String name) {
+		if (petPostId == null) {
+			throw new IllegalArgumentException("Pet Post ID invalid!");
+		} else if (name == null) {
+			throw new IllegalArgumentException("New name cannot be empty");
+		} else {
+			service.changePetPostName(petPostId, name);
+>>>>>>> a8ed9918f4f38d3e28b9c35062779053b0b3922c
+		}
+	}
+
 	private PetPostDto convertToDto(PetPost pp) {
 		if (pp == null) {
 			throw new IllegalArgumentException("There is no such Pet Post!");
 		}
-		
+
 		PersonDto owner = convertToDto(pp.getOwnedBy());
 		Set<AdoptRequestDto> requests = createSetAdoptRequestDto(pp.getHasRequest());
 		QuestionDto question = convertToDto(pp.getRelatesTo());
-	
-		PetPostDto petPostDto = new PetPostDto(pp.isAvailability(),
-				owner, requests, pp.getName(), pp.getTypeOfPet(), pp.getDescription(),
-				question, pp.getPetPostId());
-				
+
+		PetPostDto petPostDto = new PetPostDto(pp.isAvailability(), owner, requests, pp.getName(), pp.getTypeOfPet(),
+				pp.getDescription(), question, pp.getPetPostId());
+
 		return petPostDto;
 	}
-	
+
 	private Set<PetPostDto> createSetPetPostDto(Set<PetPost> pps) {
 		if (pps == null) {
 			throw new IllegalArgumentException("There is no such Pet Post!");
 		}
-		
+
 		Set<PetPostDto> petPostDtoSet = new HashSet<PetPostDto>();
 		for (PetPost petPost : pps) {
 			PetPostDto petPostDto = convertToDto(petPost);
@@ -480,77 +500,74 @@ public class PetShelterController {
 		}
 		return petPostDtoSet;
 	}
-	
+
 	// ADOPT REQUEST //
-	
-	//get all adopt requests
+
+	// get all adopt requests
 	@GetMapping(value = { "/adoptrequest", "/adoptrequest/" })
 	public List<AdoptRequestDto> getAllAdoptRequest() {
-		return service.getAllAdoptRequests().stream().map(ar ->
-		convertToDto(ar)).collect(Collectors.toList());
+		return service.getAllAdoptRequests().stream().map(ar -> convertToDto(ar)).collect(Collectors.toList());
 	}
-	
-	//create adopt request by pet post
+
+	// create adopt request by pet post
 	@PostMapping(value = { "/adoptrequest/{petPostId}", "/adoptrequest/{petPostId}/" })
 	public AdoptRequestDto createAdoptRequestDto(@PathVariable("petPostId") Integer petPostId)
 			throws IllegalArgumentException {
 		PetPost petPost = service.getPetPost(petPostId);
-		if(petPost == null) {
+		if (petPost == null) {
 			throw new IllegalArgumentException("There is no such pet post in the database.");
 		}
 		Person owner = service.getAppUser(petPost.getName());
 		AdoptRequest adoptRequest = service.createAdoptRequest(owner, petPost);
 		return convertToDto(adoptRequest);
 	}
-	
-	//delete adopt request by id
+
+	// delete adopt request by id
 	@DeleteMapping(value = { "/adoptrequest/{adoptRequestId}", "/adoptrequest/{adoptRequestId}/" })
-	public boolean deleteAdoptRequest(@PathVariable(name = "adoptRequestId") Integer adoptRequestId){
+	public boolean deleteAdoptRequest(@PathVariable(name = "adoptRequestId") Integer adoptRequestId) {
 		if (adoptRequestId == null) {
-			
+
 			throw new IllegalArgumentException("There is no such Adopt Request Id!");
-		}
-		else {
+		} else {
 			return service.deleteAdoptRequest(adoptRequestId);
 		}
 	}
-	
-	//change adopt request status
-	@PutMapping(value = {"/adoptrequest/status/{adoptRequestId}", "/adoptrequest/status/{adoptRequestId}/"})
+
+	// change adopt request status
+	@PutMapping(value = { "/adoptrequest/status/{adoptRequestId}", "/adoptrequest/status/{adoptRequestId}/" })
 	public void changeAdoptRequestStatus(@PathVariable("adoptRequestId") Integer adoptRequestId,
-			@RequestParam Status status){
-		
-		if(adoptRequestId == null) {
+			@RequestParam Status status) {
+
+		if (adoptRequestId == null) {
 			throw new IllegalArgumentException("AdoptRequest Id cannot be empty!");
-		}
-		else if(status == null) {
+		} else if (status == null) {
 			throw new IllegalArgumentException("AdoptRequest status Id cannot be empty!");
-		}
-		else { service.changeAdoptRequestStatus(adoptRequestId, status);
+		} else {
+			service.changeAdoptRequestStatus(adoptRequestId, status);
 		}
 	}
-	
-	//convert adoptrequest to adoptrequestdto
+
+	// convert adoptrequest to adoptrequestdto
 	private AdoptRequestDto convertToDto(AdoptRequest ar) {
 		if (ar == null) {
 			throw new IllegalArgumentException("There is no such Adopt Request!");
 		}
-	
+
 		PersonDto personDto = convertToDto(ar.getRequestedBy());
 		PetPostDto petPostDto = convertToDto(ar.getRequesting());
-		AdoptRequestDto adoptRequestDto = new AdoptRequestDto(ar.getStatus(),
-				personDto, petPostDto, ar.getAdoptRequestId());
-				
+		AdoptRequestDto adoptRequestDto = new AdoptRequestDto(ar.getStatus(), personDto, petPostDto,
+				ar.getAdoptRequestId());
+
 		return adoptRequestDto;
 	}
-	
+
 	private Set<AdoptRequestDto> createSetAdoptRequestDto(Set<AdoptRequest> ars) {
 		if (ars == null) {
 			throw new IllegalArgumentException("There is no such Adopt Request!");
 		}
-		
+
 		Set<AdoptRequestDto> adoptRequestDtoSet = new HashSet<AdoptRequestDto>();
-		for (AdoptRequest adoptRequest : ars) {			
+		for (AdoptRequest adoptRequest : ars) {
 			AdoptRequestDto adoptRequestDto = convertToDto(adoptRequest);
 			adoptRequestDtoSet.add(adoptRequestDto);
 		}

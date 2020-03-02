@@ -8,17 +8,18 @@ public class QuestionDto {
 	private Set<PetPostDto> isRelatedTo;
 	private Set<PersonDto> person;
 	private Integer questionId;
-	
+
 	public QuestionDto() {
-		
+
 	}
-	
+
 	// Question with no answer yet
 	public QuestionDto(String question, Set<PetPostDto> isRelatedTo, Set<PersonDto> person, Integer questionId) {
 		this(question, "", isRelatedTo, person, questionId);
 	}
-	
-	public QuestionDto(String question, String answer, Set<PetPostDto> isRelatedTo, Set<PersonDto> person, Integer questionId) {
+
+	public QuestionDto(String question, String answer, Set<PetPostDto> isRelatedTo, Set<PersonDto> person,
+			Integer questionId) {
 		this.question = question;
 		this.answer = answer;
 		this.isRelatedTo = isRelatedTo;
