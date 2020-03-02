@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -95,7 +94,7 @@ public class PetShelterController {
 	@PostMapping(value = {"/userprofile/{username}", "/userprofile/{username}/"})
 	public UserProfileDto createUserProfileDto(@PathVariable("username") String username,
 			@RequestParam() String address,
-			@RequestParam() Boolean hasExperienceWithPets,
+			@RequestParam() boolean hasExperienceWithPets,
 			@RequestParam() int numberOfPetsCurrentlyOwned,
 			@RequestParam() String typeOfLivingAccommodation)
 			throws IllegalArgumentException {
@@ -126,22 +125,6 @@ public class PetShelterController {
 			return service.deleteUserProfile(userProfileId);
 		}
 	}
-	
-//	@GetMapping(value = {"/userprofile, /userprofile/"})
-//	public UserProfileDto getUserProfile(@PathVariable(name = "userProfile") Integer userProfileId){
-//		if (userProfileId == null) {
-//			throw new IllegalArgumentException("There is no such user profile Id!");
-//		} 
-//		else {
-//			UserProfile userProfile = service.getUserProfile(userProfileId);
-//			if (userProfile != null) {
-//				return convertToDto(userProfile);
-//			} 
-//			else { 
-//				throw new IllegalArgumentException("No user profile found with Id!");
-//			}
-//		}
-//	}
 	
 	// APP USER //
 	
@@ -261,8 +244,7 @@ public class PetShelterController {
 	public DonationDto createDonationDto(
 			@RequestParam("amount") double amount,
 			@RequestParam("comment") String comment,
-			@RequestParam("setNameAnonymous") boolean setNameAnonymous,
-			@RequestParam("donationId") Integer donationId) 
+			@RequestParam("setNameAnonymous") boolean setNameAnonymous)
 			throws IllegalArgumentException {
 		Donation donation = service.createDonation(amount, comment, setNameAnonymous);
 		return convertToDto(donation);
@@ -327,7 +309,7 @@ public class PetShelterController {
 	//change donation anonymity
 	@PutMapping(value = {"/donations/anonymity/{donationId}", "/donations/anonymity/{donationId}/"})
 	public void changeDonationAnonymous(@PathVariable("donationId") Integer donationId,
-			@RequestParam Boolean anonymous){
+			@RequestParam boolean anonymous){
 		if(donationId == null) {
 			throw new IllegalArgumentException("Donation ID invalid!");
 		}
@@ -443,7 +425,7 @@ public class PetShelterController {
 	//change petpost availability
 	@PutMapping(value = {"/petposts/availability/{petPostId}", "/petposts/availability/{petPostId}/"})
 	public void changePetPostAvailability(@PathVariable("petPostId") Integer petPostId,
-			@RequestParam Boolean availability){
+			@RequestParam boolean availability){
 		
 		if(petPostId == null) {
 			throw new IllegalArgumentException("Pet Post ID invalid!");
@@ -519,27 +501,6 @@ public class PetShelterController {
 		AdoptRequest adoptRequest = service.createAdoptRequest(owner, petPost);
 		return convertToDto(adoptRequest);
 	}
-	
-//	@GetMapping(value = { "/adoptRequest/", "/adoptRequest/" })
-//	public AdoptRequestDto getAdoptRequest(@PathVariable(
-//			name = "adoptRequestId") Integer adoptRequestId){
-//		
-//		if (adoptRequestId == null) {
-//			
-//			throw new IllegalArgumentException("There is no such Adopt Request Id!");
-//		} 
-//		else {
-//			
-//			AdoptRequest adoptRequest = service.getAdoptRequest(adoptRequestId);
-//			
-//			if (adoptRequest != null) {
-//				return convertToDto(adoptRequest);
-//			} 
-//			else { 
-//				throw new IllegalArgumentException("No AdoptRequest was found with Id!");
-//			}
-//		}
-//	}
 	
 	//delete adopt request by id
 	@DeleteMapping(value = { "/adoptrequest/{adoptRequestId}", "/adoptrequest/{adoptRequestId}/" })
