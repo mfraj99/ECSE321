@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.2.4.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
+	id 'jacoco'
 }
 
 group = 'com.example'
@@ -35,3 +36,23 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
+
+jacocoTestCoverageVerification {
+	violationRules {
+		rule {
+			limit {
+				minimum = 0.6
+			}
+		}
+	}
+}
+
+task integrationTest(type:Exec){
+	commandLine 'cmd', '/c', 'curl -s -H "Content-Type: application/json" -X POST --data @data @database/admin http://localhost:5432/appadmin'
+
+}
+
+
+
+
+

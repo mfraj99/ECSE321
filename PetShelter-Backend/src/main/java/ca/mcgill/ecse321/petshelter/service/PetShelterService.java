@@ -93,7 +93,7 @@ public class PetShelterService {
 			throw new IllegalArgumentException("AdoptRequest Id cannot be empty!");
 		}
 		if(status == null) {
-			throw new IllegalArgumentException("AdoptRequest status Id cannot be empty!");
+			throw new IllegalArgumentException("AdoptRequest status cannot be empty!");
 		}
 		AdoptRequest adoptRequest = getAdoptRequest(id);
 		adoptRequest.setStatus(status);

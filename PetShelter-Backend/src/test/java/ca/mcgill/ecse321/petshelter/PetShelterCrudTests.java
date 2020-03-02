@@ -74,65 +74,63 @@ public class PetShelterCrudTests {
 		pss.createPerson("person2", "password");
 		pss.createPetPost(true, "Ebola", "dog", "cute doggo", pss.getPerson("person1"));
 		int id = pss.getAllPetPosts().get(0).getPetPostId();
-		
+
 		pss.createAdoptRequest(pss.getPerson("person2"), pss.getPetPost(id));
 		List<AdoptRequest> allAdoptRequests = pss.getAllAdoptRequests();
 		assertEquals(1, allAdoptRequests.size());
 	}
-	
+
 	@Test
 	public void testCreateAdoptRequestNullOwner() {
-		assertEquals(0,pss.getAllAdoptRequests().size());
+		assertEquals(0, pss.getAllAdoptRequests().size());
 		pss.createPerson("person1", "password");
 		pss.createPetPost(true, "CoronaVirus", "dog", "cute doggo", pss.getPerson("person1"));
 		String error = null;
 		try {
 			pss.createAdoptRequest(null, pss.getAllPetPosts().get(0));
 		} catch (IllegalArgumentException e) {
-			error= e.getMessage();
+			error = e.getMessage();
 		}
-		
+
 		assertEquals("Adoptrequest must have an owner!", error);
-		assertEquals(0,pss.getAllAdoptRequests().size());
-		
-		
+		assertEquals(0, pss.getAllAdoptRequests().size());
+
 	}
-	
+
 	@Test
 	public void testCreateAdoptRequestNullPetPost() {
-		assertEquals(0,pss.getAllAdoptRequests().size());
+		assertEquals(0, pss.getAllAdoptRequests().size());
 		pss.createPerson("person1", "password");
 		String error = null;
-		
+
 		try {
 			pss.createAdoptRequest(pss.getPerson("person1"), null);
 		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
-		
+
 		assertEquals("Adoptrequest must be associated with a pet post!", error);
-		assertEquals(0,pss.getAllAdoptRequests().size());
+		assertEquals(0, pss.getAllAdoptRequests().size());
 	}
-	
-	
+
 	@Test
 	public void testDeleteAdoptRequest() {
-		//creating an adoptrequest to delete
+		// creating an adoptrequest to delete
 		assertEquals(0, pss.getAllAdoptRequests().size());
 		pss.createPerson("person1", "password");
 		pss.createPerson("person2", "password");
 		pss.createPetPost(true, "Ebola", "dog", "cute doggo", pss.getPerson("person1"));
 		int id = pss.getAllPetPosts().get(0).getPetPostId();
-		
+
 		pss.createAdoptRequest(pss.getPerson("person2"), pss.getPetPost(id));
 		List<AdoptRequest> allAdoptRequests = pss.getAllAdoptRequests();
 		assertEquals(1, allAdoptRequests.size());
-		
-		//deleting adoptRequest
+
+		// deleting adoptRequest
 		pss.deleteAdoptRequest(pss.getAllAdoptRequests().get(0).getAdoptRequestId());
 		assertEquals(0, pss.getAllAdoptRequests().size());
 	}
-	
+
 	@Test
 	public void testDeleteAdoptRequestNullId() {
 		assertEquals(0, pss.getAllAdoptRequests().size());
@@ -140,15 +138,15 @@ public class PetShelterCrudTests {
 		Integer Id = null;
 		try {
 			pss.deleteAdoptRequest(Id);
-		} catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
-		
+
 		assertEquals("AdoptRequestId invalid!", error);
 		assertEquals(0, pss.getAllAdoptRequests().size());
-		
+
 	}
-	
+
 	@Test
 	public void testDeleteAdoptRequestInvalidId() {
 		assertEquals(0, pss.getAllAdoptRequests().size());
@@ -156,14 +154,14 @@ public class PetShelterCrudTests {
 		Integer Id = 0000;
 		try {
 			pss.deleteAdoptRequest(Id);
-		} catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
-		
+
 		assertEquals("AdoptRequest must be valid!", error);
 		assertEquals(0, pss.getAllAdoptRequests().size());
 	}
-	
+
 	@Test
 	public void testUpdateAdoptRequestStatus() {
 		assertEquals(0, pss.getAllAdoptRequests().size());
@@ -172,7 +170,7 @@ public class PetShelterCrudTests {
 		pss.createPerson("person2", "password");
 		pss.createPetPost(true, "Ebola", "dog", "cute doggo", pss.getPerson("person1"));
 		int id = pss.getAllPetPosts().get(0).getPetPostId();
-		
+
 		pss.createAdoptRequest(pss.getPerson("person2"), pss.getPetPost(id));
 		id = pss.getAllAdoptRequests().get(0).getAdoptRequestId();
 		Status status = Status.APPROVED;
@@ -180,25 +178,34 @@ public class PetShelterCrudTests {
 		assertEquals(1, pss.getAllAdoptRequests().size());
 		assertEquals(status, pss.getAdoptRequest(id).getStatus());
 	}
-	
 
-	
 	@Test
 	public void testUpdateAdoptRequestInvalidStatus() {
 		pss.createPerson("person1", "password");
 		pss.createPerson("person2", "password");
 		pss.createPetPost(true, "Ebola", "dog", "cute doggo", pss.getPerson("person1"));
 		int id = pss.getAllPetPosts().get(0).getPetPostId();
-		
+
 		pss.createAdoptRequest(pss.getPerson("person2"), pss.getPetPost(id));
 		id = pss.getAllAdoptRequests().get(0).getAdoptRequestId();
-		String error =null;
-		try{
+		String error = null;
+		try {
 			pss.changeAdoptRequestStatus(id, null);
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
-		assertEquals("AdoptRequest status Id cannot be empty!", error);
+		assertEquals("AdoptRequest status cannot be empty!", error);
+	}
+
+	@Test
+	public void testUpdateAdoptRequestInvalidId() {
+		String error = null;
+		try {
+			pss.changeAdoptRequestStatus(null, Status.PENDING);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("AdoptRequest Id cannot be empty!", error);
 	}
 
 	/*
@@ -237,64 +244,221 @@ public class PetShelterCrudTests {
 		assertEquals("Can only have one Admin!", error);
 		assertEquals(size, pss.getAllAppAdmins().size());
 	}
-	
+
+	// null username and password
+	@Test
+	public void testCreateAppAdminNullUandP() {
+		assertEquals(0, pss.getAllAppAdmins().size());
+
+		String username = null;
+		String password = null;
+		String error = null;
+
+		try {
+			pss.createAppAdmin(username, password);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+
+		assertEquals("AppAdmin name and password cannot be empty!", error);
+		assertEquals(0, pss.getAllAppAdmins().size());
+
+	}
+
+	// empty username and password
+	@Test
+	public void testCreateAppAdminEmptyUandP() {
+		assertEquals(0, pss.getAllAppAdmins().size());
+
+		String username = "";
+		String password = "";
+		String error = null;
+		try {
+			pss.createAppAdmin(username, password);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+
+		assertEquals("AppAdmin name and password cannot be empty!", error);
+		assertEquals(0, pss.getAllAppAdmins().size());
+	}
+
+	// space in username and password
+	@Test
+	public void testCreateAppAdminSpaceUandP() {
+		assertEquals(0, pss.getAllAppAdmins().size());
+
+		String username = " ";
+		String password = " ";
+		String error = null;
+
+		try {
+			pss.createAppAdmin(username, password);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+
+		assertEquals("AppAdmin name and password cannot be empty!", error);
+		assertEquals(0, pss.getAllAppAdmins().size());
+
+	}
+
+	// empty username
+	@Test
+	public void testCreateAppAdminEmptyU() {
+		assertEquals(0, pss.getAllAppAdmins().size());
+
+		String username = "";
+		String password = "12344";
+		String error = null;
+
+		try {
+			pss.createAppAdmin(username, password);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("AppAdmin name cannot be empty!", error);
+		assertEquals(0, pss.getAllAppAdmins().size());
+
+	}
+
+	// empty password
+	@Test
+	public void testCreateAppAdminEmptyP() {
+		assertEquals(0, pss.getAllAppAdmins().size());
+
+		String username = "english";
+		String password = "";
+		String error = null;
+
+		try {
+			pss.createAppAdmin(username, password);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("AppAdmin password cannot be empty!", error);
+		assertEquals(0, pss.getAllAppAdmins().size());
+	}
+
+	// space in name
+	@Test
+	public void testCreateAppAdminSpaceU() {
+		assertEquals(0, pss.getAllAppAdmins().size());
+
+		String username = " ";
+		String password = "12344";
+		String error = null;
+
+		try {
+			pss.createAppAdmin(username, password);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("AppAdmin name cannot be empty!", error);
+		assertEquals(0, pss.getAllAppAdmins().size());
+
+	}
+
+	// space in password
+	@Test
+	public void testCreateAdminSpaceP() {
+		assertEquals(0, pss.getAllAppAdmins().size());
+
+		String username = "tony";
+		String password = " ";
+		String error = null;
+
+		try {
+			pss.createAppAdmin(username, password);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("AppAdmin password cannot be empty!", error);
+		assertEquals(0, pss.getAllAppAdmins().size());
+	}
+
 	@Test
 	public void testDeleteAppAdmin() {
-		//creating person
+		// creating person
 		assertEquals(0, pss.getAllAppAdmins().size());
 		String username = "tony";
 		String password = "passowrd";
-		
+
 		pss.createAppAdmin(username, password);
 		assertEquals(1, pss.getAllAppAdmins().size());
-		//deleting person
-		
+		// deleting person
+
 		pss.deleteAppAdmin(username);
 		assertEquals(0, pss.getAllAppAdmins().size());
 	}
-	
+
 	@Test
 	public void testDeleteAppAdminNullName() {
 		assertEquals(0, pss.getAllAppAdmins().size());
-		String error= null;
+		String error = null;
 		try {
 			pss.deleteAppAdmin("");
-		} catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		assertEquals("Username invalid!", error);
 		assertEquals(0, pss.getAllAppAdmins().size());
-		
+
 	}
-	
+
 	@Test
 	public void testDeleteAppAdminInvalidName() {
 		assertEquals(0, pss.getAllAppAdmins().size());
 		String error = null;
 		try {
 			pss.deleteAppAdmin("username");
-		} catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		assertEquals("No AppAdmin found with username!", error);
 		assertEquals(0, pss.getAllAppAdmins().size());
 	}
-	
-	
+
 	@Test
 	public void testUpdateAppAdminPass() {
 		assertEquals(0, pss.getAllAppAdmins().size());
 		String username = "JWS";
 		String password = "3GPA";
-		String newPassword= "hello";
+		String newPassword = "hello";
 		pss.createAppAdmin(username, password);
 		List<AppAdmin> allAppAdmins = pss.getAllAppAdmins();
 		pss.changeAppAdminPassword(username, "hello");
 		assertEquals(newPassword, pss.getAllAppAdmins().get(0).getPassword());
 		assertEquals(1, allAppAdmins.size());
 	}
-	
-	
+
+	@Test
+	public void testUpdateAppAdminPassNullName() {
+		assertEquals(0, pss.getAllAppAdmins().size());
+		String error = null;
+		try {
+			pss.changeAppAdminPassword(null, "hello");
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("Username cannot be empty!", error);
+	}
+
+	@Test
+	public void testUpdateAppAdminPassNullPass() {
+		assertEquals(0, pss.getAllAppAdmins().size());
+		String error = null;
+		String username = "JWS";
+		String password = "3GPA";
+		pss.createAppAdmin(username, password);
+		try {
+			pss.changeAppAdminPassword(username, null);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("New password cannot be empty!", error);
+		assertEquals(1, pss.getAllAppAdmins().size());
+	}
 
 	/*
 	 * /////////////////////////////////////////////////////////////////////////////
@@ -329,61 +493,223 @@ public class PetShelterCrudTests {
 		assertEquals(1, allAppUsers.size());
 	}
 
+	// null username and password
+	@Test
+	public void testCreateAppUserNullUandP() {
+		assertEquals(0, pss.getAllAppUsers().size());
+
+		String username = null;
+		String password = null;
+		String error = null;
+
+		try {
+			pss.createAppUser(username, password, PersonRole.ADOPTER);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+
+		assertEquals("AppUser name and password cannot be empty!", error);
+		assertEquals(0, pss.getAllAppUsers().size());
+
+	}
+
+	// empty username and password
+	@Test
+	public void testCreateAppUserEmptyUandP() {
+		assertEquals(0, pss.getAllAppUsers().size());
+
+		String username = "";
+		String password = "";
+		String error = null;
+		try {
+			pss.createAppUser(username, password, PersonRole.ADOPTER);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+
+		assertEquals("AppUser name and password cannot be empty!", error);
+		assertEquals(0, pss.getAllAppUsers().size());
+	}
+
+	// space in username and password
+	@Test
+	public void testCreateAppUserSpaceUandP() {
+		assertEquals(0, pss.getAllAppUsers().size());
+
+		String username = " ";
+		String password = " ";
+		String error = null;
+
+		try {
+			pss.createAppUser(username, password, PersonRole.ADOPTER);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+
+		assertEquals("AppUser name and password cannot be empty!", error);
+		assertEquals(0, pss.getAllAppUsers().size());
+
+	}
+
+	// empty username
+	@Test
+	public void testCreateAppUserEmptyU() {
+		assertEquals(0, pss.getAllAppUsers().size());
+
+		String username = "";
+		String password = "12344";
+		String error = null;
+
+		try {
+			pss.createAppUser(username, password, PersonRole.ADOPTER);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("AppUser name cannot be empty!", error);
+		assertEquals(0, pss.getAllAppUsers().size());
+
+	}
+
+	// empty password
+	@Test
+	public void testCreateAppUserEmptyP() {
+		assertEquals(0, pss.getAllAppUsers().size());
+
+		String username = "english";
+		String password = "";
+		String error = null;
+
+		try {
+			pss.createAppUser(username, password, PersonRole.ADOPTER);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("AppUser password cannot be empty!", error);
+		assertEquals(0, pss.getAllAppUsers().size());
+	}
+
+	// space in name
+	@Test
+	public void testCreateAppUserSpaceU() {
+		assertEquals(0, pss.getAllAppUsers().size());
+
+		String username = " ";
+		String password = "12344";
+		String error = null;
+
+		try {
+			pss.createAppUser(username, password, PersonRole.ADOPTER);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("AppUser name cannot be empty!", error);
+		assertEquals(0, pss.getAllAppUsers().size());
+
+	}
+
+	// space in password
+	@Test
+	public void testCreateAppUserSpaceP() {
+		assertEquals(0, pss.getAllAppUsers().size());
+
+		String username = "tony";
+		String password = " ";
+		String error = null;
+
+		try {
+			pss.createAppUser(username, password, PersonRole.ADOPTER);
+		} catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("AppUser password cannot be empty!", error);
+		assertEquals(0, pss.getAllAppUsers().size());
+	}
+
 	@Test
 	public void testDeleteAppUser() {
-		//creating person
+		// creating person
 		assertEquals(0, pss.getAllAppUsers().size());
 		String username = "tony";
 		String password = "passowrd";
-		
+
 		pss.createAppUser(username, password, PersonRole.ADOPTER);
 		assertEquals(1, pss.getAllAppUsers().size());
-		//deleting person
-		
+		// deleting person
+
 		pss.deleteAppUser(username);
 		assertEquals(0, pss.getAllAppUsers().size());
 	}
-	
+
 	@Test
 	public void testDeleteAppUserNullName() {
 		assertEquals(0, pss.getAllAppUsers().size());
-		String error= null;
+		String error = null;
 		try {
 			pss.deleteAppUser("");
-		} catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		assertEquals("Username invalid!", error);
 		assertEquals(0, pss.getAllAppUsers().size());
-		
+
 	}
-	
+
 	@Test
 	public void testDeleteAppUserInvalidName() {
 		assertEquals(0, pss.getAllAppUsers().size());
 		String error = null;
 		try {
 			pss.deleteAppUser("username");
-		} catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		assertEquals("No AppUser found with username!", error);
 		assertEquals(0, pss.getAllAppAdmins().size());
 	}
-	
-	
+
 	@Test
 	public void testUpdateAppUserPass() {
 		assertEquals(0, pss.getAllAppUsers().size());
 		String username = "JWS";
 		String password = "3GPA";
-		String newPassword= "hello";
+		String newPassword = "hello";
 		pss.createAppUser(username, password, PersonRole.ADOPTER);
 		List<AppUser> allAppUsers = pss.getAllAppUsers();
 		pss.changeAppUserPassword(username, "hello");
 		assertEquals(newPassword, pss.getAllAppUsers().get(0).getPassword());
 		assertEquals(1, allAppUsers.size());
 	}
+	
+	@Test
+	public void testUpdateAppUserPassNullName() {
+		assertEquals(0, pss.getAllAppUsers().size());
+		String error = null;
+		try{
+			pss.changeAppUserPassword(null, "hello");
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("Username cannot be empty!", error);
+	}
+	
+	@Test
+	public void testUpdateAppUserPassNullPass() {
+		assertEquals(0, pss.getAllAppUsers().size());
+		String username = "JWS";
+		String password = "3GPA";
+		String error = null;
+		pss.createAppUser(username, password, PersonRole.ADOPTER);
+		try{
+			pss.changeAppUserPassword(username, null);
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("New password cannot be empty!", error);
+		assertEquals(1, pss.getAllAppUsers().size());
+	}
+	
+
+	
 	
 	@Test
 	public void testUpdateAppUserRole() {
@@ -398,9 +724,39 @@ public class PetShelterCrudTests {
 		assertEquals(1, allAppUsers.size());
 	}
 	
+	@Test
+	public void testUpdateAppUserRoleNullName() {
+		assertEquals(0, pss.getAllAppUsers().size());
+		String username = "JWS";
+		String password = "3GPA";
+		String error = null;
+		PersonRole personRole = PersonRole.OWNER;
+		pss.createAppUser(username, password, PersonRole.ADOPTER);
+		try{
+			pss.changeAppUserPersonRole(null, personRole);
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("Username cannot be empty!", error);
+		assertEquals(1, pss.getAllAppUsers().size());
+	}
 	
-	
-	
+	@Test
+	public void testUpdateAppUserRoleNullRole() {
+		assertEquals(0, pss.getAllAppUsers().size());
+		String username = "JWS";
+		String password = "3GPA";
+		String error = null;
+		PersonRole personRole = PersonRole.OWNER;
+		pss.createAppUser(username, password, PersonRole.ADOPTER);
+		try{
+			pss.changeAppUserPersonRole(null, personRole);
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("New appuser role cannot be empty!", error);
+	}
+
 	/*
 	 * /////////////////////////////////////////////////////////////////////////////
 	 * / TESTING DONATION
@@ -450,7 +806,7 @@ public class PetShelterCrudTests {
 		assertEquals(0, pss.getAllDonations().size());
 
 	}
-	
+
 	@Test
 	public void testDeleteDonation() {
 		assertEquals(0, pss.getAllDonations().size());
@@ -458,43 +814,42 @@ public class PetShelterCrudTests {
 		double amount = 20;
 		String comment = "WOW";
 		boolean setNameAnonymous = false;
-		
+
 		pss.createDonation(amount, comment, setNameAnonymous);
-		
+
 		assertEquals(1, pss.getAllDonations().size());
-		
-		
+
 		pss.deleteDonation(pss.getAllDonations().get(0).getDonationId());
 		assertEquals(0, pss.getAllDonations().size());
 	}
-	
+
 	@Test
 	public void testDeleteDonationNullId() {
 		assertEquals(0, pss.getAllDonations().size());
 		String error = null;
 		try {
 			pss.deleteDonation(null);
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		assertEquals("Donation ID invalid!", error);
 		assertEquals(0, pss.getAllDonations().size());
-		
+
 	}
-	
+
 	@Test
 	public void testDeleteDonationInvalidId() {
 		assertEquals(0, pss.getAllDonations().size());
 		String error = null;
 		try {
 			pss.deleteDonation(0000);
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		assertEquals("No donation found with Id!", error);
 		assertEquals(0, pss.getAllDonations().size());
 	}
-	
+
 	@Test
 	public void testUpdateDonationComment() {
 		assertEquals(0, pss.getAllDonations().size());
@@ -502,7 +857,7 @@ public class PetShelterCrudTests {
 		double amount = 20;
 		String comment = "WOW";
 		boolean setNameAnonymous = false;
-		
+
 		pss.createDonation(amount, comment, setNameAnonymous);
 		comment = "LMAO";
 		pss.changeDonationComment(pss.getAllDonations().get(0).getDonationId(), comment);
@@ -511,18 +866,74 @@ public class PetShelterCrudTests {
 	}
 	
 	@Test
+	public void testUpdateDonationCommentNullId() {
+		assertEquals(0, pss.getAllDonations().size());
+		double amount = 20;
+		String comment = "WOW";
+		boolean setNameAnonymous = false;
+
+		String error = null;
+		pss.createDonation(amount, comment, setNameAnonymous);
+		comment = "LMAO";
+		try{
+			pss.changeDonationComment(null, comment);
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("Donation ID invalid!",error);
+		assertEquals(1, pss.getAllDonations().size());
+	}
+	
+	@Test
+	public void testUpdateDonationCommentNullComment() {
+		assertEquals(0, pss.getAllDonations().size());
+		double amount = 20;
+		String comment = "WOW";
+		boolean setNameAnonymous = false;
+
+		String error = null;
+		pss.createDonation(amount, comment, setNameAnonymous);
+		comment = "LMAO";
+		try{
+			pss.changeDonationComment(pss.getAllDonations().get(0).getDonationId(), null);
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("New comment cannot be empty",error);
+		assertEquals(1, pss.getAllDonations().size());
+	}
+
+	@Test
 	public void testUpdateDonationAnonymous() {
 		assertEquals(0, pss.getAllDonations().size());
 
 		double amount = 20;
 		String comment = "WOW";
 		boolean setNameAnonymous = false;
-		
+
 		pss.createDonation(amount, comment, setNameAnonymous);
-		setNameAnonymous= true;
+		setNameAnonymous = true;
 		pss.changeDonationAnonymous(pss.getAllDonations().get(0).getDonationId(), setNameAnonymous);
 		assertEquals(setNameAnonymous, pss.getAllDonations().get(0).isSetNameAnonymous());
 		assertEquals(1, pss.getAllDonations().size());
+	}
+	
+	@Test
+	public void testUpdateDonationAnonymousNullId() {
+		assertEquals(0, pss.getAllDonations().size());
+
+		double amount = 20;
+		String comment = "WOW";
+		boolean setNameAnonymous = false;
+		String error = null;
+		pss.createDonation(amount, comment, setNameAnonymous);
+		setNameAnonymous = true;
+		try{
+			pss.changeDonationAnonymous(pss.getAllDonations().get(0).getDonationId(), setNameAnonymous);
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("Donation ID invalid!",error);
 	}
 	
 	
@@ -639,53 +1050,52 @@ public class PetShelterCrudTests {
 		assertEquals(0, pss.getAllDonations().size());
 
 	}
-	
+
 	@Test
 	public void testDeleteUserProfile() {
 		assertEquals(0, pss.getAllUserProfiles().size());
-		
+
 		String address = "12345 Street Blvd.";
 		boolean petExperience = false;
 		int petsOwned = 0;
 		String livingAccommodations = "House";
-		
+
 		pss.createUserProfile(address, petExperience, petsOwned, livingAccommodations);
-		
+
 		assertEquals(1, pss.getAllUserProfiles().size());
-		
+
 		pss.deleteUserProfile(pss.getAllUserProfiles().get(0).getUserProfileId());
-		
+
 		assertEquals(0, pss.getAllUserProfiles().size());
-		
+
 	}
-	
+
 	@Test
 	public void testDeleteUserProfileNullId() {
 		assertEquals(0, pss.getAllUserProfiles().size());
 		String error = null;
 		try {
 			pss.deleteUserProfile(null);
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
-		assertEquals("User Profile ID invalid!",error);
+		assertEquals("User Profile ID invalid!", error);
 		assertEquals(0, pss.getAllUserProfiles().size());
 	}
-	
+
 	@Test
 	public void testDeleteUserProfileInvalidId() {
 		assertEquals(0, pss.getAllUserProfiles().size());
 		String error = null;
 		try {
 			pss.deleteUserProfile(0000);
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
-		assertEquals("No UserProfile found with Id!",error);
+		assertEquals("No UserProfile found with Id!", error);
 		assertEquals(0, pss.getAllUserProfiles().size());
 	}
-	
-	
+
 	@Test
 	public void testUpdateUserProfileAddress() {
 		assertEquals(0, pss.getAllUserProfiles().size());
@@ -695,12 +1105,54 @@ public class PetShelterCrudTests {
 		int petsOwned = 0;
 		String livingAccommodations = "I live in an apartment. It is very small.";
 		pss.createUserProfile(address, petExperience, petsOwned, livingAccommodations);
-		
-		String newAddress= "6789 Boulevard";
+
+		String newAddress = "6789 Boulevard";
 		pss.changeUserProfileAddress(pss.getAllUserProfiles().get(0).getUserProfileId(), newAddress);
 		assertEquals(newAddress, pss.getAllUserProfiles().get(0).getAddress());
 	}
 	
+	@Test
+	public void testUpdateUserProfileAddressNullId() {
+		assertEquals(0, pss.getAllUserProfiles().size());
+
+		String address = "12345 Street Blvd.";
+		boolean petExperience = false;
+		int petsOwned = 0;
+		String livingAccommodations = "I live in an apartment. It is very small.";
+		pss.createUserProfile(address, petExperience, petsOwned, livingAccommodations);
+
+		String newAddress = "6789 Boulevard";
+		String error = null;
+		
+		try{
+			pss.changeUserProfileAddress(null, newAddress);
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("Id cannot be empty!",error);
+		assertEquals(1, pss.getAllUserProfiles().size());
+	}
+	
+	@Test
+	public void testUpdateUserProfileAddressNullAddress() {
+		assertEquals(0, pss.getAllUserProfiles().size());
+
+		String address = "12345 Street Blvd.";
+		boolean petExperience = false;
+		int petsOwned = 0;
+		String livingAccommodations = "I live in an apartment. It is very small.";
+		pss.createUserProfile(address, petExperience, petsOwned, livingAccommodations);
+		String error = null;
+
+		try{
+			pss.changeUserProfileAddress(pss.getAllUserProfiles().get(0).getUserProfileId(), null);
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("New address cannot be empty",error);
+		assertEquals(1, pss.getAllUserProfiles().size());
+	}
+
 	@Test
 	public void testUpdateUserProfileHasExperienceWithPets() {
 		assertEquals(0, pss.getAllUserProfiles().size());
@@ -710,12 +1162,35 @@ public class PetShelterCrudTests {
 		int petsOwned = 0;
 		String livingAccommodations = "I live in an apartment. It is very small.";
 		pss.createUserProfile(address, petExperience, petsOwned, livingAccommodations);
-		
-		boolean hasExperienceWithPets= true;
-		pss.changeUserProfileHasExperienceWithPets(pss.getAllUserProfiles().get(0).getUserProfileId(), hasExperienceWithPets);
+
+		boolean hasExperienceWithPets = true;
+		pss.changeUserProfileHasExperienceWithPets(pss.getAllUserProfiles().get(0).getUserProfileId(),
+				hasExperienceWithPets);
 		assertEquals(hasExperienceWithPets, pss.getAllUserProfiles().get(0).getHasExperienceWithPets());
 	}
 	
+	@Test
+	public void testUpdateUserProfileHasExperienceWithPetsNullId() {
+		assertEquals(0, pss.getAllUserProfiles().size());
+
+		String address = "12345 Street Blvd.";
+		boolean petExperience = false;
+		int petsOwned = 0;
+		String livingAccommodations = "I live in an apartment. It is very small.";
+		pss.createUserProfile(address, petExperience, petsOwned, livingAccommodations);
+		String error = null;
+		boolean hasExperienceWithPets = true;
+		try{
+			pss.changeUserProfileHasExperienceWithPets(null,
+				hasExperienceWithPets);} catch(IllegalArgumentException e) {
+					error = e.getMessage();
+				}
+		assertEquals("Id cannot be empty!",error);
+
+	}
+	
+	
+
 	@Test
 	public void testUpdateUserProfileNumberOfPetsCurrentlyOwned() {
 		assertEquals(0, pss.getAllUserProfiles().size());
@@ -725,11 +1200,53 @@ public class PetShelterCrudTests {
 		int petsOwned = 0;
 		String livingAccommodations = "I live in an apartment. It is very small.";
 		pss.createUserProfile(address, petExperience, petsOwned, livingAccommodations);
-		
-		int newPetsOwned= 2;
-		pss.changeUserProfileNumberOfPetsCurrentlyOwned(pss.getAllUserProfiles().get(0).getUserProfileId(), newPetsOwned);
+
+		int newPetsOwned = 2;
+		pss.changeUserProfileNumberOfPetsCurrentlyOwned(pss.getAllUserProfiles().get(0).getUserProfileId(),
+				newPetsOwned);
 		assertEquals(newPetsOwned, pss.getAllUserProfiles().get(0).getNumberOfPetsCurrentlyOwned());
 	}
+	
+	@Test
+	public void testUpdateUserProfileNumberOfPetsCurrentlyOwnedNullId() {
+		assertEquals(0, pss.getAllUserProfiles().size());
+
+		String address = "12345 Street Blvd.";
+		boolean petExperience = false;
+		int petsOwned = 0;
+		String livingAccommodations = "I live in an apartment. It is very small.";
+		pss.createUserProfile(address, petExperience, petsOwned, livingAccommodations);
+		String error = null;
+
+		int newPetsOwned = 2;
+		try{
+			pss.changeUserProfileNumberOfPetsCurrentlyOwned(null,newPetsOwned);
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("Id cannot be empty!",error);
+	}
+	
+	@Test
+	public void testUpdateUserProfileNumberOfPetsCurrentlyOwnedNullNumber() {
+		assertEquals(0, pss.getAllUserProfiles().size());
+
+		String address = "12345 Street Blvd.";
+		boolean petExperience = false;
+		int petsOwned = 0;
+		String livingAccommodations = "I live in an apartment. It is very small.";
+		pss.createUserProfile(address, petExperience, petsOwned, livingAccommodations);
+
+		String error = null;
+		int newPetsOwned = 2;
+		try{
+			pss.changeUserProfileNumberOfPetsCurrentlyOwned(pss.getAllUserProfiles().get(0).getUserProfileId(),null);
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("Number of Pets cannot be empty",error);
+	}
+
 	@Test
 	public void testUpdateUserProfileTypeOfLivingAccommodation() {
 		assertEquals(0, pss.getAllUserProfiles().size());
@@ -739,14 +1256,52 @@ public class PetShelterCrudTests {
 		int petsOwned = 0;
 		String livingAccommodations = "I live in an apartment. It is very small.";
 		pss.createUserProfile(address, petExperience, petsOwned, livingAccommodations);
-		
-		String newLivingAccommodations= "house";
-		pss.changeUserProfileTypeOfLivingAccommodation(pss.getAllUserProfiles().get(0).getUserProfileId(), newLivingAccommodations);
+
+		String newLivingAccommodations = "house";
+		pss.changeUserProfileTypeOfLivingAccommodation(pss.getAllUserProfiles().get(0).getUserProfileId(),
+				newLivingAccommodations);
 		assertEquals(newLivingAccommodations, pss.getAllUserProfiles().get(0).getTypeOfLivingAccomodation());
 	}
 	
-	
+	@Test
+	public void testUpdateUserProfileTypeOfLivingAccommodationNullId() {
+		assertEquals(0, pss.getAllUserProfiles().size());
 
+		String address = "12345 Street Blvd.";
+		boolean petExperience = false;
+		int petsOwned = 0;
+		String livingAccommodations = "I live in an apartment. It is very small.";
+		pss.createUserProfile(address, petExperience, petsOwned, livingAccommodations);
+
+		String error = null;
+		String newLivingAccommodations = "house";
+		try{
+			pss.changeUserProfileTypeOfLivingAccommodation(null,newLivingAccommodations);
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("Id cannot be empty!",error);
+	}
+	
+	@Test
+	public void testUpdateUserProfileTypeOfLivingAccommodationNullString() {
+		assertEquals(0, pss.getAllUserProfiles().size());
+
+		String address = "12345 Street Blvd.";
+		boolean petExperience = false;
+		int petsOwned = 0;
+		String livingAccommodations = "I live in an apartment. It is very small.";
+		pss.createUserProfile(address, petExperience, petsOwned, livingAccommodations);
+
+		String error = null;
+		String newLivingAccommodations = "house";
+		try{
+			pss.changeUserProfileTypeOfLivingAccommodation(pss.getAllUserProfiles().get(0).getUserProfileId(),null);
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("Living accomodation cannot be empty",error);
+	}
 
 	/*
 	 * /////////////////////////////////////////////////////////////////////////////
@@ -906,56 +1461,54 @@ public class PetShelterCrudTests {
 		assertEquals("Person password cannot be empty!", error);
 		assertEquals(0, pss.getAllPersons().size());
 	}
-	
+
 	@Test
 	public void testDeletePerson() {
-		//creating person
+		// creating person
 		assertEquals(0, pss.getAllPersons().size());
 		String username = "tony";
 		String password = "passowrd";
-		
+
 		pss.createPerson(username, password);
 		assertEquals(1, pss.getAllPersons().size());
-		//deleting person
-		
+		// deleting person
+
 		pss.deletePerson(username);
 		assertEquals(0, pss.getAllPersons().size());
 	}
-	
+
 	@Test
 	public void testDeletePersonNullName() {
 		assertEquals(0, pss.getAllPersons().size());
 		String error = null;
 		try {
 			pss.deletePerson(null);
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		assertEquals("Username invalid!", error);
 		assertEquals(0, pss.getAllPersons().size());
 	}
-	
+
 	@Test
 	public void testDeletePersonInvalidName() {
 		assertEquals(0, pss.getAllPersons().size());
 		String error = null;
 		try {
 			pss.deletePerson("Michael");
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		assertEquals("Person not found with username!", error);
 		assertEquals(0, pss.getAllPersons().size());
 	}
 
-
-	
 	@Test
 	public void testUpdatePersonPass() {
 		assertEquals(0, pss.getAllPersons().size());
 		String username = "JWS";
 		String password = "3GPA";
-		String newPassword= "hello";
+		String newPassword = "hello";
 		pss.createPerson(username, password);
 		List<Person> allPersons = pss.getAllPersons();
 		pss.changePersonPassword(username, "hello");
@@ -963,6 +1516,40 @@ public class PetShelterCrudTests {
 		assertEquals(1, allPersons.size());
 	}
 	
+	@Test
+	public void testUpdatePersonPassNullName() {
+		assertEquals(0, pss.getAllPersons().size());
+		String username = "JWS";
+		String password = "3GPA";
+		pss.createPerson(username, password);
+		String error = null;
+		try{
+			pss.changePersonPassword(null, "hello");
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("Username cannot be empty!", error);
+		assertEquals(1, pss.getAllPersons().size());
+	}
+	
+	@Test
+	public void testUpdatePersonPassNullPass() {
+		assertEquals(0, pss.getAllPersons().size());
+		String username = "JWS";
+		String password = "3GPA";
+		pss.createPerson(username, password);
+		String error = null;
+		try{
+			pss.changePersonPassword(username, null);
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("New password cannot be empty!", error);
+		assertEquals(1, pss.getAllPersons().size());
+	}
+	
+	
+
 	/*
 	 * /////////////////////////////////////////////////////////////////////////////
 	 * / TESTING QUESTION
@@ -1005,48 +1592,48 @@ public class PetShelterCrudTests {
 		assertEquals("Question cannot be empty!", error);
 		assertEquals(0, pss.getAllQuestions().size());
 	}
-	
+
 	@Test
 	public void testDeleteQuestion() {
 		assertEquals(0, pss.getAllQuestions().size());
-		
+
 		String question = "how are you";
-		
+
 		pss.createQuestion(question);
-		
+
 		assertEquals(1, pss.getAllQuestions().size());
-		
+
 		pss.deleteQuestion(pss.getAllQuestions().get(0).getQuestionId());
-		
+
 		assertEquals(0, pss.getAllQuestions().size());
 	}
-	
+
 	@Test
 	public void testDeleteQuestionNullId() {
 		assertEquals(0, pss.getAllQuestions().size());
 		String error = null;
 		try {
 			pss.deleteQuestion(null);
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		assertEquals("Question ID invalid!", error);
 		assertEquals(0, pss.getAllQuestions().size());
 	}
-	
+
 	@Test
 	public void testDeleteQuestionInvalidId() {
 		assertEquals(0, pss.getAllQuestions().size());
 		String error = null;
 		try {
 			pss.deleteQuestion(000);
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		assertEquals("No question found with Id!", error);
 		assertEquals(0, pss.getAllQuestions().size());
 	}
-	
+
 	@Test
 	public void testUpdateQuestionString() {
 		assertEquals(0, pss.getAllQuestions().size());
@@ -1058,6 +1645,37 @@ public class PetShelterCrudTests {
 	}
 	
 	@Test
+	public void testUpdateQuestionStringNullId() {
+		assertEquals(0, pss.getAllQuestions().size());
+		String question = "how are you";
+		pss.createQuestion(question);
+		String newQuestion = "hello hello";
+		String error = null;
+		try{
+			pss.changeQuestionString(null, newQuestion);
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("No question found with Id!", error);
+		assertEquals(1, pss.getAllQuestions().size());
+	}
+	
+	@Test
+	public void testUpdateQuestionStringNullQuestion() {
+		assertEquals(0, pss.getAllQuestions().size());
+		String question = "how are you";
+		pss.createQuestion(question);
+		String error = null;
+		try{
+			pss.changeQuestionString(pss.getAllQuestions().get(0).getQuestionId(), null);
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("New question cannot be empty", error);
+		assertEquals(1, pss.getAllQuestions().size());
+	}
+
+	@Test
 	public void testUpdateQuestionAnswer() {
 		assertEquals(0, pss.getAllQuestions().size());
 		String question = "how are you";
@@ -1065,6 +1683,37 @@ public class PetShelterCrudTests {
 		String answer = "hello hello";
 		pss.changeQuestionAnswer(pss.getAllQuestions().get(0).getQuestionId(), answer);
 		assertEquals(answer, pss.getAllQuestions().get(0).getAnswer());
+	}
+	
+	@Test
+	public void testUpdateQuestionAnswerNullId() {
+		assertEquals(0, pss.getAllQuestions().size());
+		String question = "how are you";
+		pss.createQuestion(question);
+		String answer = "hello hello";
+		String error = null;
+		try{
+			pss.changeQuestionAnswer(null, answer);
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("No question found with Id!", error);
+		assertEquals(1, pss.getAllQuestions().size());
+	}
+	
+	@Test
+	public void testUpdateQuestionAnswerNullAnswer() {
+		assertEquals(0, pss.getAllQuestions().size());
+		String question = "how are you";
+		pss.createQuestion(question);
+		String error = null;
+		try{
+			pss.changeQuestionAnswer(pss.getAllQuestions().get(0).getQuestionId(), null);
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("New answer cannot be empty", error);
+		assertEquals(1, pss.getAllQuestions().size());
 	}
 
 	/*
@@ -1085,7 +1734,7 @@ public class PetShelterCrudTests {
 		String desc = "Small domestic cat for sale";
 
 		pss.createPerson("username", "password");
-		
+
 		try {
 			pss.createPetPost(avail, name, typeOfPet, desc, pss.getPerson("username"));
 		} catch (IllegalArgumentException e) {
@@ -1109,9 +1758,8 @@ public class PetShelterCrudTests {
 		String typeOfPet = "Cat";
 		String desc = "Small domestic cat for sale";
 		String error = "";
-		
+
 		pss.createPerson("user", "password");
-		
 
 		try {
 			pss.createPetPost(avail, name, typeOfPet, desc, pss.getPerson("user"));
@@ -1166,7 +1814,7 @@ public class PetShelterCrudTests {
 		assertEquals("Pet must have a description!", error);
 		assertEquals(0, pss.getAllPetPosts().size());
 	}
-	
+
 	@Test
 	public void testCreatePetPostWithNullOwner() {
 		assertEquals(0, pss.getAllPetPosts().size());
@@ -1185,7 +1833,7 @@ public class PetShelterCrudTests {
 		assertEquals("Pet must have an owner", error);
 		assertEquals(0, pss.getAllPetPosts().size());
 	}
-	
+
 	@Test
 	public void testDeletePetPost() {
 		assertEquals(0, pss.getAllPetPosts().size());
@@ -1194,43 +1842,43 @@ public class PetShelterCrudTests {
 		String typeOfPet = "Cat";
 		String desc = "blablabla";
 		pss.createPerson("user", "password");
-		
-		pss.createPetPost(avail,name, typeOfPet, desc, pss.getPerson("user"));
-		
+
+		pss.createPetPost(avail, name, typeOfPet, desc, pss.getPerson("user"));
+
 		assertEquals(1, pss.getAllPetPosts().size());
-		
+
 		pss.deletePetPost(pss.getAllPetPosts().get(0).getPetPostId());
-		
+
 		assertEquals(0, pss.getAllPetPosts().size());
-		
+
 	}
-	
+
 	@Test
 	public void testDeletePetPostNullId() {
 		assertEquals(0, pss.getAllPetPosts().size());
 		String error = null;
 		try {
 			pss.deletePetPost(null);
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
-		assertEquals("Pet Post ID invalid!",error);
+		assertEquals("Pet Post ID invalid!", error);
 		assertEquals(0, pss.getAllPetPosts().size());
 	}
-	
+
 	@Test
 	public void testDeletePetPostInvalidId() {
 		assertEquals(0, pss.getAllPetPosts().size());
 		String error = null;
 		try {
 			pss.deletePetPost(000);
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
-		assertEquals("No PetPost found with Id!",error);
+		assertEquals("No PetPost found with Id!", error);
 		assertEquals(0, pss.getAllPetPosts().size());
 	}
-	
+
 	@Test
 	public void testUpdatePetPostAvailability() {
 		assertEquals(0, pss.getAllAppUsers().size());
@@ -1242,12 +1890,32 @@ public class PetShelterCrudTests {
 		pss.createPerson("username", "password");
 		pss.createPetPost(avail, name, typeOfPet, desc, pss.getPerson("username"));
 		boolean availability = false;
-		
+
 		pss.changePetPostAvailability(pss.getAllPetPosts().get(0).getPetPostId(), availability);
 		assertEquals(availability, pss.getAllPetPosts().get(0).isAvailability());
-		
+
 	}
 	
+	@Test
+	public void testUpdatePetPostAvailabilityNullId() {
+		assertEquals(0, pss.getAllAppUsers().size());
+		boolean avail = true;
+		String name = "Mike";
+		String typeOfPet = "Cat";
+		String desc = "Small domestic cat for sale";
+
+		pss.createPerson("username", "password");
+		pss.createPetPost(avail, name, typeOfPet, desc, pss.getPerson("username"));
+		boolean availability = false;
+		String error = null;
+		try{
+			pss.changePetPostAvailability(null, availability);
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("Pet Post ID invalid!", error);
+	}
+
 	@Test
 	public void testUpdatePetPostName() {
 		assertEquals(0, pss.getAllAppUsers().size());
@@ -1259,11 +1927,52 @@ public class PetShelterCrudTests {
 		pss.createPerson("username", "password");
 		pss.createPetPost(avail, name, typeOfPet, desc, pss.getPerson("username"));
 		String newName = "Drake";
-		
+
 		pss.changePetPostName(pss.getAllPetPosts().get(0).getPetPostId(), newName);
 		assertEquals(newName, pss.getAllPetPosts().get(0).getName());
 	}
 	
+	@Test
+	public void testUpdatePetPostNameNullId() {
+		assertEquals(0, pss.getAllAppUsers().size());
+		boolean avail = true;
+		String name = "Mike";
+		String typeOfPet = "Cat";
+		String desc = "Small domestic cat for sale";
+		String error = null;
+		pss.createPerson("username", "password");
+		pss.createPetPost(avail, name, typeOfPet, desc, pss.getPerson("username"));
+		String newName = "Drake";
+
+		try{
+			pss.changePetPostName(null, newName);
+		}catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("Pet Post ID invalid!", error);
+	}
+	
+	@Test
+	public void testUpdatePetPostNameNullName() {
+		assertEquals(0, pss.getAllAppUsers().size());
+		boolean avail = true;
+		String name = "Mike";
+		String typeOfPet = "Cat";
+		String desc = "Small domestic cat for sale";
+
+		pss.createPerson("username", "password");
+		pss.createPetPost(avail, name, typeOfPet, desc, pss.getPerson("username"));
+		String error = null;
+		try{
+			pss.changePetPostName(pss.getAllPetPosts().get(0).getPetPostId(), null);
+		}catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("New name cannot be empty", error);
+	}
+	
+	
+
 	@Test
 	public void testUpdatePetPostDescription() {
 		assertEquals(0, pss.getAllAppUsers().size());
@@ -1275,13 +1984,51 @@ public class PetShelterCrudTests {
 		pss.createPerson("username", "password");
 		pss.createPetPost(avail, name, typeOfPet, desc, pss.getPerson("username"));
 		String description = "Very large dog";
-		
+
 		pss.changePetPostDescription(pss.getAllPetPosts().get(0).getPetPostId(), description);
 		assertEquals(description, pss.getAllPetPosts().get(0).getDescription());
 	}
 	
+	@Test
+	public void testUpdatePetPostDescriptionNullId() {
+		assertEquals(0, pss.getAllAppUsers().size());
+		boolean avail = true;
+		String name = "Mike";
+		String typeOfPet = "Cat";
+		String desc = "Small domestic cat for sale";
+
+		pss.createPerson("username", "password");
+		pss.createPetPost(avail, name, typeOfPet, desc, pss.getPerson("username"));
+		String description = "Very large dog";
+
+		String error = null;
+		try{
+			pss.changePetPostDescription(null, description);
+		}catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("Pet Post ID invalid!", error);
+	}
 	
-	
+	@Test
+	public void testUpdatePetPostDescriptionNullDescription() {
+		assertEquals(0, pss.getAllAppUsers().size());
+		boolean avail = true;
+		String name = "Mike";
+		String typeOfPet = "Cat";
+		String desc = "Small domestic cat for sale";
+
+		pss.createPerson("username", "password");
+		pss.createPetPost(avail, name, typeOfPet, desc, pss.getPerson("username"));
+		String error = null;
+		try{
+			pss.changePetPostDescription(pss.getAllPetPosts().get(0).getPetPostId(), null);
+		}catch (IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertEquals("New description cannot be empty", error);
+	}
+
 	/*
 	 * /////////////////////////////////////////////////////////////////////////////
 	 * / TESTING LOG IN LOG OUT
@@ -1292,67 +2039,65 @@ public class PetShelterCrudTests {
 	@Test
 	public void testLogInAppAdmin() {
 		assertEquals(0, pss.getAllAppAdmins().size());
-		String username= "hello";
+		String username = "hello";
 		String password = "world";
 		pss.createAppAdmin(username, password);
 		pss.loginAsAppAdmin(username, password);
 		assertNotNull(pss.getLoggedInUser());
 		assertEquals(username, pss.getLoggedInUser().getUsername());
 		assertEquals(password, pss.getLoggedInUser().getPassword());
-		
+
 	}
+
 	@Test
 	public void testLogInAppAdminNullName() {
 		assertEquals(0, pss.getAllAppAdmins().size());
-		String username= "";
+		String username = "";
 		String password = "world";
 		String error = null;
 		try {
 			pss.loginAsAppAdmin(username, password);
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		assertEquals("Username cannot be empty.", error);
 		assertNull(pss.getLoggedInUser());
 	}
-	
+
 	@Test
 	public void testLogInAppAdminNullPass() {
 		assertEquals(0, pss.getAllAppAdmins().size());
-		String username= "hello";
+		String username = "hello";
 		String password = "";
 		String error = null;
 		try {
 			pss.loginAsAppAdmin(username, password);
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		assertEquals("Password cannot be empty.", error);
 		assertNull(pss.getLoggedInUser());
 	}
-	
+
 	@Test
 	public void testLogInAppAdminInvalidUser() {
 		assertEquals(0, pss.getAllAppAdmins().size());
-		String username= "hello";
+		String username = "hello";
 		String password = "world";
 		String error = null;
 		try {
 			pss.loginAsAppAdmin(username, password);
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		assertEquals("No admin found with this username!", error);
 		assertNull(pss.getLoggedInUser());
 	}
-	
-	
-	
-	
+
 	@Test
 	public void testLogInAppUser() {
 		assertEquals(0, pss.getAllAppUsers().size());
-		String username= "hello";
+		String username = "hello";
 		String password = "world";
 		pss.createAppUser(username, password, null);
 		pss.loginAsAppUser(username, password);
@@ -1360,54 +2105,50 @@ public class PetShelterCrudTests {
 		assertEquals(username, pss.getLoggedInUser().getUsername());
 		assertEquals(password, pss.getLoggedInUser().getPassword());
 	}
-	
+
 	@Test
 	public void testLogInAppUserNullName() {
 		assertEquals(0, pss.getAllAppUsers().size());
-		String username= "";
+		String username = "";
 		String password = "world";
 		String error = null;
 		try {
 			pss.loginAsAppUser(username, password);
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		assertEquals("Username cannot be empty.", error);
 		assertNull(pss.getLoggedInUser());
 	}
-	
+
 	@Test
 	public void testLogInAppUserNullPass() {
 		assertEquals(0, pss.getAllAppUsers().size());
-		String username= "hello";
+		String username = "hello";
 		String password = "";
 		String error = null;
 		try {
 			pss.loginAsAppUser(username, password);
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		assertEquals("Password cannot be empty.", error);
 		assertNull(pss.getLoggedInUser());
 	}
-	
+
 	@Test
 	public void testLogInAppUserInvalidUser() {
 		assertEquals(0, pss.getAllAppUsers().size());
-		String username= "hello";
+		String username = "hello";
 		String password = "world";
 		String error = null;
 		try {
 			pss.loginAsAppUser(username, password);
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			error = e.getMessage();
 		}
 		assertEquals("This user account could not be found.", error);
 		assertNull(pss.getLoggedInUser());
 	}
-	
-	
-	
-	
-	
+
 }
