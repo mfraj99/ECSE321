@@ -3,6 +3,8 @@
 
 This project was created as part of the course ECSE321 - Introduction to Software Engineering in Winter 2020 at McGill University.
 
+Due to covid-19 only the backend was able to be completed.
+
 Our team was composed of:
 * [Michael Frajman](https://github.com/mfraj99) - Project manager and document lead
 * [Karl Koerich](https://github.com/karlmiko) - Backend developer
@@ -10,8 +12,10 @@ Our team was composed of:
 * [Xinrui Li](https://github.com/xinruili07) - Frontend developer
 * [Jia Wei Sun](https://github.com/jiaweisun-github) - Backend developer and UML specialist
 
+The project's original wiki with further details from development can be viewed [here](https://github.com/McGill-ECSE321-Winter2020/project-group-08/wiki).
+
 ## Scope
-The goal of the project was to create a website and app for a pet shelter that allowed for users to view and apply to adoption posts as well as to put their pets up for adoption. 
+The goal of the project was to create a website and app for a pet shelter that allowed for users to view and apply to adoption posts as well as to put their pets up for adoption. Spring was used as a framework with PostGreSQL and Hibernate for the database.
 
 ## Directory
 * [Wiki](https://github.com/McGill-ECSE321-Winter2020/project-group-08/wiki)
